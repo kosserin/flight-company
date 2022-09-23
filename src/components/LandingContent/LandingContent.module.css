@@ -1,0 +1,23 @@
+.landing-content {
+  background: linear-gradient(
+      99.55deg,
+      #110619 9.63%,
+      rgba(17, 6, 25, 0) 193.15%
+    ),
+    url("/src/assets/background.jpg") no-repeat center;
+  background-size: cover;
+  height: 75vh;
+}
+
+.landing-content div {
+  max-width: 90vw;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.landing-content div h1 {
+  color: var(--white-primary);
+  padding-top: 110px;
+  max-width: 100%;
+  width: 600px;
+}
