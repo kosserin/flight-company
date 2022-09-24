@@ -44,3 +44,23 @@
 .form-title.activated-title h3 {
   color: var(--white-primary);
 }
+
+.form-title.activated-title img:first-of-type {
+  opacity: 0;
+  display: none;
+}
+
+.form-title.activated-title img:last-of-type {
+  opacity: 1;
+  display: block;
+}
+
+.form-title img:first-of-type {
+  opacity: 1;
+  display: block;
+}
+
+.form-title img:last-of-type {
+  opacity: 0;
+  display: none;
+}

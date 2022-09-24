@@ -8,8 +8,10 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <LandingContent />
-      <FlightForm />
+      <main style={{ position: "relative" }}>
+        <LandingContent />
+        <FlightForm />
+      </main>
     </React.Fragment>
   );
 };

@@ -1,0 +1,81 @@
+.backdrop {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background-color: var(--white-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content p {
+  text-align: center;
+  font-size: 1.25rem;
+  color: #000;
+}
+
+.modal-content .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.modal-content h1 {
+  color: #000;
+  font-size: 4rem;
+}
+
+.modal-content .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content .holder {
+  padding: 1rem;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content img {
+  width: 16px;
+  height: 16px;
+}
+
+.modal-content button {
+  background-color: var(--purple-primary);
+  color: var(--white-primary);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 57px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90vw;
+    justify-content: center;
+  }
+}
