@@ -1,0 +1,45 @@
+.why-us-section {
+  max-width: 90vw;
+  margin: 100px auto;
+}
+
+.why-us-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-content {
+  width: 700px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.item-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item-holder img {
+  width: 70px;
+  height: 70px;
+}
+
+.item-holder p {
+  text-align: center;
+  line-height: 20px;
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+}

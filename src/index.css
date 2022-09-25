@@ -16,27 +16,27 @@
   --white-secondary: #f1f1e6;
 }
 
-.h1 {
+h1 {
   font-size: 2.625rem;
   font-weight: 400;
 }
 
-.h2 {
+h2 {
   font-size: 1.75rem;
   font-weight: 400;
 }
 
-.h3 {
+h3 {
   font-size: 2.625rem;
   font-weight: 600;
 }
 
-.h4 {
+h4 {
   font-size: 1.25rem;
   font-weight: 500;
 }
 
-.p {
+p {
   font-weight: 400;
   font-size: 1rem;
 }
@@ -62,5 +62,23 @@
 
 .form-title img:last-of-type {
   opacity: 0;
+  display: none;
+}
+
+.swiper-button-next {
+  color: red !important;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 48px !important;
+  height: 48px !important;
+  background-image: url("/src/assets/next.svg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  padding: 10px;
+  transform: translateX(50%);
+}
+
+.swiper-button-next::after {
   display: none;
 }

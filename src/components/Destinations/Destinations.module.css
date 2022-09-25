@@ -1,0 +1,127 @@
+.destinations-content {
+  padding: 32px 0 64px 0;
+  background: var(--purple-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.destinations-content h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--white-primary);
+}
+
+.destinations-swiper {
+  max-width: 90vw;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.destination-swiper-slide {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.destination-swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 3;
+  border-radius: 10px;
+}
+
+.destination-swiper-slide h3 {
+  position: relative;
+  z-index: 5;
+  color: var(--white-primary);
+  text-align: center;
+}
+
+.destination-overlay {
+  position: absolute;
+  background: linear-gradient(
+    359.5deg,
+    #110619 -2.53%,
+    rgba(17, 6, 25, 0) 187.57%
+  );
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+}
+
+.destinations-content .all-destinations__btn {
+  background-color: var(--blue-primary);
+  color: var(--white-primary);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 57px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 100%;
+  width: 340px;
+  margin-top: 32px;
+}
+
+.swiper-holder {
+  position: relative;
+}
+
+.destination-button {
+  background-color: var(--purple-primary);
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+.destination-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.destination-prev {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.destination-next {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.destination-button:disabled {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 968px) {
+  .destination-button {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .destinations-swiper {
+    max-width: 95vw;
+    margin: 0 0 0 5vw;
+  }
+}

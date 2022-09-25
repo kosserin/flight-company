@@ -5,7 +5,7 @@ const LandingContent = () => {
   return (
     <section className={styles["landing-content"]}>
       <div>
-        <h1 className="h1">Путујте безбрижно и сигурно са нама.</h1>
+        <h1>Путујте безбрижно и сигурно са нама.</h1>
       </div>
     </section>
   );
