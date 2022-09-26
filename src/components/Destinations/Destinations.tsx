@@ -15,7 +15,7 @@ import { Navigation } from "swiper";
 
 interface Destination {
   imagePath: string;
-  title?: any;
+  title: any;
 }
 
 const DUMMY_DESTINATIONS: Destination[] = [
@@ -52,8 +52,8 @@ const Destinations = () => {
       <div className={styles["swiper-holder"]}>
         <Swiper
           navigation={{
-            prevEl: ".prev",
-            nextEl: ".next",
+            prevEl: "#destination-prev",
+            nextEl: "#destination-next",
           }}
           modules={[Navigation]}
           className={styles["destinations-swiper"]}
@@ -82,12 +82,14 @@ const Destinations = () => {
           })}
         </Swiper>
         <button
-          className={`${styles["destination-prev"]} ${styles["destination-button"]} prev`}
+          className={`${styles["destination-prev"]} ${styles["destination-button"]}`}
+          id="destination-prev"
         >
           <img src={prevIcon} alt="" />
         </button>
         <button
-          className={`${styles["destination-next"]} ${styles["destination-button"]} next`}
+          className={`${styles["destination-next"]} ${styles["destination-button"]}`}
+          id="destination-next"
         >
           <img src={nextIcon} alt="" />
         </button>

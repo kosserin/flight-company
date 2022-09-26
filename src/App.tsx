@@ -5,6 +5,7 @@ import FlightForm from "./components/FlightForm/FlightForm";
 import LandingContent from "./components/LandingContent/LandingContent";
 import WhyUs from "./components/WhyUs/WhyUs";
 import Destinations from "./components/Destinations/Destinations";
+import Testimonials from "./components/Testimonials/Testimonials";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <main>
         <WhyUs />
         <Destinations />
+        <Testimonials />
       </main>
     </React.Fragment>
   );

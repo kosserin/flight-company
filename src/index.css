@@ -65,20 +65,7 @@ p {
   display: none;
 }
 
-.swiper-button-next {
-  color: red !important;
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 48px !important;
-  height: 48px !important;
-  background-image: url("/src/assets/next.svg");
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center;
-  padding: 10px;
-  transform: translateX(50%);
-}
-
-.swiper-button-next::after {
-  display: none;
+body,
+html {
+  overflow-x: hidden;
 }
