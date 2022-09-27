@@ -6,6 +6,7 @@ import LandingContent from "./components/LandingContent/LandingContent";
 import WhyUs from "./components/WhyUs/WhyUs";
 import Destinations from "./components/Destinations/Destinations";
 import Testimonials from "./components/Testimonials/Testimonials";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Destinations />
         <Testimonials />
       </main>
+      <Footer />
     </React.Fragment>
   );
 };
