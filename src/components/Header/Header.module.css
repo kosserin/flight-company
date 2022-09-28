@@ -1,7 +1,7 @@
 .header {
   position: relative;
   height: 10vh;
-  background-color: var(--purple-primary);
+  /* background-color: var(--purple-primary); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,6 +9,11 @@
   width: 100%;
   z-index: 99;
   top: 0;
+  transition: 250ms ease-out;
+}
+
+header.header-dark {
+  background-color: var(--purple-primary);
 }
 
 .header nav {

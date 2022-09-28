@@ -8,9 +8,9 @@ import footerMid from "../../assets/footer/footer-mid.png";
 import footerFront from "../../assets/footer/footer-front.png";
 import toTopArrowIcon from "../../assets/footer/top.svg";
 
-const Footer = () => {
+const Footer = (props: any) => {
   return (
-    <footer>
+    <footer className={`${props.color === "dark" && styles["footer-dark"]}`}>
       <h4>KossAirways</h4>
       <p>
         Авио компанија која Вас води где год пожелите безбедно, удобно и брзо.

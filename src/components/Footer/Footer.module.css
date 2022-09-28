@@ -7,6 +7,23 @@ footer {
   gap: 0;
 }
 
+footer.footer-dark {
+  background-color: var(--purple-primary);
+}
+
+footer.footer-dark > p {
+  color: var(--white-primary);
+}
+
+footer.footer-dark h4 {
+  color: var(--white-primary);
+}
+
+footer.footer-dark > button {
+  background-color: var(--white-primary);
+  color: #000;
+}
+
 footer > p {
   font-size: 0.875rem;
   max-width: 90vw;
@@ -25,7 +42,7 @@ footer > button {
 }
 
 .footer-social {
-  margin-top: 64px;
+  margin-top: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
