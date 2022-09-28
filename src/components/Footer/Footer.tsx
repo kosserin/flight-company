@@ -6,6 +6,7 @@ import instagramIcon from "../../assets/social/instagram.svg";
 import footerBehind from "../../assets/footer/footer-behind.png";
 import footerMid from "../../assets/footer/footer-mid.png";
 import footerFront from "../../assets/footer/footer-front.png";
+import toTopArrowIcon from "../../assets/footer/top.svg";
 
 const Footer = () => {
   return (
@@ -30,6 +31,12 @@ const Footer = () => {
         <img className={styles["footer-behind"]} src={footerBehind} alt="" />
         <img className={styles["footer-mid"]} src={footerMid} alt="" />
         <img className={styles["footer-front"]} src={footerFront} alt="" />
+        <div className={styles.copyright}>
+          <p>&copy; 2022 Сва права задржана.</p>
+          <a href="#">
+            <img src={toTopArrowIcon} alt="" />
+          </a>
+        </div>
       </div>
     </footer>
   );

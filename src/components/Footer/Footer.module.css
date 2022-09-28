@@ -9,7 +9,8 @@ footer {
 
 footer > p {
   font-size: 0.875rem;
-  margin-top: 8px;
+  max-width: 90vw;
+  margin: 8px auto 0 auto;
 }
 
 footer > button {
@@ -18,11 +19,13 @@ footer > button {
   color: var(--white-primary);
   padding: 14px 58px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 28px;
+  border: none;
+  outline: none;
 }
 
 .footer-social {
-  margin-top: 8px;
+  margin-top: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,4 +64,34 @@ footer > button {
   bottom: -5px;
   left: 0;
   height: 140px;
+}
+
+.copyright {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem 2rem;
+}
+
+.copyright p {
+  color: var(--white-primary);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.copyright a {
+  border-radius: 50%;
+  border: 1px solid var(--white-primary);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 250ms ease-out;
+}
+
+.copyright a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }

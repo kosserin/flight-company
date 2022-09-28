@@ -4,7 +4,8 @@
       #110619 9.63%,
       rgba(17, 6, 25, 0) 193.15%
     ),
-    url("/src/assets/background.jpg") no-repeat center;
+    url("/src/assets/background.jpg") no-repeat;
+  background-position: 50% 20%;
   background-size: cover;
   height: 75vh;
 }

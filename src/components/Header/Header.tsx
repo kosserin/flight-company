@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -9,19 +10,19 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav>
-        <a href="#">KossAirways</a>
+        <Link to="/">KossAirways</Link>
         <ul className={completedClass}>
           <li>
-            <a href="#">Резервишите</a>
+            <Link to="/">Резервишите</Link>
           </li>
           <li>
-            <a href="#">Откријте</a>
+            <Link to="/">Откријте</Link>
           </li>
           <li>
-            <a href="#">О нама</a>
+            <Link to="/about">О нама</Link>
           </li>
           <li>
-            <a href="#">Контакт</a>
+            <Link to="/">Контакт</Link>
           </li>
         </ul>
         <div

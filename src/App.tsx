@@ -1,12 +1,10 @@
 import Header from "./components/Header/Header";
 
 import React from "react";
-import FlightForm from "./components/FlightForm/FlightForm";
-import LandingContent from "./components/LandingContent/LandingContent";
-import WhyUs from "./components/WhyUs/WhyUs";
-import Destinations from "./components/Destinations/Destinations";
-import Testimonials from "./components/Testimonials/Testimonials";
 import Footer from "./components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
 
 const App = () => {
   return (
@@ -14,13 +12,10 @@ const App = () => {
       <Header />
       {/* use this code to wrap flight form to get form behind navigation on mobile view <main style={{ position: "relative" }}>        
       </main> */}
-      <LandingContent />
-      <FlightForm />
-      <main>
-        <WhyUs />
-        <Destinations />
-        <Testimonials />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Routes>
       <Footer />
     </React.Fragment>
   );
