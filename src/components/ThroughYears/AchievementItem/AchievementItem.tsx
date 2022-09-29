@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./AchievementItem.module.css";
 import arrowUpIcon from "../../../assets/arrow-up.svg";
 
 const AchievementItem = () => {
+  const [showContent, setShowContent] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const itemRef = useRef<HTMLLIElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const headerClickHandler = () => {
-    console.log("xd");
+    setShowContent((prev) => {
+      return !prev;
+    });
   };
 
   return (
-    <li className={`${styles["item-holder"]} ${styles["item-active"]}`}>
+    <li
+      className={`${styles["item-holder"]} ${
+        showContent ? styles["item-active"] : ""
+      } ${showContent ? "item-active" : ""}`}
+      ref={itemRef}
+    >
       <div className={styles["item-header"]} onClick={headerClickHandler}>
-        <h4>1927 - 1947: Оснивање, раст и престанак рада Аеропута</h4>
-        <img src={arrowUpIcon} alt="" />
+        <div className={styles["header-holder"]}>
+          <h4>1927 - 1947: Оснивање, раст и престанак рада Аеропута</h4>
+          <img src={arrowUpIcon} alt="" />
+        </div>
       </div>
-      <div className={styles["item-content"]}>
+      <div ref={contentRef} className={`${styles["item-content"]}`}>
         <div className={styles["content-div"]}>
           <h5>1927</h5>
           <p>
