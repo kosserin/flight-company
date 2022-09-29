@@ -1,0 +1,36 @@
+.item-holder {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
+
+.item-holder.item-active {
+  border: 2px solid green;
+}
+
+.item-header > img {
+  transition: 250ms ease-out;
+}
+
+.item-holder.item-active .item-header > img {
+  transform: rotate(180deg);
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white-primary);
+  padding: 9px 1rem;
+  cursor: pointer;
+}
+
+.item-content {
+  color: var(--white-primary);
+  padding: 0 1rem;
+  background-color: var(--purple-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 9px 1rem;
+}
