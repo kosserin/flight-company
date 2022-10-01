@@ -41,7 +41,7 @@ const Header = (props: any) => {
             <Link to="/about">О нама</Link>
           </li>
           <li>
-            <Link to="/">Контакт</Link>
+            <Link to="/contact">Контакт</Link>
           </li>
         </ul>
         <div

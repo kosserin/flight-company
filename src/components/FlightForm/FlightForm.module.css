@@ -101,6 +101,10 @@ form.form-content {
   height: 20px;
 }
 
+.form-first-row {
+  position: relative;
+}
+
 .form-group {
   position: relative;
   background-color: var(--white-secondary);
