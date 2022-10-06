@@ -1,0 +1,36 @@
+.reservation-content {
+  position: relative;
+  min-height: 100vh;
+  background: var(--purple-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reservation-content .circle {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+}
+
+.reservation-content .circle.upper-circle {
+  background: linear-gradient(154.16deg, #110619 16.31%, #fcf8ff 1097%);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.reservation-content .circle.bottom-circle {
+  background: linear-gradient(216.65deg, #110619 21.33%, #fcf8ff 800.03%);
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 0%);
+}
+
+@media (max-width: 768px) {
+  .reservation-content .circle {
+    width: 400px;
+    height: 400px;
+  }
+}

@@ -12,11 +12,7 @@ import styles from "./Destinations.module.css";
 import "../../index.css";
 
 import { Navigation } from "swiper";
-
-interface Destination {
-  imagePath: string;
-  title: any;
-}
+import { Destination } from "../../models/destination.model";
 
 const DUMMY_DESTINATIONS: Destination[] = [
   {

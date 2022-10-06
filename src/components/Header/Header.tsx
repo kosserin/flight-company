@@ -32,10 +32,10 @@ const Header = (props: any) => {
         <Link to="/">KossAirways</Link>
         <ul className={completedClass}>
           <li>
-            <Link to="/">Резервишите</Link>
+            <Link to="/reservation">Резервишите</Link>
           </li>
           <li>
-            <Link to="/">Откријте</Link>
+            <Link to="/discover">Откријте</Link>
           </li>
           <li>
             <Link to="/about">О нама</Link>

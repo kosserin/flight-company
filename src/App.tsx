@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
+import Discover from "./pages/Discover/Discover";
+import Reservation from "./pages/Reservation/Reservation";
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="discover" element={<Discover />} />
+        <Route path="reservation" element={<Reservation />} />
       </Routes>
     </React.Fragment>
   );

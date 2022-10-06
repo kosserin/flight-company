@@ -6,11 +6,11 @@ import styles from "./Contact.module.css";
 
 const Contact = () => {
   return (
-    <section className={styles["contact-section"]}>
+    <div className={styles["contact-page"]}>
       <Header color="dark" />
       <ContactForm />
       <Footer />
-    </section>
+    </div>
   );
 };
 

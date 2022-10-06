@@ -15,7 +15,7 @@ import PassengersModal from "../PassengersModal/PassengersModal";
 const FlightForm = () => {
   const [activeStyle, setActiveStyle] = useState({
     backgroundColor: "var(--purple-primary)",
-    borderRadius: "10px 0 10px 10px",
+    borderRadius: "10px 0 10px 0px",
   });
   const [showPassengersModal, setShowPassengersModal] = useState(false);
   const padTo2Digits = (num: number) => {
@@ -106,7 +106,7 @@ const FlightForm = () => {
           setShowCheckReservationContent(false);
           setShowFlightStatusContent(false);
           setActiveStyle((prev) => {
-            return { ...prev, borderRadius: "10px 0 10px 10px" };
+            return { ...prev, borderRadius: "10px 0 10px 0px" };
           });
         } else if (
           allButtons[allButtons.length - 1].offsetLeft === e.target.offsetLeft
@@ -115,7 +115,7 @@ const FlightForm = () => {
             setShowReserveFlightContent(false);
             setShowCheckReservationContent(false);
             setShowFlightStatusContent(true);
-            return { ...prev, borderRadius: "0px 10px 10px 10px" };
+            return { ...prev, borderRadius: "0px 10px 0px 10px" };
           });
         } else {
           setShowReserveFlightContent(false);
