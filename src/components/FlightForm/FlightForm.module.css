@@ -108,7 +108,7 @@ form.form-content {
 
 .form-group {
   position: relative;
-  background-color: var(--white-secondary);
+  background-color: rgb(225, 225, 225);
   border-radius: 5px;
   width: 100%;
   display: flex;
@@ -164,7 +164,7 @@ input {
 
 input:focus + .label-holder,
 input:not(:placeholder-shown) + .label-holder {
-  top: 8px;
+  top: 12px;
   transform: translateY(-50%);
 }
 
@@ -207,10 +207,48 @@ button[type="submit"] {
   font-size: 1rem;
   font-weight: 600;
   flex-grow: 1;
+  max-width: 320px;
 }
 
 .second-type-of-form > button {
   width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  overflow: scroll;
+  height: 200px;
+  border-radius: 4px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.autocomplete-list::-webkit-scrollbar {
+  display: none;
+}
+.autocomplete-item {
+  width: 100%;
+  padding: 8px;
+  background-color: var(--white-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 250ms ease-out;
+}
+
+.autocomplete-item:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+input:not(:focus) + .label-holder + .autocomplete-list {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 968px) {
@@ -224,6 +262,10 @@ button[type="submit"] {
 
   .passengers-group {
     max-width: 140px;
+  }
+
+  button[type="submit"] {
+    max-width: 100%;
   }
 }
 

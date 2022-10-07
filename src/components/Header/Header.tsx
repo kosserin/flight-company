@@ -17,8 +17,6 @@ const Header = (props: any) => {
         setIsScrolled(true);
       }
     });
-
-    window.scrollTo(0, 0);
   }, []);
 
   return (
