@@ -1,0 +1,11 @@
+.flight-list {
+  position: relative;
+  max-width: 90vw;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: var(--white-secondary);
+}

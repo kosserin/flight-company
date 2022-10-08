@@ -8,6 +8,7 @@ import travelImage from "../../assets/travel.png";
 import travelImageWhite from "../../assets/travel-white.png";
 import swapIcon from "../../assets/swap.png";
 import calendarIcon from "../../assets/calendar.png";
+import { useNavigate } from "react-router-dom";
 import "../../index.css";
 // import ReactDOM from "react-dom";
 // import PassengersModal from "../PassengersModal/PassengersModal";
@@ -238,6 +239,7 @@ const DUMMY_COUNTRIES = [
 ];
 
 const FlightForm = () => {
+  let navigate = useNavigate();
   const [activeStyle, setActiveStyle] = useState({
     backgroundColor: "var(--purple-primary)",
     borderRadius: "10px 0 10px 0px",
@@ -256,6 +258,12 @@ const FlightForm = () => {
   };
   const [from, setFrom] = useState<string>("");
   const [to, setTo] = useState<string>("");
+  const [isReserveFlightLoading, setIsReserveFlightLoading] =
+    useState<boolean>(false);
+  const [isCheckReservationLoading, setIsCheckReservationLoading] =
+    useState<boolean>(false);
+  const [isFlightStatusLoading, setIsFlightStatusLoading] =
+    useState<boolean>(false);
   const [reservationId, setReservationId] = useState<string>("");
   // const [surname, setSurname] = useState<string>("");
   const [flightId, setFlightId] = useState<string>("");
@@ -308,6 +316,11 @@ const FlightForm = () => {
 
   const reserveFlightHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsReserveFlightLoading(true);
+    setTimeout(() => {
+      setIsReserveFlightLoading(false);
+      navigate("/reservation/reserve-flight");
+    }, 1000);
   };
 
   const flightStatusHandler = (e: React.FormEvent) => {
@@ -492,7 +505,15 @@ const FlightForm = () => {
         </div> */}
       </div>
       <button type="submit" className={styles["submit-btn"]}>
-        Претражите
+        {!isReserveFlightLoading && <span>Претражите</span>}
+        {isReserveFlightLoading && (
+          <div className={styles["lds-ring"]}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </button>
     </form>
   );
@@ -525,7 +546,15 @@ const FlightForm = () => {
         </div>
       </div> */}
       <button type="submit" className={styles["submit-btn"]}>
-        Претражите
+        {!isCheckReservationLoading && <span>Претражите</span>}
+        {isCheckReservationLoading && (
+          <div className={styles["lds-ring"]}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </button>
     </form>
   );
@@ -558,7 +587,15 @@ const FlightForm = () => {
         </div>
       </div> */}
       <button type="submit" className={styles["submit-btn"]}>
-        Претражите
+        {!isFlightStatusLoading && <span>Претражите</span>}
+        {isFlightStatusLoading && (
+          <div className={styles["lds-ring"]}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </button>
     </form>
   );
