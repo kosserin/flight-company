@@ -115,6 +115,7 @@ button[type="submit"] {
   font-size: 1rem;
   font-weight: 600;
   flex-grow: 1;
+  max-width: 100%;
 }
 
 .form-group:first-of-type {

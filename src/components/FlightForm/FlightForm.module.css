@@ -9,7 +9,7 @@
   width: 1000px;
   max-width: 90vw;
   position: relative;
-  /* transform: translateY(-30px); */
+  transform: translateY(-30px);
 }
 
 .form-header {
@@ -70,6 +70,7 @@ form.form-content {
   position: relative;
   align-items: center;
   gap: 12px;
+  flex: 1;
 }
 
 .from-to__holder .form-group {
@@ -113,6 +114,7 @@ form.form-content {
   width: 100%;
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
 .label-holder {
@@ -195,7 +197,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-button[type="submit"] {
+.flight-form button[type="submit"] {
   background-color: var(--blue-primary);
   color: var(--white-primary);
   border: none;
@@ -264,7 +266,7 @@ input:not(:focus) + .label-holder + .autocomplete-list {
     max-width: 140px;
   }
 
-  button[type="submit"] {
+  .flight-form button[type="submit"] {
     max-width: 100%;
   }
 }

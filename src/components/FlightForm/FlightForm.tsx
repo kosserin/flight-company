@@ -9,8 +9,8 @@ import travelImageWhite from "../../assets/travel-white.png";
 import swapIcon from "../../assets/swap.png";
 import calendarIcon from "../../assets/calendar.png";
 import "../../index.css";
-import ReactDOM from "react-dom";
-import PassengersModal from "../PassengersModal/PassengersModal";
+// import ReactDOM from "react-dom";
+// import PassengersModal from "../PassengersModal/PassengersModal";
 
 const DUMMY_COUNTRIES = [
   "Afghanistan",
@@ -242,7 +242,7 @@ const FlightForm = () => {
     backgroundColor: "var(--purple-primary)",
     borderRadius: "10px 0 10px 0px",
   });
-  const [showPassengersModal, setShowPassengersModal] = useState(false);
+  // const [showPassengersModal, setShowPassengersModal] = useState(false);
   const padTo2Digits = (num: number) => {
     return num.toString().padStart(2, "0");
   };
@@ -257,26 +257,26 @@ const FlightForm = () => {
   const [from, setFrom] = useState<string>("");
   const [to, setTo] = useState<string>("");
   const [reservationId, setReservationId] = useState<string>("");
-  const [surname, setSurname] = useState<string>("");
+  // const [surname, setSurname] = useState<string>("");
   const [flightId, setFlightId] = useState<string>("");
-  const [flightDepartureDate, setFlightDepartureDate] = useState<string>(
-    formatDate(new Date())
-  );
+  // const [flightDepartureDate, setFlightDepartureDate] = useState<string>(
+  //   formatDate(new Date())
+  // );
   const [departureDate, setDepartureDate] = useState<string>(
     formatDate(new Date())
   );
-  const [passengersInputValue, setPassengersInputValue] = useState("1 путник");
+  // const [passengersInputValue, setPassengersInputValue] = useState("1 путник");
   const activeFormRef = useRef<HTMLDivElement>(null);
-  const [passengersNumber, setPassengersNumber] = useState(1);
+  // const [passengersNumber, setPassengersNumber] = useState(1);
   const [showReserveFlightContent, setShowReserveFlightContent] =
     useState(false);
   const [showCheckReservationContent, setShowCheckReservationContent] =
     useState(false);
   const [showFlightStatusContent, setShowFlightStatusContent] = useState(false);
 
-  const passengerChangeHandler = (event: any) => {
-    setPassengersInputValue(event.target.value);
-  };
+  // const passengerChangeHandler = (event: any) => {
+  //   setPassengersInputValue(event.target.value);
+  // };
 
   const fromChangeHandler = (event: any) => {
     setFrom(event.target.value);
@@ -294,17 +294,17 @@ const FlightForm = () => {
     setReservationId(event.target.value);
   };
 
-  const surnameChangeHandler = (event: any) => {
-    setSurname(event.target.value);
-  };
+  // const surnameChangeHandler = (event: any) => {
+  //   setSurname(event.target.value);
+  // };
 
   const flightIdChangeHandler = (event: any) => {
     setFlightId(event.target.value);
   };
 
-  const flightDepartureDateChangeHandler = (event: any) => {
-    setFlightDepartureDate(event.target.value);
-  };
+  // const flightDepartureDateChangeHandler = (event: any) => {
+  //   setFlightDepartureDate(event.target.value);
+  // };
 
   const reserveFlightHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -474,7 +474,7 @@ const FlightForm = () => {
             <label>Датум</label>
           </div>
         </div>
-        <div
+        {/* <div
           className={`${styles["form-group"]} ${styles["passengers-group"]}`}
           onClick={() => setShowPassengersModal(true)}
         >
@@ -489,7 +489,7 @@ const FlightForm = () => {
           <div className={styles["label-holder"]}>
             <label>Путници</label>
           </div>
-        </div>
+        </div> */}
       </div>
       <button type="submit" className={styles["submit-btn"]}>
         Претражите
@@ -563,14 +563,14 @@ const FlightForm = () => {
     </form>
   );
 
-  const closePassengersModalHandler = () => {
-    setShowPassengersModal(false);
-  };
+  // const closePassengersModalHandler = () => {
+  //   setShowPassengersModal(false);
+  // };
 
-  const updatePassengersNumberHandler = (val: number) => {
-    setPassengersNumber(val);
-    setPassengersInputValue(`${val} ${val === 1 ? "путник" : "путника"}`);
-  };
+  // const updatePassengersNumberHandler = (val: number) => {
+  //   setPassengersNumber(val);
+  //   setPassengersInputValue(`${val} ${val === 1 ? "путник" : "путника"}`);
+  // };
 
   return (
     <div className={styles["flight-form"]}>
@@ -611,7 +611,7 @@ const FlightForm = () => {
       {showReserveFlightContent && reserveFlightContent}
       {showCheckReservationContent && checkReservationContent}
       {showFlightStatusContent && flightStatusContent}
-      {showPassengersModal &&
+      {/* {showPassengersModal &&
         ReactDOM.createPortal(
           <PassengersModal
             passengersNumber={passengersNumber}
@@ -620,7 +620,7 @@ const FlightForm = () => {
           />,
           (document.getElementById("passengers-modal-root") as HTMLElement) ||
             null
-        )}
+        )} */}
     </div>
   );
 };
