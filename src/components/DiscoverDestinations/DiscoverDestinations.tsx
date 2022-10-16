@@ -89,7 +89,7 @@ const DiscoverDestinations = () => {
         </p>
       </div>
       <div className={styles["circle"]}></div>
-      <div className={styles["all-destinations"]}>
+      <div className={styles["all-destinations"]} id="allDestinations">
         <h2>Све дестинације</h2>
         <ul>
           {DUMMY_DESTINATIONS.map((destination, index) => (

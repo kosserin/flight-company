@@ -72,6 +72,12 @@
   z-index: 5;
   color: var(--white-primary);
   text-align: center;
+  padding-inline: 20px;
+  pointer-events: none;
+}
+
+.all-destinations ul li:hover h3 {
+  background-color: black;
 }
 
 .image-overlay {
@@ -85,6 +91,10 @@
   width: 100%;
   height: 100%;
   border-radius: 10px;
+}
+
+.image-overlay:hover {
+  background: transparent;
 }
 
 @media (max-width: 768px) {

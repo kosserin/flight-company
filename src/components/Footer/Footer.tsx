@@ -7,6 +7,7 @@ import footerBehind from "../../assets/footer/footer-behind.png";
 import footerMid from "../../assets/footer/footer-mid.png";
 import footerFront from "../../assets/footer/footer-front.png";
 import toTopArrowIcon from "../../assets/footer/top.svg";
+import { Link } from "react-router-dom";
 
 const Footer = (props: any) => {
   return (
@@ -15,7 +16,7 @@ const Footer = (props: any) => {
       <p>
         Авио компанија која Вас води где год пожелите безбедно, удобно и брзо.
       </p>
-      <button>Пишите нам</button>
+      <Link to="/contact">Пишите нам</Link>
       <div className={styles["footer-social"]}>
         <a href="#">
           <img src={facebookIcon} alt="" />

@@ -116,6 +116,11 @@ button[type="submit"] {
   font-weight: 600;
   flex-grow: 1;
   max-width: 100%;
+  transition: 250ms ease-out;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--blue-secondary);
 }
 
 .form-group:first-of-type {
@@ -185,4 +190,18 @@ button[type="submit"] {
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+}
+
+.info-holder a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+  border-bottom: 2px solid #000;
+  width: fit-content;
+  transition: 250ms ease-out;
+}
+
+.info-holder a:hover {
+  color: var(--blue-primary);
+  border-bottom-color: var(--blue-primary);
 }

@@ -5,7 +5,6 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Discover from "./pages/Discover/Discover";
 import Reservation from "./pages/Reservation/Reservation";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import FlightList from "./components/FlightList/FlightList";
 
 const App = () => {
@@ -13,14 +12,13 @@ const App = () => {
     <React.Fragment>
       {/* use this code to wrap flight form to get form behind navigation on mobile view <main style={{ position: "relative" }}>        
       </main> */}
-      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="discover" element={<Discover />} />
         <Route path="reservation" element={<Reservation />}>
-          <Route path="reserve-flight" element={<FlightList />} />
+          <Route path="flights" element={<FlightList />} />
         </Route>
       </Routes>
     </React.Fragment>

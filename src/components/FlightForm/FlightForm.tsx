@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import styles from "./FlightForm.module.css";
 import flightImage from "../../assets/flight.png";
 import flightImageWhite from "../../assets/flight-white.png";
@@ -10,6 +10,7 @@ import swapIcon from "../../assets/swap.png";
 import calendarIcon from "../../assets/calendar.png";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
+import { FlightsContext } from "../../store/flights-context";
 // import ReactDOM from "react-dom";
 // import PassengersModal from "../PassengersModal/PassengersModal";
 
@@ -240,6 +241,7 @@ const DUMMY_COUNTRIES = [
 
 const FlightForm = () => {
   let navigate = useNavigate();
+  const ctx = useContext(FlightsContext);
   const [activeStyle, setActiveStyle] = useState({
     backgroundColor: "var(--purple-primary)",
     borderRadius: "10px 0 10px 0px",
@@ -256,6 +258,8 @@ const FlightForm = () => {
       padTo2Digits(date.getDate()),
     ].join("-");
   };
+  const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
+  const [fetchedTo, setFetchedTo] = useState<string[]>([]);
   const [from, setFrom] = useState<string>("");
   const [to, setTo] = useState<string>("");
   const [isReserveFlightLoading, setIsReserveFlightLoading] =
@@ -317,19 +321,50 @@ const FlightForm = () => {
   const reserveFlightHandler = (e: React.FormEvent) => {
     e.preventDefault();
     setIsReserveFlightLoading(true);
-    setTimeout(() => {
-      setIsReserveFlightLoading(false);
-      navigate("/reservation/reserve-flight");
-    }, 1000);
+    navigate(
+      `/reservation/flights?from=${from}&to=${to}&date=${departureDate}`
+    );
   };
 
   const flightStatusHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    getFlightInfo(flightId);
   };
+
+  async function getFlightInfo(flightId: string) {
+    setIsFlightStatusLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:8086/api/flights/${flightId}`
+      );
+      const data = await response.json();
+      alert(JSON.stringify(data));
+      setIsFlightStatusLoading(false);
+    } catch (err: any) {
+      alert(err.message);
+      setIsFlightStatusLoading(false);
+    }
+  }
 
   const checkReservationHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    getReservationInfo(reservationId);
   };
+
+  async function getReservationInfo(resId: string) {
+    setIsCheckReservationLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:8086/api/flights/${resId}`
+      );
+      const data = await response.json();
+      setIsCheckReservationLoading(false);
+      alert(JSON.stringify(data));
+    } catch (err: any) {
+      setIsCheckReservationLoading(false);
+      alert(err.message);
+    }
+  }
 
   const fillFromHandler = (country: string) => {
     setFrom(country);
@@ -387,6 +422,8 @@ const FlightForm = () => {
   };
 
   useEffect(() => {
+    fetchFromDestinations();
+    fetchToDestinations();
     const activatedButton = document.querySelector(".activated-title");
     setShowReserveFlightContent(true);
     setActiveStyle((prev) => {
@@ -399,6 +436,20 @@ const FlightForm = () => {
       };
     });
   }, []);
+
+  async function fetchFromDestinations() {
+    const response = await fetch(
+      "http://localhost:8086/api/flights/names/from"
+    );
+    const data = await response.json();
+    setFetchedFrom(data);
+  }
+
+  async function fetchToDestinations() {
+    const response = await fetch("http://localhost:8086/api/flights/names/to");
+    const data = await response.json();
+    setFetchedTo(data);
+  }
 
   const swapFromToHandler = () => {
     let holder = from;
@@ -425,19 +476,21 @@ const FlightForm = () => {
           </div>
           {from && (
             <ul className={styles["autocomplete-list"]}>
-              {DUMMY_COUNTRIES.filter(
-                (country) =>
-                  country.substring(0, from.length).toUpperCase() ==
-                  from.toUpperCase()
-              ).map((country, index) => (
-                <li
-                  key={country + index}
-                  onClick={() => fillFromHandler(country)}
-                  className={styles["autocomplete-item"]}
-                >
-                  {country}
-                </li>
-              ))}
+              {fetchedFrom
+                .filter(
+                  (country) =>
+                    country.substring(0, from.length).toUpperCase() ==
+                    from.toUpperCase()
+                )
+                .map((country, index) => (
+                  <li
+                    key={country + index}
+                    onClick={() => fillFromHandler(country)}
+                    className={styles["autocomplete-item"]}
+                  >
+                    {country}
+                  </li>
+                ))}
             </ul>
           )}
         </div>
@@ -453,19 +506,21 @@ const FlightForm = () => {
           </div>
           {to && (
             <ul className={styles["autocomplete-list"]}>
-              {DUMMY_COUNTRIES.filter(
-                (country) =>
-                  country.substring(0, to.length).toUpperCase() ==
-                  to.toUpperCase()
-              ).map((country, index) => (
-                <li
-                  key={country + index}
-                  onClick={() => fillToHandler(country)}
-                  className={styles["autocomplete-item"]}
-                >
-                  {country}
-                </li>
-              ))}
+              {fetchedTo
+                .filter(
+                  (country) =>
+                    country.substring(0, to.length).toUpperCase() ==
+                    to.toUpperCase()
+                )
+                .map((country, index) => (
+                  <li
+                    key={country + index}
+                    onClick={() => fillToHandler(country)}
+                    className={styles["autocomplete-item"]}
+                  >
+                    {country}
+                  </li>
+                ))}
             </ul>
           )}
         </div>

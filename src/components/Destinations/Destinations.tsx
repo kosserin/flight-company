@@ -13,6 +13,7 @@ import "../../index.css";
 
 import { Navigation } from "swiper";
 import { Destination } from "../../models/destination.model";
+import { Link } from "react-router-dom";
 
 const DUMMY_DESTINATIONS: Destination[] = [
   {
@@ -90,9 +91,9 @@ const Destinations = () => {
           <img src={nextIcon} alt="" />
         </button>
       </div>
-      <button className={styles["all-destinations__btn"]}>
+      <Link to="/discover" className={styles["all-destinations__btn"]}>
         Погледајте све дестинације
-      </button>
+      </Link>
     </section>
   );
 };

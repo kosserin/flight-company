@@ -5,9 +5,11 @@ const FlightItem = (props: any) => {
   return (
     <li className={styles["flight-item"]}>
       <p>
-        {props.flight.from} - {props.flight.to}
+        {props.flight.fromCity} - {props.flight.toCity}
       </p>
-      <p>{props.flight.departureDate}</p>
+      <p>{props.flight.dateOfDeparture}</p>
+      <p>{props.flight.flightDuration}</p>
+      <p>{props.flight.numberOfSeats}</p>
     </li>
   );
 };

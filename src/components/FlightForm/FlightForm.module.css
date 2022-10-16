@@ -10,6 +10,7 @@
   max-width: 90vw;
   position: relative;
   transform: translateY(-30px);
+  z-index: 10;
 }
 
 .form-header {
@@ -213,6 +214,11 @@ input[type="number"] {
   font-weight: 600;
   flex-grow: 1;
   max-width: 320px;
+  transition: 250ms ease-out;
+}
+
+.flight-form button[type="submit"]:hover {
+  background-color: var(--blue-secondary);
 }
 
 .second-type-of-form > button {

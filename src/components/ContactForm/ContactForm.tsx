@@ -131,14 +131,14 @@ const ContactForm = () => {
         <div className={styles["info-item"]}>
           <img src={supportIcon} />
           <div className={styles["info-holder"]}>
-            <h4>060 2806 1389</h4>
+            <a href="#">060 2806 1389</a>
             <p>Радним данима од 06.00 - 24.00</p>
           </div>
         </div>
         <div className={styles["info-item"]}>
           <img src={locationIcon} />
           <div className={styles["info-holder"]}>
-            <h4>KossAirways а.д. Београд</h4>
+            <a href="#">KossAirways а.д. Београд</a>
             <p>Јурија Гагарина 12, 11070 Нови Београд</p>
           </div>
         </div>

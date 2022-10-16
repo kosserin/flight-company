@@ -7,6 +7,7 @@
 .item-header {
   background-color: var(--white-primary);
   padding: 0 1rem;
+  transition: 250ms ease-out;
 }
 
 .header-holder > img {
@@ -15,6 +16,11 @@
 
 .item-holder.item-active .header-holder > img {
   transform: rotate(180deg);
+}
+
+.item-header:hover,
+.item-holder.item-active .item-header {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .header-holder {
@@ -53,7 +59,7 @@
   position: relative;
   transition: 500ms ease-out;
   visibility: visible;
-  animation: opacityDelay 2s ease forwards;
+  animation: opacityDelay 0.5s ease forwards;
   animation-delay: 0.05s;
   pointer-events: all;
 }

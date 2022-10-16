@@ -43,6 +43,12 @@
   z-index: 5;
   color: var(--white-primary);
   text-align: center;
+  padding-inline: 20px;
+  pointer-events: none;
+}
+
+.destination-swiper-slide:hover h3 {
+  background-color: black;
 }
 
 .destination-overlay {
@@ -55,9 +61,19 @@
   z-index: 4;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+  transition: 250ms ease-out;
+}
+
+.destination-overlay:hover {
+  background: transparent;
 }
 
 .destinations-content .all-destinations__btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--blue-primary);
   color: var(--white-primary);
   border: none;
@@ -70,6 +86,11 @@
   max-width: 100%;
   width: 340px;
   margin-top: 32px;
+  transition: 250ms ease-out;
+}
+
+.destinations-content .all-destinations__btn:hover {
+  background-color: var(--blue-secondary);
 }
 
 .swiper-holder {
