@@ -1,0 +1,38 @@
+.flight-content {
+  position: relative;
+  max-width: 90vw;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.flight-content h2 {
+  color: var(--white-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sorting-holder {
+  background-color: transparent;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px auto;
+}
+
+.sorting-holder img {
+  height: 1.5rem;
+}
+
+.sorting-holder select {
+  height: 1.5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: 500;
+  color: var(--white-primary);
+  cursor: pointer;
+}
+
+.sorting-holder select:focus {
+  background-color: var(--purple-primary);
+}

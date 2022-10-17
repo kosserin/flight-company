@@ -6,6 +6,7 @@ import Contact from "./pages/Contact/Contact";
 import Discover from "./pages/Discover/Discover";
 import Reservation from "./pages/Reservation/Reservation";
 import FlightList from "./components/FlightList/FlightList";
+import FlightContent from "./components/FlightContent/FlightContent";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="discover" element={<Discover />} />
         <Route path="reservation" element={<Reservation />}>
-          <Route path="flights" element={<FlightList />} />
+          <Route path="flights" element={<FlightContent />} />
         </Route>
       </Routes>
     </React.Fragment>

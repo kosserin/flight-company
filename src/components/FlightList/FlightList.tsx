@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { Flight } from "../../models/flight.model";
 import { FlightsContext } from "../../store/flights-context";
 import FlightItem from "./FlightItem/FlightItem";
 import styles from "./FlightList.module.css";
@@ -56,19 +55,16 @@ const FlightList = () => {
       // alert(JSON.stringify(data));
       ctx.appendFlights(data);
     } catch (err) {
-      alert(err);
+      ctx.appendFlights([]);
     }
   }
 
   return (
-    <div className={styles["flight-list__div"]}>
-      <h2>Одаберите лет који Вам одговара да бисте наставили даље.</h2>
-      <ul className={styles["flight-list"]} id="flightList">
-        {ctx.flights.map((f) => (
-          <FlightItem flight={f} key={f.id} />
-        ))}
-      </ul>
-    </div>
+    <ul className={styles["flight-list"]} id="flightList">
+      {ctx.flights.map((f) => (
+        <FlightItem flight={f} key={f.id} />
+      ))}
+    </ul>
   );
 };
 
