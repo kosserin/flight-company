@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FlightsContext } from "../../store/flights-context";
 import FlightList from "../FlightList/FlightList";
 import styles from "./FlightContent.module.css";
@@ -75,6 +75,11 @@ const FlightContent = () => {
       break;
   }
 
+  let tomorrow = moment(searchParams.get("date"), "YYYY-MM-DD")
+    .add(5, "days")
+    .format("YYYY-MM-DD");
+  console.log(tomorrow);
+
   let headingContent = `${searchParams.get("from")} - ${searchParams.get(
     "to"
   )} - ${dayOnSerbian}, ${moment(
@@ -87,18 +92,27 @@ const FlightContent = () => {
   return (
     <div className={styles["flight-content"]}>
       <h2>{headingContent}</h2>
-      <div className={styles["sorting-holder"]}>
-        <label htmlFor="sortSelect">
-          <img src={sortIcon} alt="" />
-        </label>
-        <select name="sortSelect" id="sortSelect">
-          <option value="lowestPrice">Растуће цене</option>
-          <option value="highestPrice">Опадајуће цене</option>
-          <option value="fastestTravel">Најбрже путовање</option>
-          <option value="shortestDistance">Најкраће растојање</option>
-        </select>
-      </div>
-      <FlightList />
+      {ctx.flights.length !== 0 && (
+        <div className={styles["sorting-holder"]}>
+          <label htmlFor="sortSelect">
+            <img src={sortIcon} alt="" />
+          </label>
+          <select name="sortSelect" id="sortSelect">
+            <option value="lowestPrice">Растуће цене</option>
+            <option value="highestPrice">Опадајуће цене</option>
+            <option value="fastestTravel">Најбрже путовање</option>
+            <option value="shortestDistance">Најкраће растојање</option>
+          </select>
+        </div>
+      )}
+      {ctx.flights.length !== 0 && <FlightList />}
+      <Link
+        to={`/reservation/flights?from=${searchParams.get(
+          "from"
+        )}&to=${searchParams.get("to")}&date=${tomorrow}`}
+      >
+        Погледајте летове за наредни дан на истој релацији
+      </Link>
     </div>
   );
 };
