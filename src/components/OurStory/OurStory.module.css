@@ -42,6 +42,7 @@
 
   .our-story-content > img {
     align-self: flex-start;
+    width: 100%;
   }
 
   .left-side {

@@ -7,9 +7,11 @@
 .contact-left > h4 {
   text-align: center;
   margin-bottom: 32px;
+  max-width: 90vw;
+  margin: 0 auto 32px auto;
 }
 
-form {
+.contact-form {
   display: grid;
   grid-template-areas:
     "a b"
@@ -172,7 +174,8 @@ button[type="submit"]:hover {
 }
 
 .contact-info {
-  margin-top: 80px;
+  max-width: 90vw;
+  margin: 80px auto 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -204,4 +207,20 @@ button[type="submit"]:hover {
 .info-holder a:hover {
   color: var(--blue-primary);
   border-bottom-color: var(--blue-primary);
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-social {
+    justify-content: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    margin-top: 16px;
+  }
 }

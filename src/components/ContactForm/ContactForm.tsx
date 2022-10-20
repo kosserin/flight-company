@@ -48,13 +48,16 @@ const ContactForm = () => {
   };
 
   return (
-    <div className={styles["contact-form"]}>
+    <div className={styles["contact-form-component"]}>
       <div className={styles["contact-left"]}>
         <h4>
           Ту смо да Вам помогнемо, било путем друштвених мрежа, у пословницама
           или путем Контакт центра
         </h4>
-        <form onSubmit={contactSubmitHandler}>
+        <form
+          onSubmit={contactSubmitHandler}
+          className={styles["contact-form"]}
+        >
           <div className={styles["form-group"]}>
             <input
               placeholder="xd"

@@ -8,8 +8,8 @@ import DiscoverDestinations from "../../components/DiscoverDestinations/Discover
 const Discover = () => {
   return (
     <>
-      <Header />
-      <div className={styles["image-holder"]}></div>
+      <Header color="dark" />
+      {/* <div className={styles["image-holder"]}></div> */}
       <DiscoverDestinations />
       <Footer />
     </>

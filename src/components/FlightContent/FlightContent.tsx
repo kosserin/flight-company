@@ -1,6 +1,6 @@
 import moment from "moment";
-import { useContext } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { FlightsContext } from "../../store/flights-context";
 import FlightList from "../FlightList/FlightList";
 import styles from "./FlightContent.module.css";
@@ -8,6 +8,7 @@ import sortIcon from "../../assets/sort-white.png";
 
 const FlightContent = () => {
   const ctx = useContext(FlightsContext);
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const day = moment(searchParams.get("date")).format("dddd"); // for the word
   let dayOnSerbian: string;
@@ -76,19 +77,54 @@ const FlightContent = () => {
   }
 
   let tomorrow = moment(searchParams.get("date"), "YYYY-MM-DD")
-    .add(5, "days")
+    .add(1, "days")
     .format("YYYY-MM-DD");
   console.log(tomorrow);
 
   let headingContent = `${searchParams.get("from")} - ${searchParams.get(
     "to"
-  )} - ${dayOnSerbian}, ${moment(
-    searchParams.get("date")
-  ).day()}. ${monthOnSerbian}`;
+  )} - ${dayOnSerbian}, ${moment(searchParams.get("date")).format(
+    "D"
+  )}. ${monthOnSerbian}`;
 
   if (ctx.flights.length === 0) {
-    headingContent = "Нема летова који одговарају унетим критеријумима";
+    headingContent = `Нема летова који одговарају унетим критеријумима ${searchParams.get(
+      "from"
+    )} - ${searchParams.get("to")} - ${dayOnSerbian}, ${moment(
+      searchParams.get("date")
+    ).format("D")}. ${monthOnSerbian}`;
   }
+
+  const checkNextDayFlightsHandler = () => {
+    navigate(
+      `/reservation/flights?from=${searchParams.get(
+        "from"
+      )}&to=${searchParams.get("to")}&date=${tomorrow}`
+    );
+    searchForFlightHandler();
+  };
+
+  useEffect(() => {
+    console.log("useeffect called");
+    searchForFlightHandler();
+  }, []);
+
+  async function searchForFlightHandler() {
+    try {
+      const from = searchParams.get("from");
+      const to = searchParams.get("to");
+      const date = searchParams.get("date");
+      const response = await fetch(
+        `http://localhost:8086/api/flights?from=${from}&to=${to}&date=${date}`
+      );
+      const data = await response.json();
+      alert(JSON.stringify(data));
+      ctx.appendFlights(data);
+    } catch (err) {
+      ctx.appendFlights([]);
+    }
+  }
+
   return (
     <div className={styles["flight-content"]}>
       <h2>{headingContent}</h2>
@@ -106,13 +142,16 @@ const FlightContent = () => {
         </div>
       )}
       {ctx.flights.length !== 0 && <FlightList />}
-      <Link
+      <button onClick={checkNextDayFlightsHandler}>
+        Погледајте летове за наредни дан на истој релацији
+      </button>
+      {/* <Link
         to={`/reservation/flights?from=${searchParams.get(
           "from"
         )}&to=${searchParams.get("to")}&date=${tomorrow}`}
       >
         Погледајте летове за наредни дан на истој релацији
-      </Link>
+      </Link> */}
     </div>
   );
 };
