@@ -43,8 +43,6 @@ const ContactForm = () => {
       phoneNumber,
       message,
     };
-
-    alert(JSON.stringify(formValues));
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./FlightForm.module.css";
 import flightImage from "../../assets/flight.png";
 import flightImageWhite from "../../assets/flight-white.png";
@@ -10,243 +10,15 @@ import swapIcon from "../../assets/swap.png";
 import calendarIcon from "../../assets/calendar.png";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
-import { FlightsContext } from "../../store/flights-context";
-// import ReactDOM from "react-dom";
-// import PassengersModal from "../PassengersModal/PassengersModal";
-
-const DUMMY_COUNTRIES = [
-  "Afghanistan",
-  "Albania",
-  "Algeria",
-  "Andorra",
-  "Angola",
-  "Anguilla",
-  "Antigua &amp; Barbuda",
-  "Argentina",
-  "Armenia",
-  "Aruba",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-  "Bahamas",
-  "Bahrain",
-  "Bangladesh",
-  "Barbados",
-  "Belarus",
-  "Belgium",
-  "Belize",
-  "Benin",
-  "Bermuda",
-  "Bhutan",
-  "Bolivia",
-  "Bosnia &amp; Herzegovina",
-  "Botswana",
-  "Brazil",
-  "British Virgin Islands",
-  "Brunei",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cambodia",
-  "Cameroon",
-  "Canada",
-  "Cape Verde",
-  "Cayman Islands",
-  "Central Arfrican Republic",
-  "Chad",
-  "Chile",
-  "China",
-  "Colombia",
-  "Congo",
-  "Cook Islands",
-  "Costa Rica",
-  "Cote D Ivoire",
-  "Croatia",
-  "Cuba",
-  "Curacao",
-  "Cyprus",
-  "Czech Republic",
-  "Denmark",
-  "Djibouti",
-  "Dominica",
-  "Dominican Republic",
-  "Ecuador",
-  "Egypt",
-  "El Salvador",
-  "Equatorial Guinea",
-  "Eritrea",
-  "Estonia",
-  "Ethiopia",
-  "Falkland Islands",
-  "Faroe Islands",
-  "Fiji",
-  "Finland",
-  "France",
-  "French Polynesia",
-  "French West Indies",
-  "Gabon",
-  "Gambia",
-  "Georgia",
-  "Germany",
-  "Ghana",
-  "Gibraltar",
-  "Greece",
-  "Greenland",
-  "Grenada",
-  "Guam",
-  "Guatemala",
-  "Guernsey",
-  "Guinea",
-  "Guinea Bissau",
-  "Guyana",
-  "Haiti",
-  "Honduras",
-  "Hong Kong",
-  "Hungary",
-  "Iceland",
-  "India",
-  "Indonesia",
-  "Iran",
-  "Iraq",
-  "Ireland",
-  "Isle of Man",
-  "Israel",
-  "Italy",
-  "Jamaica",
-  "Japan",
-  "Jersey",
-  "Jordan",
-  "Kazakhstan",
-  "Kenya",
-  "Kiribati",
-  "Kosovo",
-  "Kuwait",
-  "Kyrgyzstan",
-  "Laos",
-  "Latvia",
-  "Lebanon",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Liechtenstein",
-  "Lithuania",
-  "Luxembourg",
-  "Macau",
-  "Macedonia",
-  "Madagascar",
-  "Malawi",
-  "Malaysia",
-  "Maldives",
-  "Mali",
-  "Malta",
-  "Marshall Islands",
-  "Mauritania",
-  "Mauritius",
-  "Mexico",
-  "Micronesia",
-  "Moldova",
-  "Monaco",
-  "Mongolia",
-  "Montenegro",
-  "Montserrat",
-  "Morocco",
-  "Mozambique",
-  "Myanmar",
-  "Namibia",
-  "Nauro",
-  "Nepal",
-  "Netherlands",
-  "Netherlands Antilles",
-  "New Caledonia",
-  "New Zealand",
-  "Nicaragua",
-  "Niger",
-  "Nigeria",
-  "North Korea",
-  "Norway",
-  "Oman",
-  "Pakistan",
-  "Palau",
-  "Palestine",
-  "Panama",
-  "Papua New Guinea",
-  "Paraguay",
-  "Peru",
-  "Philippines",
-  "Poland",
-  "Portugal",
-  "Puerto Rico",
-  "Qatar",
-  "Reunion",
-  "Romania",
-  "Russia",
-  "Rwanda",
-  "Saint Pierre &amp; Miquelon",
-  "Samoa",
-  "San Marino",
-  "Sao Tome and Principe",
-  "Saudi Arabia",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leone",
-  "Singapore",
-  "Slovakia",
-  "Slovenia",
-  "Solomon Islands",
-  "Somalia",
-  "South Africa",
-  "South Korea",
-  "South Sudan",
-  "Spain",
-  "Sri Lanka",
-  "St Kitts &amp; Nevis",
-  "St Lucia",
-  "St Vincent",
-  "Sudan",
-  "Suriname",
-  "Swaziland",
-  "Sweden",
-  "Switzerland",
-  "Syria",
-  "Taiwan",
-  "Tajikistan",
-  "Tanzania",
-  "Thailand",
-  "Timor L'Este",
-  "Togo",
-  "Tonga",
-  "Trinidad &amp; Tobago",
-  "Tunisia",
-  "Turkey",
-  "Turkmenistan",
-  "Turks &amp; Caicos",
-  "Tuvalu",
-  "Uganda",
-  "Ukraine",
-  "United Arab Emirates",
-  "United Kingdom",
-  "United States of America",
-  "Uruguay",
-  "Uzbekistan",
-  "Vanuatu",
-  "Vatican City",
-  "Venezuela",
-  "Vietnam",
-  "Virgin Islands (US)",
-  "Yemen",
-  "Zambia",
-  "Zimbabwe",
-];
+import useInput from "../../hooks/use-input";
 
 const FlightForm = () => {
   let navigate = useNavigate();
-  const ctx = useContext(FlightsContext);
+
   const [activeStyle, setActiveStyle] = useState({
     backgroundColor: "var(--purple-primary)",
     borderRadius: "10px 0 10px 0px",
   });
-  // const [showPassengersModal, setShowPassengersModal] = useState(false);
   const padTo2Digits = (num: number) => {
     return num.toString().padStart(2, "0");
   };
@@ -258,77 +30,114 @@ const FlightForm = () => {
       padTo2Digits(date.getDate()),
     ].join("-");
   };
-  const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
-  const [fetchedTo, setFetchedTo] = useState<string[]>([]);
   const [from, setFrom] = useState<string>("");
+  const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
   const [to, setTo] = useState<string>("");
+  const [fetchedTo, setFetchedTo] = useState<string[]>([]);
+  const [reservationId, setReservationId] = useState<string>("");
   const [isReserveFlightLoading, setIsReserveFlightLoading] =
     useState<boolean>(false);
   const [isCheckReservationLoading, setIsCheckReservationLoading] =
     useState<boolean>(false);
   const [isFlightStatusLoading, setIsFlightStatusLoading] =
     useState<boolean>(false);
-  const [reservationId, setReservationId] = useState<string>("");
-  // const [surname, setSurname] = useState<string>("");
   const [flightId, setFlightId] = useState<string>("");
-  // const [flightDepartureDate, setFlightDepartureDate] = useState<string>(
-  //   formatDate(new Date())
-  // );
   const [departureDate, setDepartureDate] = useState<string>(
     formatDate(new Date())
   );
-  // const [passengersInputValue, setPassengersInputValue] = useState("1 путник");
   const activeFormRef = useRef<HTMLDivElement>(null);
-  // const [passengersNumber, setPassengersNumber] = useState(1);
+  // SHOW STATE CONTROL
   const [showReserveFlightContent, setShowReserveFlightContent] =
     useState(false);
   const [showCheckReservationContent, setShowCheckReservationContent] =
     useState(false);
   const [showFlightStatusContent, setShowFlightStatusContent] = useState(false);
 
-  // const passengerChangeHandler = (event: any) => {
-  //   setPassengersInputValue(event.target.value);
-  // };
+  const reservationIdValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
 
-  const fromChangeHandler = (event: any) => {
-    setFrom(event.target.value);
-  };
+  const flightIdValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
 
-  const toChangeHandler = (event: any) => {
-    setTo(event.target.value);
-  };
+  const fromValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
 
-  const dateChangeHandler = (event: any) => {
-    setDepartureDate(event.target.value);
-  };
+  const toValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
 
-  const reservationIdChangeHandler = (event: any) => {
-    setReservationId(event.target.value);
-  };
+  const departureDateValueHandler = (value: any) => value.trim() !== "";
 
-  // const surnameChangeHandler = (event: any) => {
-  //   setSurname(event.target.value);
-  // };
+  const {
+    value: enteredFrom,
+    valueInputClasses: fromInputClasses,
+    changeInputValueHandler: changeFromValueHandler,
+    blurInputValueHandler: blurFromValueHandler,
+    reset: fromReset,
+    replaceInputValueHandler: replaceFromHandler,
+  } = useInput(fromValueHandler);
 
-  const flightIdChangeHandler = (event: any) => {
-    setFlightId(event.target.value);
-  };
+  const {
+    value: enteredTo,
+    valueInputClasses: toInputClasses,
+    changeInputValueHandler: changeToHandler,
+    blurInputValueHandler: blurToHandler,
+    reset: toReset,
+    replaceInputValueHandler: replaceToHandler,
+  } = useInput(toValueHandler);
 
-  // const flightDepartureDateChangeHandler = (event: any) => {
-  //   setFlightDepartureDate(event.target.value);
-  // };
+  const {
+    value: enteredDepartureDate,
+    valueInputClasses: departureDateInputClasses,
+    changeInputValueHandler: changeDepartureDateHandler,
+    blurInputValueHandler: blurDepartureDateHandler,
+    reset: departureDateReset,
+    replaceInputValueHandler: replaceDepartureDateHandler,
+  } = useInput(departureDateValueHandler, "30-10-2022");
+
+  const {
+    value: enteredReservationId,
+    valueInputClasses: reservationIdInputClasses,
+    changeInputValueHandler: changeReservationIdHandler,
+    blurInputValueHandler: blurReservationIdHandler,
+    reset: reservationIdReset,
+  } = useInput(reservationIdValueHandler);
+
+  const {
+    value: enteredFlightId,
+    valueInputClasses: flightIdInputClasses,
+    changeInputValueHandler: changeFlightIdHandler,
+    blurInputValueHandler: blurFlightIdHandler,
+    reset: flightIdReset,
+  } = useInput(flightIdValueHandler);
 
   const reserveFlightHandler = (e: React.FormEvent) => {
+    blurFromValueHandler();
+    blurToHandler();
+    blurDepartureDateHandler();
     e.preventDefault();
-    setIsReserveFlightLoading(true);
-    navigate(
-      `/reservation/flights?from=${from}&to=${to}&date=${departureDate}`
-    );
+    if (
+      fromValueHandler(enteredFrom) &&
+      toValueHandler(enteredTo) &&
+      departureDateValueHandler(enteredDepartureDate)
+    ) {
+      // const [year, month, day] = enteredDepartureDate.split("-");
+      // const formatedDepartureDate = [day, month, year].join("-");
+      fromReset();
+      toReset();
+      departureDateReset();
+      navigate(
+        `/reservation/flights?from=${enteredFrom}&to=${enteredTo}&date=${enteredDepartureDate}`
+      );
+    }
   };
 
   const flightStatusHandler = (e: React.FormEvent) => {
+    blurFlightIdHandler();
     e.preventDefault();
-    getFlightInfo(flightId);
+    if (flightIdValueHandler(enteredFlightId)) {
+      getFlightInfo(enteredFlightId);
+      flightIdReset();
+    }
   };
 
   async function getFlightInfo(flightId: string) {
@@ -338,16 +147,19 @@ const FlightForm = () => {
         `http://localhost:8086/api/flights/${flightId}`
       );
       const data = await response.json();
-      alert(JSON.stringify(data));
       setIsFlightStatusLoading(false);
     } catch (err: any) {
-      alert(err.message);
       setIsFlightStatusLoading(false);
     }
   }
 
   const checkReservationHandler = (e: React.FormEvent) => {
+    blurReservationIdHandler();
     e.preventDefault();
+    if (reservationIdValueHandler(enteredReservationId)) {
+      getReservationInfo(enteredReservationId);
+      reservationIdReset();
+    }
     getReservationInfo(reservationId);
   };
 
@@ -359,19 +171,17 @@ const FlightForm = () => {
       );
       const data = await response.json();
       setIsCheckReservationLoading(false);
-      alert(JSON.stringify(data));
     } catch (err: any) {
       setIsCheckReservationLoading(false);
-      alert(err.message);
     }
   }
 
   const fillFromHandler = (country: string) => {
-    setFrom(country);
+    replaceFromHandler(country);
   };
 
   const fillToHandler = (country: string) => {
-    setTo(country);
+    replaceToHandler(country);
   };
 
   const allButtons = document.querySelectorAll(
@@ -435,6 +245,8 @@ const FlightForm = () => {
         left: 0,
       };
     });
+    replaceDepartureDateHandler("2022-10-30");
+    replaceFromHandler("Београд");
   }, []);
 
   async function fetchFromDestinations() {
@@ -452,9 +264,9 @@ const FlightForm = () => {
   }
 
   const swapFromToHandler = () => {
-    let holder = from;
-    setFrom(to);
-    setTo(holder);
+    let holder = enteredFrom;
+    replaceFromHandler(enteredTo);
+    replaceToHandler(holder);
   };
 
   const reserveFlightContent = (
@@ -468,19 +280,23 @@ const FlightForm = () => {
           <input
             placeholder="xd"
             type="text"
-            value={from}
-            onChange={fromChangeHandler}
+            value={enteredFrom}
+            onChange={changeFromValueHandler}
+            onBlur={blurFromValueHandler}
+            className={
+              fromInputClasses ? styles["invalid-input"] : styles.input
+            }
           />
           <div className={styles["label-holder"]}>
             <label>Од</label>
           </div>
-          {from && (
+          {enteredFrom && (
             <ul className={styles["autocomplete-list"]}>
               {fetchedFrom
                 .filter(
                   (country) =>
-                    country.substring(0, from.length).toUpperCase() ==
-                    from.toUpperCase()
+                    country.substring(0, enteredFrom.length).toUpperCase() ==
+                    enteredFrom.toUpperCase()
                 )
                 .map((country, index) => (
                   <li
@@ -498,19 +314,21 @@ const FlightForm = () => {
           <input
             placeholder="xd"
             type="text"
-            value={to}
-            onChange={toChangeHandler}
+            value={enteredTo}
+            onChange={changeToHandler}
+            onBlur={blurToHandler}
+            className={toInputClasses ? styles["invalid-input"] : styles.input}
           />
           <div className={styles["label-holder"]}>
             <label>До</label>
           </div>
-          {to && (
+          {enteredTo && (
             <ul className={styles["autocomplete-list"]}>
               {fetchedTo
                 .filter(
                   (country) =>
-                    country.substring(0, to.length).toUpperCase() ==
-                    to.toUpperCase()
+                    country.substring(0, enteredTo.length).toUpperCase() ==
+                    enteredTo.toUpperCase()
                 )
                 .map((country, index) => (
                   <li
@@ -534,30 +352,18 @@ const FlightForm = () => {
             placeholder="xd"
             type="date"
             required
-            value={departureDate}
-            onChange={dateChangeHandler}
+            value={enteredDepartureDate}
+            onChange={changeDepartureDateHandler}
+            onBlur={blurDepartureDateHandler}
+            className={
+              departureDateInputClasses ? styles["invalid-input"] : styles.input
+            }
           />
           <div className={styles["label-holder"]}>
             <img src={calendarIcon} alt="" />
             <label>Датум</label>
           </div>
         </div>
-        {/* <div
-          className={`${styles["form-group"]} ${styles["passengers-group"]}`}
-          onClick={() => setShowPassengersModal(true)}
-        >
-          <input
-            placeholder="xd"
-            type="text"
-            readOnly
-            value={passengersInputValue}
-            onChange={passengerChangeHandler}
-            className={styles["input-class"]}
-          />
-          <div className={styles["label-holder"]}>
-            <label>Путници</label>
-          </div>
-        </div> */}
       </div>
       <button type="submit" className={styles["submit-btn"]}>
         {!isReserveFlightLoading && <span>Претражите</span>}
@@ -582,24 +388,17 @@ const FlightForm = () => {
         <input
           placeholder="xd"
           type="text"
-          value={reservationId}
-          onChange={reservationIdChangeHandler}
+          onBlur={blurReservationIdHandler}
+          value={enteredReservationId}
+          onChange={changeReservationIdHandler}
+          className={
+            reservationIdInputClasses ? styles["invalid-input"] : styles.input
+          }
         />
         <div className={styles["label-holder"]}>
           <label>Шифра резервације</label>
         </div>
       </div>
-      {/* <div className={styles["form-group"]}>
-        <input
-          placeholder="xd"
-          type="text"
-          value={surname}
-          onChange={surnameChangeHandler}
-        />
-        <div className={styles["label-holder"]}>
-          <label>Презиме</label>
-        </div>
-      </div> */}
       <button type="submit" className={styles["submit-btn"]}>
         {!isCheckReservationLoading && <span>Претражите</span>}
         {isCheckReservationLoading && (
@@ -622,25 +421,17 @@ const FlightForm = () => {
         <input
           placeholder="xd"
           type="text"
-          value={flightId}
-          onChange={flightIdChangeHandler}
+          value={enteredFlightId}
+          onBlur={blurFlightIdHandler}
+          className={
+            flightIdInputClasses ? styles["invalid-input"] : styles.input
+          }
+          onChange={changeFlightIdHandler}
         />
         <div className={styles["label-holder"]}>
           <label>Број лета</label>
         </div>
       </div>
-      {/* <div className={styles["form-group"]}>
-        <input
-          placeholder="xd"
-          type="date"
-          required
-          value={flightDepartureDate}
-          onChange={flightDepartureDateChangeHandler}
-        />
-        <div className={styles["label-holder"]}>
-          <label>Датум поласка</label>
-        </div>
-      </div> */}
       <button type="submit" className={styles["submit-btn"]}>
         {!isFlightStatusLoading && <span>Претражите</span>}
         {isFlightStatusLoading && (
@@ -654,15 +445,6 @@ const FlightForm = () => {
       </button>
     </form>
   );
-
-  // const closePassengersModalHandler = () => {
-  //   setShowPassengersModal(false);
-  // };
-
-  // const updatePassengersNumberHandler = (val: number) => {
-  //   setPassengersNumber(val);
-  //   setPassengersInputValue(`${val} ${val === 1 ? "путник" : "путника"}`);
-  // };
 
   return (
     <div className={styles["flight-form"]}>

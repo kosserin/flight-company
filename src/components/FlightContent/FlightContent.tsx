@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useContext, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FlightsContext } from "../../store/flights-context";
 import FlightList from "../FlightList/FlightList";
 import styles from "./FlightContent.module.css";
@@ -13,6 +13,7 @@ const FlightContent = () => {
   const day = moment(searchParams.get("date")).format("dddd"); // for the word
   let dayOnSerbian: string;
   let monthOnSerbian: string;
+
   const month = moment(searchParams.get("date")).format("MM");
   switch (month) {
     case "1":
@@ -79,7 +80,6 @@ const FlightContent = () => {
   let tomorrow = moment(searchParams.get("date"), "YYYY-MM-DD")
     .add(1, "days")
     .format("YYYY-MM-DD");
-  console.log(tomorrow);
 
   let headingContent = `${searchParams.get("from")} - ${searchParams.get(
     "to"
@@ -105,7 +105,6 @@ const FlightContent = () => {
   };
 
   useEffect(() => {
-    console.log("useeffect called");
     searchForFlightHandler();
   }, []);
 
@@ -118,9 +117,8 @@ const FlightContent = () => {
         `http://localhost:8086/api/flights?from=${from}&to=${to}&date=${date}`
       );
       const data = await response.json();
-      alert(JSON.stringify(data));
       ctx.appendFlights(data);
-    } catch (err) {
+    } catch (err: any) {
       ctx.appendFlights([]);
     }
   }

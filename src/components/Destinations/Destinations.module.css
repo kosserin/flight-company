@@ -45,10 +45,12 @@
   text-align: center;
   padding-inline: 20px;
   pointer-events: none;
+  transition: 250ms ease-out;
+  border-radius: 5px;
 }
 
 .destination-swiper-slide:hover h3 {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .destination-overlay {
@@ -66,7 +68,7 @@
 }
 
 .destination-overlay:hover {
-  background: transparent;
+  opacity: 0;
 }
 
 .destinations-content .all-destinations__btn {
