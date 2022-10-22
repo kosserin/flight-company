@@ -56,6 +56,7 @@
   font-weight: 500;
   color: #000;
   pointer-events: none;
+  text-align: center;
   transition: 500ms ease-out;
 }
 
@@ -156,7 +157,6 @@ input {
   font-size: 1rem;
   font-weight: 600;
   transition: 250ms ease-out;
-  border: 2px solid transparent;
 }
 
 .invalid-input {
@@ -205,7 +205,7 @@ input[type="number"] {
 }
 
 .flight-form button[type="submit"] {
-  background-color: var(--blue-primary);
+  background-color: var(--purple-primary);
   color: var(--white-primary);
   border: none;
   outline: none;
@@ -224,7 +224,7 @@ input[type="number"] {
 }
 
 .flight-form button[type="submit"]:hover {
-  background-color: var(--blue-secondary);
+  background-color: var(--purple-secondary);
 }
 
 .second-type-of-form > button {
@@ -338,5 +338,13 @@ input:not(:focus) + .label-holder + .autocomplete-list {
 
   .form-title h3 {
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .form-title h3 {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 0.65rem;
   }
 }

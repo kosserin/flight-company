@@ -5,44 +5,73 @@ import telegramIcon from "../../assets/social/telegram.svg";
 import instagramIcon from "../../assets/social/instagram.svg";
 import supportIcon from "../../assets/contact/support.svg";
 import locationIcon from "../../assets/contact/location.svg";
+import useInput from "../../hooks/use-input";
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [message, setMessage] = useState("");
+  const valueHandler = (value: any) => value.trim() !== "";
 
-  const nameChangeHandler = (e: any) => {
-    setName(e.target.value);
-  };
+  const {
+    value: enteredName,
+    valueInputClasses: nameInputClasses,
+    changeInputValueHandler: changeNameValueHandler,
+    blurInputValueHandler: blurNameValueHandler,
+    reset: nameReset,
+  } = useInput(valueHandler);
 
-  const surnameChangeHandler = (e: any) => {
-    setSurname(e.target.value);
-  };
+  const {
+    value: enteredSurname,
+    valueInputClasses: surnameInputClasses,
+    changeInputValueHandler: changeSurnameValueHandler,
+    blurInputValueHandler: blurSurnameValueHandler,
+    reset: surnameReset,
+  } = useInput(valueHandler);
 
-  const emailChangeHandler = (e: any) => {
-    setEmail(e.target.value);
-  };
+  const {
+    value: enteredEmail,
+    valueInputClasses: emailInputClasses,
+    changeInputValueHandler: changeEmailValueHandler,
+    blurInputValueHandler: blurEmailValueHandler,
+    reset: emailReset,
+  } = useInput(valueHandler);
 
-  const phoneNumberChangeHandler = (e: any) => {
-    setPhoneNumber(e.target.value);
-  };
+  const {
+    value: enteredPhoneNumber,
+    valueInputClasses: phoneNumberInputClasses,
+    changeInputValueHandler: changePhoneNumberValueHandler,
+    blurInputValueHandler: blurPhoneNumberValueHandler,
+    reset: phoneNumberReset,
+  } = useInput(valueHandler);
 
-  const messageChangeHandler = (e: any) => {
-    setMessage(e.target.value);
-  };
-
+  const {
+    value: enteredMessage,
+    valueInputClasses: messageInputClasses,
+    changeInputValueHandler: changeMessageValueHandler,
+    blurInputValueHandler: blurMessageValueHandler,
+    reset: messageReset,
+  } = useInput(valueHandler);
   const contactSubmitHandler = (e: FormEvent) => {
+    blurNameValueHandler();
+    blurSurnameValueHandler();
+    blurEmailValueHandler();
+    blurPhoneNumberValueHandler();
+    blurMessageValueHandler();
     e.preventDefault();
-
-    const formValues = {
-      name,
-      surname,
-      email,
-      phoneNumber,
-      message,
-    };
+    if (
+      valueHandler(enteredName) &&
+      valueHandler(enteredSurname) &&
+      valueHandler(enteredEmail) &&
+      valueHandler(enteredPhoneNumber) &&
+      valueHandler(enteredMessage)
+    ) {
+      const formValues = {
+        enteredName,
+        enteredSurname,
+        enteredEmail,
+        enteredPhoneNumber,
+        enteredMessage,
+      };
+      alert(formValues);
+    }
   };
 
   return (
@@ -60,8 +89,12 @@ const ContactForm = () => {
             <input
               placeholder="xd"
               type="text"
-              value={name}
-              onChange={nameChangeHandler}
+              onBlur={blurNameValueHandler}
+              value={enteredName}
+              onChange={changeNameValueHandler}
+              className={
+                nameInputClasses ? styles["invalid-input"] : styles.input
+              }
             />
             <div className={styles["label-holder"]}>
               <label>Име</label>
@@ -71,8 +104,12 @@ const ContactForm = () => {
             <input
               placeholder="xd"
               type="text"
-              value={surname}
-              onChange={surnameChangeHandler}
+              onBlur={blurSurnameValueHandler}
+              value={enteredSurname}
+              onChange={changeSurnameValueHandler}
+              className={
+                surnameInputClasses ? styles["invalid-input"] : styles.input
+              }
             />
             <div className={styles["label-holder"]}>
               <label>Презиме</label>
@@ -82,8 +119,12 @@ const ContactForm = () => {
             <input
               placeholder="xd"
               type="email"
-              value={email}
-              onChange={emailChangeHandler}
+              onBlur={blurEmailValueHandler}
+              value={enteredEmail}
+              onChange={changeEmailValueHandler}
+              className={
+                emailInputClasses ? styles["invalid-input"] : styles.input
+              }
             />
             <div className={styles["label-holder"]}>
               <label>Мејл адреса</label>
@@ -93,8 +134,12 @@ const ContactForm = () => {
             <input
               placeholder="xd"
               type="text"
-              value={phoneNumber}
-              onChange={phoneNumberChangeHandler}
+              onBlur={blurPhoneNumberValueHandler}
+              value={enteredPhoneNumber}
+              onChange={changePhoneNumberValueHandler}
+              className={
+                phoneNumberInputClasses ? styles["invalid-input"] : styles.input
+              }
             />
             <div className={styles["label-holder"]}>
               <label>Број телефона</label>
@@ -105,8 +150,12 @@ const ContactForm = () => {
               placeholder="xd"
               rows={5}
               cols={5}
-              value={message}
-              onChange={messageChangeHandler}
+              onBlur={blurMessageValueHandler}
+              value={enteredMessage}
+              onChange={changeMessageValueHandler}
+              className={
+                messageInputClasses ? styles["invalid-input"] : styles.input
+              }
             />
             <div className={styles["label-holder"]}>
               <label>Питање, примедба, сугестија...</label>

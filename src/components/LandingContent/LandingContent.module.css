@@ -22,3 +22,10 @@
   max-width: 100%;
   width: 600px;
 }
+
+@media (max-width: 768px) {
+  .landing-content {
+    height: auto;
+    min-height: 50vh;
+  }
+}

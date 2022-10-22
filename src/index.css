@@ -13,8 +13,6 @@
 :root {
   --purple-primary: #110619;
   --purple-secondary: #381b34;
-  --blue-primary: #274e71;
-  --blue-secondary: #1d0dcc;
   --white-primary: #fcf8ff;
   --white-secondary: #f1f1e6;
 }
@@ -41,7 +39,7 @@ h4 {
 
 p {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 25px;
 }
 
@@ -76,4 +74,16 @@ html {
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (max-width: 500px) {
+  h1,
+  h3,
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
 }

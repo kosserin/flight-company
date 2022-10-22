@@ -66,6 +66,11 @@ textarea {
   width: 100%;
   font-size: 1rem;
   font-weight: 600;
+  transition: 250ms ease-out;
+}
+
+.invalid-input {
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 input {
@@ -106,7 +111,7 @@ input:not(:placeholder-shown) + .label-holder img {
 }
 
 button[type="submit"] {
-  background-color: var(--blue-primary);
+  background-color: var(--purple-primary);
   color: var(--white-primary);
   border: none;
   outline: none;
@@ -122,7 +127,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: var(--blue-secondary);
+  background-color: var(--purple-secondary);
 }
 
 .form-group:first-of-type {
@@ -205,8 +210,8 @@ button[type="submit"]:hover {
 }
 
 .info-holder a:hover {
-  color: var(--blue-primary);
-  border-bottom-color: var(--blue-primary);
+  color: var(--purple-primary);
+  border-bottom-color: var(--purple-primary);
 }
 
 @media (max-width: 768px) {

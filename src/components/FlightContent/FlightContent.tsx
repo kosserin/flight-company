@@ -140,16 +140,11 @@ const FlightContent = () => {
         </div>
       )}
       {ctx.flights.length !== 0 && <FlightList />}
-      <button onClick={checkNextDayFlightsHandler}>
-        Погледајте летове за наредни дан на истој релацији
-      </button>
-      {/* <Link
-        to={`/reservation/flights?from=${searchParams.get(
-          "from"
-        )}&to=${searchParams.get("to")}&date=${tomorrow}`}
-      >
-        Погледајте летове за наредни дан на истој релацији
-      </Link> */}
+      <div className={styles["flights-actions"]}>
+        <button onClick={checkNextDayFlightsHandler}>
+          Погледајте летове за наредни дан на истој релацији
+        </button>
+      </div>
     </div>
   );
 };

@@ -36,3 +36,24 @@
 .sorting-holder select:focus {
   background-color: var(--purple-primary);
 }
+
+.flights-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flights-actions button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: transparent;
+  color: var(--white-primary);
+  margin-top: 1rem;
+  transition: 250ms ease-out;
+}
+
+.flights-actions button:hover {
+  color: var(--purple-secondary);
+}

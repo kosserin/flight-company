@@ -29,6 +29,11 @@ header.header-dark {
 .header nav a {
   color: var(--white-primary);
   text-decoration: none;
+  transition: 250ms ease-out;
+}
+
+.header nav a:hover {
+  color: var(--purple-secondary);
 }
 
 .header nav > a {

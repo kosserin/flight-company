@@ -19,32 +19,14 @@ const FlightForm = () => {
     backgroundColor: "var(--purple-primary)",
     borderRadius: "10px 0 10px 0px",
   });
-  const padTo2Digits = (num: number) => {
-    return num.toString().padStart(2, "0");
-  };
-
-  const formatDate = (date: Date) => {
-    return [
-      date.getFullYear(),
-      padTo2Digits(date.getMonth() + 1),
-      padTo2Digits(date.getDate()),
-    ].join("-");
-  };
-  const [from, setFrom] = useState<string>("");
   const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
-  const [to, setTo] = useState<string>("");
   const [fetchedTo, setFetchedTo] = useState<string[]>([]);
-  const [reservationId, setReservationId] = useState<string>("");
   const [isReserveFlightLoading, setIsReserveFlightLoading] =
     useState<boolean>(false);
   const [isCheckReservationLoading, setIsCheckReservationLoading] =
     useState<boolean>(false);
   const [isFlightStatusLoading, setIsFlightStatusLoading] =
     useState<boolean>(false);
-  const [flightId, setFlightId] = useState<string>("");
-  const [departureDate, setDepartureDate] = useState<string>(
-    formatDate(new Date())
-  );
   const activeFormRef = useRef<HTMLDivElement>(null);
   // SHOW STATE CONTROL
   const [showReserveFlightContent, setShowReserveFlightContent] =
@@ -53,12 +35,6 @@ const FlightForm = () => {
     useState(false);
   const [showFlightStatusContent, setShowFlightStatusContent] = useState(false);
 
-  const reservationIdValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
-
-  const flightIdValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
-
   const fromValueHandler = (value: any) =>
     value.trim() !== "" && value.length > 2;
 
@@ -66,6 +42,12 @@ const FlightForm = () => {
     value.trim() !== "" && value.length > 2;
 
   const departureDateValueHandler = (value: any) => value.trim() !== "";
+
+  const reservationIdValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
+
+  const flightIdValueHandler = (value: any) =>
+    value.trim() !== "" && value.length > 2;
 
   const {
     value: enteredFrom,
@@ -120,8 +102,6 @@ const FlightForm = () => {
       toValueHandler(enteredTo) &&
       departureDateValueHandler(enteredDepartureDate)
     ) {
-      // const [year, month, day] = enteredDepartureDate.split("-");
-      // const formatedDepartureDate = [day, month, year].join("-");
       fromReset();
       toReset();
       departureDateReset();
@@ -160,7 +140,7 @@ const FlightForm = () => {
       getReservationInfo(enteredReservationId);
       reservationIdReset();
     }
-    getReservationInfo(reservationId);
+    getReservationInfo(enteredReservationId);
   };
 
   async function getReservationInfo(resId: string) {
@@ -485,16 +465,6 @@ const FlightForm = () => {
       {showReserveFlightContent && reserveFlightContent}
       {showCheckReservationContent && checkReservationContent}
       {showFlightStatusContent && flightStatusContent}
-      {/* {showPassengersModal &&
-        ReactDOM.createPortal(
-          <PassengersModal
-            passengersNumber={passengersNumber}
-            closePassengersModal={closePassengersModalHandler}
-            updatePassengersNumber={updatePassengersNumberHandler}
-          />,
-          (document.getElementById("passengers-modal-root") as HTMLElement) ||
-            null
-        )} */}
     </div>
   );
 };

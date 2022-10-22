@@ -68,7 +68,7 @@
 }
 
 .destination-overlay:hover {
-  opacity: 0;
+  opacity: 0.7;
 }
 
 .destinations-content .all-destinations__btn {
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--blue-primary);
+  background-color: var(--purple-secondary);
   color: var(--white-primary);
   border: none;
   outline: none;
@@ -92,7 +92,7 @@
 }
 
 .destinations-content .all-destinations__btn:hover {
-  background-color: var(--blue-secondary);
+  background-color: var(--purple-primary);
 }
 
 .swiper-holder {
@@ -114,6 +114,10 @@
   justify-content: center;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
+}
+
+.destination-button:hover {
+  background-color: var(--purple-secondary);
 }
 
 .destination-button img {
