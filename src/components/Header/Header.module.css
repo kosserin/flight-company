@@ -33,7 +33,7 @@ header.header-dark {
 }
 
 .header nav a:hover {
-  color: var(--purple-secondary);
+  color: var(--purple-third);
 }
 
 .header nav > a {

@@ -107,7 +107,7 @@
 
   .testimonial-swiper-slide {
     padding: 180px 0 0 0;
-    margin-top: 40px;
+    margin-top: 8px;
   }
 
   .testimonial-inner {
@@ -117,5 +117,11 @@
   .shape {
     right: 0;
     transform: translateX(30%);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    margin-top: 48px;
   }
 }

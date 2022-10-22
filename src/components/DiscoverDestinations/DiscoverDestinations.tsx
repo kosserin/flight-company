@@ -1,4 +1,6 @@
+import moment from "moment";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Destination } from "../../models/destination.model";
 import styles from "./DiscoverDestinations.module.css";
 
@@ -16,10 +18,6 @@ const DUMMY_DESTINATIONS: Destination[] = [
     imagePath: "/assets/destinations-images/russia.jpg",
   },
   {
-    title: "Санкт Петерсбург",
-    imagePath: "/assets/destinations-images/sankt-petersburg.jpg",
-  },
-  {
     title: "Тиват",
     imagePath: "/assets/destinations-images/tivat.jpg",
   },
@@ -40,10 +38,6 @@ const DUMMY_DESTINATIONS: Destination[] = [
     imagePath: "/assets/destinations-images/russia.jpg",
   },
   {
-    title: "Санкт Петерсбург",
-    imagePath: "/assets/destinations-images/sankt-petersburg.jpg",
-  },
-  {
     title: "Тиват",
     imagePath: "/assets/destinations-images/tivat.jpg",
   },
@@ -62,10 +56,6 @@ const DUMMY_DESTINATIONS: Destination[] = [
   {
     title: "Москва",
     imagePath: "/assets/destinations-images/russia.jpg",
-  },
-  {
-    title: "Санкт Петерсбург",
-    imagePath: "/assets/destinations-images/sankt-petersburg.jpg",
   },
   {
     title: "Тиват",
@@ -78,6 +68,19 @@ const DUMMY_DESTINATIONS: Destination[] = [
 ];
 
 const DiscoverDestinations = () => {
+  const navigate = useNavigate();
+  const tomorrow = moment(new Date(), "YYYY-MM-DD")
+    .add(1, "days")
+    .format("YYYY-MM-DD");
+  console.log(tomorrow);
+
+  const destinationClickHandler = (toDestination: string) => {
+    console.log(toDestination);
+    navigate(
+      `/reservation/flights?from=Београд&to=${toDestination}&date=${tomorrow}`
+    );
+  };
+
   return (
     <section className={styles["discover-content"]}>
       <div className={styles["discover-header"]}>
@@ -93,7 +96,10 @@ const DiscoverDestinations = () => {
         <h2>Све дестинације</h2>
         <ul>
           {DUMMY_DESTINATIONS.map((destination, index) => (
-            <li key={index + destination.title}>
+            <li
+              key={index + destination.title}
+              onClick={() => destinationClickHandler(destination.title)}
+            >
               <img src={destination.imagePath} alt="" />
               <div className={styles["image-overlay"]}></div>
               <h3>{destination.title}</h3>

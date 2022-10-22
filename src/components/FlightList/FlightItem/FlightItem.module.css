@@ -1,12 +1,100 @@
 .flight-item {
-  padding: 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   border-radius: 15px;
-  background-color: var(--white-primary);
+  color: var(--white-primary);
   transition: 250ms ease-out;
   cursor: pointer;
+  border: 2px solid var(--purple-secondary);
+  position: relative;
 }
 
 .flight-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--white-primary);
+  box-shadow: 0px 0 5px rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* transform: scale(1.005); */
+}
+
+.flight-item__price {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  text-align: right;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.flight-item__destinations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 0;
+  margin-top: 32px;
+}
+
+.flight-item__destination {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.flight-item__destination img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.flight-item__start,
+.flight-item__end {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 1.25px;
+}
+
+.flight-item__from,
+.flight-item__to {
+  position: absolute;
+  font-weight: 500;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.flight-item__duration {
+  display: flex;
+  flex-basis: 0;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.flight-item__line {
+  background-color: var(--white-secondary);
+  height: 2px;
+  flex-grow: 1;
+}
+
+.flight-item__middle-holder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.flight-item__middle-holder p:first-of-type {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--white-secondary);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.flight-item__middle-holder p:last-of-type {
+  font-size: 0.75rem;
+  letter-spacing: 1.25px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
 }

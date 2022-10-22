@@ -188,7 +188,7 @@ const ContactForm = () => {
         <div className={styles["info-item"]}>
           <img src={locationIcon} />
           <div className={styles["info-holder"]}>
-            <a href="#">KossAirways а.д. Београд</a>
+            <a href="#">Авионик а.д. Београд</a>
             <p>Јурија Гагарина 12, 11070 Нови Београд</p>
           </div>
         </div>

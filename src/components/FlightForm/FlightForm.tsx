@@ -11,7 +11,6 @@ import calendarIcon from "../../assets/calendar.png";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
 import useInput from "../../hooks/use-input";
-
 const FlightForm = () => {
   let navigate = useNavigate();
 
@@ -21,12 +20,6 @@ const FlightForm = () => {
   });
   const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
   const [fetchedTo, setFetchedTo] = useState<string[]>([]);
-  const [isReserveFlightLoading, setIsReserveFlightLoading] =
-    useState<boolean>(false);
-  const [isCheckReservationLoading, setIsCheckReservationLoading] =
-    useState<boolean>(false);
-  const [isFlightStatusLoading, setIsFlightStatusLoading] =
-    useState<boolean>(false);
   const activeFormRef = useRef<HTMLDivElement>(null);
   // SHOW STATE CONTROL
   const [showReserveFlightContent, setShowReserveFlightContent] =
@@ -121,16 +114,12 @@ const FlightForm = () => {
   };
 
   async function getFlightInfo(flightId: string) {
-    setIsFlightStatusLoading(true);
     try {
       const response = await fetch(
         `http://localhost:8086/api/flights/${flightId}`
       );
       const data = await response.json();
-      setIsFlightStatusLoading(false);
-    } catch (err: any) {
-      setIsFlightStatusLoading(false);
-    }
+    } catch (err: any) {}
   }
 
   const checkReservationHandler = (e: React.FormEvent) => {
@@ -140,20 +129,15 @@ const FlightForm = () => {
       getReservationInfo(enteredReservationId);
       reservationIdReset();
     }
-    getReservationInfo(enteredReservationId);
   };
 
   async function getReservationInfo(resId: string) {
-    setIsCheckReservationLoading(true);
     try {
       const response = await fetch(
         `http://localhost:8086/api/flights/${resId}`
       );
       const data = await response.json();
-      setIsCheckReservationLoading(false);
-    } catch (err: any) {
-      setIsCheckReservationLoading(false);
-    }
+    } catch (err: any) {}
   }
 
   const fillFromHandler = (country: string) => {
@@ -346,15 +330,7 @@ const FlightForm = () => {
         </div>
       </div>
       <button type="submit" className={styles["submit-btn"]}>
-        {!isReserveFlightLoading && <span>Претражите</span>}
-        {isReserveFlightLoading && (
-          <div className={styles["lds-ring"]}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
+        <span>Претражите</span>
       </button>
     </form>
   );
@@ -380,15 +356,7 @@ const FlightForm = () => {
         </div>
       </div>
       <button type="submit" className={styles["submit-btn"]}>
-        {!isCheckReservationLoading && <span>Претражите</span>}
-        {isCheckReservationLoading && (
-          <div className={styles["lds-ring"]}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
+        <span>Претражите</span>
       </button>
     </form>
   );
@@ -413,19 +381,10 @@ const FlightForm = () => {
         </div>
       </div>
       <button type="submit" className={styles["submit-btn"]}>
-        {!isFlightStatusLoading && <span>Претражите</span>}
-        {isFlightStatusLoading && (
-          <div className={styles["lds-ring"]}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
+        <span>Претражите</span>
       </button>
     </form>
   );
-
   return (
     <div className={styles["flight-form"]}>
       <div className={styles["form-header"]} id="formHeader">

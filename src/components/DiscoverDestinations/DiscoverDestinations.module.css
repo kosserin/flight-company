@@ -1,7 +1,7 @@
 .discover-content {
   position: relative;
   overflow: hidden;
-  margin-top: 48px;
+  padding-top: 48px;
 }
 
 .discover-header {
@@ -27,7 +27,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--purple-primary);
+  background: linear-gradient(154.16deg, #110619 15.31%, #fcf8ff 99%);
   width: 60vw;
   height: 60vw;
   border-radius: 50%;
@@ -101,9 +101,6 @@
 }
 
 @media (max-width: 768px) {
-  .discover-content {
-    padding-top: 200px;
-  }
   .discover-content .circle {
     width: 600px;
     height: 600px;

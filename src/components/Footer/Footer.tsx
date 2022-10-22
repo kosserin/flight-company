@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Footer = (props: any) => {
   return (
     <footer className={`${props.color === "dark" && styles["footer-dark"]}`}>
-      <h4>KossAirways</h4>
+      <h4>Авионик</h4>
       <p>
         Авио компанија која Вас води где год пожелите безбедно, удобно и брзо.
       </p>

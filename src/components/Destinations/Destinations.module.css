@@ -9,8 +9,9 @@
 
 .destinations-content h2 {
   text-align: center;
-  margin-bottom: 2rem;
   color: var(--white-primary);
+  max-width: 90vw;
+  margin: 0 auto 2rem auto;
 }
 
 .destinations-swiper {

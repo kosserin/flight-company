@@ -1,9 +1,13 @@
 export interface Flight {
   id: string;
-  from: string;
-  to: string;
-  departureDate: string;
-  flightStartsAt: string;
-  duration: number;
-  price: string;
+  fromCity: string;
+  toCity: string;
+  flightDuration: number;
+  dateOfDeparture: string;
+  numberOfSeats: number;
+  price: number;
+  distanceBetween: number;
+  seatsReserved?: any;
+  areSeatsAvailable?: any;
+  reservation?: any;
 }

@@ -228,4 +228,8 @@ button[type="submit"]:hover {
     flex-direction: column;
     margin-top: 16px;
   }
+
+  .label-holder label {
+    font-size: 1rem;
+  }
 }

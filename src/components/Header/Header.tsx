@@ -27,7 +27,7 @@ const Header = (props: any) => {
       } ${isScrolled && !props.color && styles["header-dark"]}`}
     >
       <nav>
-        <Link to="/">KossAirways</Link>
+        <Link to="/">Авионик</Link>
         <ul className={completedClass}>
           <li>
             <Link to="/reservation">Резервишите</Link>
