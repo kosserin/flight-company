@@ -10,7 +10,7 @@ import { Flight } from "../../models/flight.model";
 
 const DUMMY_FLIGHTS: Flight[] = [
   {
-    id: "6319d30889f0f0784af9367l",
+    id: "6319b44f167a9b1caef8c5b3",
     fromCity: "Ниш",
     toCity: "Анкара",
     flightDuration: 150,

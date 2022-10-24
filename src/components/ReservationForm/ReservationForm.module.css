@@ -1,0 +1,17 @@
+.reservation-form__holder {
+  position: absolute;
+  z-index: 101;
+  display: flex;
+  justify-content: center;
+  border: 3px solid green;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reservation-form {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+}

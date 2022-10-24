@@ -10,4 +10,6 @@ export interface Flight {
   seatsReserved?: any;
   areSeatsAvailable?: any;
   reservations?: any;
+  company?: string;
+  model?: string;
 }
