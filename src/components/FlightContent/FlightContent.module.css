@@ -7,7 +7,7 @@
 
 .flight-content h2 {
   color: var(--white-primary);
-  margin-bottom: 2rem;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -109,5 +109,9 @@
 @media (max-width: 500px) {
   .flights-actions button {
     font-size: 0.875rem;
+  }
+
+  .flight-content h2 {
+    text-align: left;
   }
 }

@@ -27,7 +27,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: linear-gradient(154.16deg, #110619 15.31%, #fcf8ff 99%);
+  background-color: var(--purple-secondary);
   width: 60vw;
   height: 60vw;
   border-radius: 50%;

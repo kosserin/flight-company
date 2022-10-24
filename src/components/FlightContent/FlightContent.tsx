@@ -1,6 +1,6 @@
 import moment from "moment";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
 import { FlightsContext } from "../../store/flights-context";
 import FlightList from "../FlightList/FlightList";
 import styles from "./FlightContent.module.css";
@@ -18,7 +18,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 350,
     distanceBetween: 2250,
   },
@@ -31,7 +31,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 40,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 430,
     distanceBetween: 750,
   },
@@ -44,7 +44,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 250,
     distanceBetween: 410,
   },
@@ -57,7 +57,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 580,
     distanceBetween: 550,
   },
@@ -70,7 +70,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 1150,
     distanceBetween: 950,
   },
@@ -83,7 +83,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 50,
     distanceBetween: 750,
   },
@@ -96,7 +96,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 50,
     distanceBetween: 150,
   },
@@ -109,7 +109,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 50,
     distanceBetween: 550,
   },
@@ -122,7 +122,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 50,
     distanceBetween: 2150,
   },
@@ -135,7 +135,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 50,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 50,
     distanceBetween: 1250,
   },
@@ -148,7 +148,7 @@ const DUMMY_FLIGHTS: Flight[] = [
     numberOfSeats: 150,
     seatsReserved: null,
     areSeatsAvailable: true,
-    reservation: null,
+    reservations: null,
     price: 750,
     distanceBetween: 2250,
   },
@@ -158,7 +158,11 @@ const FlightContent = () => {
   const ctx = useContext(FlightsContext);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [selectedValue, setSelectedValue] = useState("lowestPrice");
+  const displayFlights: boolean =
+    searchParams.has("from") ||
+    searchParams.has("to") ||
+    searchParams.has("date");
+  const [selectedValue, setSelectedValue] = useState<string>("none");
   const [isLoading, setIsLoading] = useState(false);
   const day = moment(searchParams.get("date")).format("dddd"); // for the word
   let dayOnSerbian: string;
@@ -266,7 +270,10 @@ const FlightContent = () => {
   };
 
   useEffect(() => {
-    searchForFlightHandler();
+    if (displayFlights) {
+      searchForFlightHandler();
+      sortWithSwapHandler(selectedValue);
+    }
   }, []);
 
   async function searchForFlightHandler() {
@@ -287,10 +294,8 @@ const FlightContent = () => {
     }
   }
 
-  const sortingFlightsHandler = (e: any) => {
-    setSelectedValue(e.target.value);
-    console.log(e.target.value);
-    switch (e.target.value) {
+  const sortWithSwapHandler = (value: string) => {
+    switch (value) {
       case "lowestPrice":
         ctx.sortLowestFirst(ctx.flights);
         break;
@@ -303,39 +308,56 @@ const FlightContent = () => {
       case "shortestDistance":
         ctx.sortShortestDistance(ctx.flights);
         break;
+      case "earliestFlight":
+        ctx.sortEarliestFlight(ctx.flights);
+        break;
+      default:
+        break;
     }
+  };
+
+  const sortingFlightsHandler = (e: any) => {
+    setSelectedValue(e.target.value);
+    sortWithSwapHandler(e.target.value);
   };
 
   return (
     <div className={styles["flight-content"]}>
-      <h2>{headingContent}</h2>
-      {ctx.flights.length !== 0 && !isLoading && (
-        <div className={styles["sorting-holder"]}>
-          <label htmlFor="sortSelect">
-            <img src={sortIcon} alt="" />
-          </label>
-          <select
-            name="sortSelect"
-            id="sortSelect"
-            value={selectedValue}
-            onChange={sortingFlightsHandler}
-          >
-            <option value="lowestPrice">Растуће цене</option>
-            <option value="highestPrice">Опадајуће цене</option>
-            <option value="fastestTravel">Најбрже путовање</option>
-            <option value="shortestDistance">Најкраће растојање</option>
-          </select>
+      {displayFlights && (
+        <div>
+          <h2>{headingContent}</h2>
+          {ctx.flights.length !== 0 && !isLoading && (
+            <div className={styles["sorting-holder"]}>
+              <label htmlFor="sortSelect">
+                <img src={sortIcon} alt="" />
+              </label>
+              <select
+                name="sortSelect"
+                id="sortSelect"
+                value={selectedValue}
+                onChange={sortingFlightsHandler}
+              >
+                <option value="none">Одаберите упит</option>
+                <option value="earliestFlight">Најскорији лет</option>
+                <option value="lowestPrice">Растуће цене</option>
+                <option value="highestPrice">Опадајуће цене</option>
+                <option value="fastestTravel">Најбрже путовање</option>
+                <option value="shortestDistance">Најкраће растојање</option>
+              </select>
+            </div>
+          )}
+          {ctx.flights.length !== 0 && !isLoading && <FlightList />}
+          <div className={styles["flights-actions"]}>
+            {!isLoading && (
+              <button onClick={checkNextDayFlightsHandler}>
+                <span>Наредни дан на истој релацији</span>
+                <img src={arrowRight} />
+              </button>
+            )}
+          </div>
         </div>
       )}
-      {ctx.flights.length !== 0 && !isLoading && <FlightList />}
-      <div className={styles["flights-actions"]}>
-        {!isLoading && (
-          <button onClick={checkNextDayFlightsHandler}>
-            <span>Наредни дан на истој релацији</span>
-            <img src={arrowRight} />
-          </button>
-        )}
-      </div>
+      <Outlet />
     </div>
   );
 };

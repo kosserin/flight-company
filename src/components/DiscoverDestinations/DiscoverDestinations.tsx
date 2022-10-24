@@ -72,10 +72,8 @@ const DiscoverDestinations = () => {
   const tomorrow = moment(new Date(), "YYYY-MM-DD")
     .add(1, "days")
     .format("YYYY-MM-DD");
-  console.log(tomorrow);
 
   const destinationClickHandler = (toDestination: string) => {
-    console.log(toDestination);
     navigate(
       `/reservation/flights?from=Београд&to=${toDestination}&date=${tomorrow}`
     );

@@ -4,10 +4,11 @@ import { Flight } from "../models/flight.model";
 type FlightsContextObject = {
   flights: Flight[];
   appendFlights: (newFlights: Flight[]) => void;
-  sortLowestFirst: (newFlights: Flight[]) => Flight[];
-  sortHighestFirst: (newFlights: Flight[]) => Flight[];
-  sortFastestTravel: (newFlights: Flight[]) => Flight[];
-  sortShortestDistance: (newFlights: Flight[]) => Flight[];
+  sortLowestFirst: (flights: Flight[]) => Flight[];
+  sortHighestFirst: (flights: Flight[]) => Flight[];
+  sortFastestTravel: (flights: Flight[]) => Flight[];
+  sortShortestDistance: (flights: Flight[]) => Flight[];
+  sortEarliestFlight: (flights: Flight[]) => Flight[];
 };
 
 export const FlightsContext = React.createContext<FlightsContextObject>({
@@ -17,6 +18,7 @@ export const FlightsContext = React.createContext<FlightsContextObject>({
   sortHighestFirst: (flights: Flight[]) => flights,
   sortFastestTravel: (flights: Flight[]) => flights,
   sortShortestDistance: (flights: Flight[]) => flights,
+  sortEarliestFlight: (flights: Flight[]) => flights,
 });
 
 interface Props {
@@ -54,6 +56,14 @@ const FlightsContextProvider: React.FC<Props> = (props) => {
     });
   };
 
+  const sortEarliestFlight = (flights: Flight[]) => {
+    return flights.sort((a: any, b: any) => {
+      const aDate = new Date(a.dateOfDeparture).getTime();
+      const bDate = new Date(b.dateOfDeparture).getTime();
+      return aDate - bDate;
+    });
+  };
+
   const contextValue: FlightsContextObject = {
     flights,
     appendFlights,
@@ -61,6 +71,7 @@ const FlightsContextProvider: React.FC<Props> = (props) => {
     sortHighestFirst,
     sortFastestTravel,
     sortShortestDistance,
+    sortEarliestFlight,
   };
 
   return (

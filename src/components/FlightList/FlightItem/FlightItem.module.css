@@ -6,6 +6,11 @@
   cursor: pointer;
   border: 2px solid var(--purple-secondary);
   position: relative;
+  border-left: none;
+  border-right: none;
+  border-top: 3px solid var(--purple-secondary);
+  border-bottom: 3px solid var(--purple-secondary);
+  border-radius: 0px;
 }
 
 .flight-item:hover {
@@ -16,12 +21,12 @@
 
 .flight-item__price {
   position: absolute;
-  top: 16px;
+  top: 8px;
   right: 16px;
   text-align: right;
   margin-bottom: 16px;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .flight-item__destinations {
@@ -48,7 +53,7 @@
 
 .flight-item__start,
 .flight-item__end {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 1.25px;
 }
@@ -97,4 +102,33 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
+}
+
+@media (max-width: 768px) {
+  .flight-item {
+    padding: 0;
+    padding-bottom: 2rem;
+  }
+
+  .flight-item__price {
+    font-size: 1rem;
+  }
+
+  .flight-item__from,
+  .flight-item__to {
+    font-size: 0.75rem;
+  }
+
+  .flight-item__start,
+  .flight-item__end {
+    font-size: 1.25rem;
+  }
+
+  .flight-item__line {
+    height: 1px;
+  }
+
+  .flight-item__middle-holder p:first-of-type {
+    border: 1px solid var(--white-secondary);
+  }
 }

@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 18px;
   margin: 0 auto;
-  width: 1000px;
+  width: 800px;
   max-width: 90vw;
   position: relative;
   transform: translateY(-30px);
@@ -155,7 +155,7 @@ form.form-content {
 
 .label-holder label {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #7c7484;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -167,7 +167,6 @@ input {
   background-color: transparent;
   border: none;
   outline: none;
-  height: 57px;
   border-radius: 5px;
   padding: 0 16px;
   width: 100%;
@@ -196,7 +195,7 @@ input:not(:placeholder-shown) + .label-holder {
 
 input:focus + .label-holder label,
 input:not(:placeholder-shown) + .label-holder label {
-  font-size: 12px;
+  font-size: 0.875rem;
 }
 
 input:focus + .label-holder img,
@@ -322,8 +321,14 @@ input:not(:focus) + .label-holder + .autocomplete-list {
     font-size: 0.75rem;
   }
 
+  input,
   .label-holder label {
-    font-size: 1rem;
+    font-size: 0.875rem;
+  }
+
+  input:focus + .label-holder label,
+  input:not(:placeholder-shown) + .label-holder label {
+    font-size: 0.65rem;
   }
 }
 

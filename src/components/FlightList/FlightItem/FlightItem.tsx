@@ -1,9 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./FlightItem.module.css";
-import startIcon from "../../../assets/start-colored.png";
-import finishIcon from "../../../assets/end-colored.png";
 
 const FlightItem = (props: any) => {
+  const navigate = useNavigate();
   const toHoursAndMinutes = (totalMinutes: number) => {
     const minutes = totalMinutes % 60;
     const hours = Math.floor(totalMinutes / 60);
@@ -34,13 +33,17 @@ const FlightItem = (props: any) => {
     ":" +
     (arrivalTime.getMinutes() < 10 ? "0" : "") +
     arrivalTime.getMinutes();
-  console.log(onlyHoursAndMinutesOfArrival);
 
   const convertedFlightDuration: string = toHoursAndMinutes(
     props.flight.flightDuration
   );
+
+  const showFlightDetailHandler = () => {
+    navigate(`/reservation/flights/${props.flight.id}`);
+  };
+
   return (
-    <li className={styles["flight-item"]}>
+    <li className={styles["flight-item"]} onClick={showFlightDetailHandler}>
       <p className={styles["flight-item__price"]}>
         {props.flight.price}.00 рсд
       </p>

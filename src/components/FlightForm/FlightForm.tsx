@@ -108,19 +108,10 @@ const FlightForm = () => {
     blurFlightIdHandler();
     e.preventDefault();
     if (flightIdValueHandler(enteredFlightId)) {
-      getFlightInfo(enteredFlightId);
+      navigate(`/reservation/flights/${enteredFlightId}`);
       flightIdReset();
     }
   };
-
-  async function getFlightInfo(flightId: string) {
-    try {
-      const response = await fetch(
-        `http://localhost:8086/api/flights/${flightId}`
-      );
-      const data = await response.json();
-    } catch (err: any) {}
-  }
 
   const checkReservationHandler = (e: React.FormEvent) => {
     blurReservationIdHandler();

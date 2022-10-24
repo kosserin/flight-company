@@ -9,5 +9,5 @@ export interface Flight {
   distanceBetween: number;
   seatsReserved?: any;
   areSeatsAvailable?: any;
-  reservation?: any;
+  reservations?: any;
 }

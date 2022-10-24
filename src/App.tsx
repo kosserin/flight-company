@@ -5,8 +5,8 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Discover from "./pages/Discover/Discover";
 import Reservation from "./pages/Reservation/Reservation";
-import FlightList from "./components/FlightList/FlightList";
 import FlightContent from "./components/FlightContent/FlightContent";
+import FlightDetail from "./components/FlightDetail/FlightDetail";
 
 const App = () => {
   return (
@@ -19,7 +19,9 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="discover" element={<Discover />} />
         <Route path="reservation" element={<Reservation />}>
-          <Route path="flights" element={<FlightContent />} />
+          <Route path="flights" element={<FlightContent />}>
+            <Route path=":flightId" element={<FlightDetail />} />
+          </Route>
         </Route>
       </Routes>
     </React.Fragment>

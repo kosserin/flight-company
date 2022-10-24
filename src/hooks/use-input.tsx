@@ -60,7 +60,6 @@ const useInput = (validateValue: any, initialValue?: any) => {
   };
 
   const blurInputValueHandler = () => {
-    console.log("blur");
     dispatchInputAction({
       type: "BLUR",
     });
