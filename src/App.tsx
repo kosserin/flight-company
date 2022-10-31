@@ -7,6 +7,10 @@ import Discover from "./pages/Discover/Discover";
 import Reservation from "./pages/Reservation/Reservation";
 import FlightContent from "./components/FlightContent/FlightContent";
 import FlightDetail from "./components/FlightDetail/FlightDetail";
+import ReservationModal from "./components/ReservationModal/ReservationModal";
+import Step1 from "./components/Step1/Step1";
+import Step2 from "./components/Step2/Step2";
+import Step3 from "./components/Step3/Step3";
 
 const App = () => {
   return (
@@ -20,7 +24,13 @@ const App = () => {
         <Route path="discover" element={<Discover />} />
         <Route path="reservation" element={<Reservation />}>
           <Route path="flights" element={<FlightContent />}>
-            <Route path=":flightId" element={<FlightDetail />} />
+            <Route path=":flightId" element={<FlightDetail />}>
+              <Route path="reserve-flight" element={<ReservationModal />}>
+                <Route path="step-1" element={<Step1 />} />
+                <Route path="step-2" element={<Step2 />} />
+                <Route path="step-3" element={<Step3 />} />
+              </Route>
+            </Route>
           </Route>
         </Route>
       </Routes>

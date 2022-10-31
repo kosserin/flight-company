@@ -4,6 +4,44 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 103;
+}
+
+.inner-modal {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  z-index: 104;
+  transform: translate(-50%, 0%);
+  max-width: 100%;
+  width: 800px;
+  background-color: var(--white-primary);
+  border-radius: 0 0 20px 20px;
+}
+
+.modal-header {
+  background-color: #000;
+  color: var(--white-primary);
+  text-align: center;
+  position: relative;
+  padding: 0 8px;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-header button {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: gray;
+  cursor: pointer;
 }

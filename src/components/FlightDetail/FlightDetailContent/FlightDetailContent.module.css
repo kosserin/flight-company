@@ -53,6 +53,15 @@
   color: var(--white-primary);
 }
 
+.detail-actions button:disabled {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.detail-actions button:disabled:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
 .flight-detail h4 {
   color: var(--white-primary);
 }

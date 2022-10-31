@@ -71,6 +71,11 @@ const ContactForm = () => {
         enteredMessage,
       };
       alert(formValues);
+      nameReset();
+      surnameReset();
+      emailReset();
+      phoneNumberReset();
+      messageReset();
     }
   };
 

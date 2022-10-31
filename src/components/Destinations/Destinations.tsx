@@ -13,7 +13,8 @@ import "../../index.css";
 
 import { Navigation } from "swiper";
 import { Destination } from "../../models/destination.model";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const DUMMY_DESTINATIONS: Destination[] = [
   {
@@ -43,6 +44,17 @@ const DUMMY_DESTINATIONS: Destination[] = [
 ];
 
 const Destinations = () => {
+  const navigate = useNavigate();
+  const tomorrow = moment(new Date(), "YYYY-MM-DD")
+    .add(1, "days")
+    .format("YYYY-MM-DD");
+
+  const destinationClickHandler = (toDestination: string) => {
+    navigate(
+      `/reservation/flights?from=Београд&to=${toDestination}&date=${tomorrow}`
+    );
+  };
+
   return (
     <section className={styles["destinations-content"]}>
       <h2>Издвајамо следеће дестинације</h2>
@@ -70,6 +82,7 @@ const Destinations = () => {
               <SwiperSlide
                 className={styles["destination-swiper-slide"]}
                 key={"" + destination + index}
+                onClick={() => destinationClickHandler(destination.title)}
               >
                 <img src={destination.imagePath} alt="" />
                 <div className={styles["destination-overlay"]}></div>

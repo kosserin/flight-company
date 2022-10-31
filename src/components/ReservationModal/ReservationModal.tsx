@@ -1,20 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  useNavigate,
+  useLocation,
+  Outlet,
+  Link,
+  useParams,
+} from "react-router-dom";
 import ReservationForm from "../ReservationForm/ReservationForm";
 import styles from "./ReservationModal.module.css";
 
-const OuterModal = (props: any) => {
+const OuterModal = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    let n = location.pathname.lastIndexOf("/");
+    let result = location.pathname.substring(n + 1);
+    if (result === "reserve-flight") {
+      navigate("step-1");
+    }
+  }, []);
+
   const hideModal = () => {
-    props.hideReservationModal();
-    console.log("xd");
+    // navigate(-1);
   };
   return <div onClick={hideModal} className={styles["outer-modal"]}></div>;
 };
 
-const ReservationModal = (props: any) => {
+const InnerModal = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+  const cancelHandler = () => {
+    let n = location.pathname.lastIndexOf("/");
+    let result = location.pathname.substring(n + 1);
+
+    if (result === "step-1") {
+      navigate(`/reservation/flights/${params.flightId}`);
+    } else navigate(-1);
+  };
+
+  return (
+    <div className={styles["inner-modal"]}>
+      <div className={styles["modal-header"]}>
+        <h4>Резервација</h4>
+        <button onClick={() => cancelHandler()}>Назад</button>
+      </div>
+      <Outlet />
+    </div>
+  );
+};
+
+const ReservationModal = () => {
   return (
     <>
-      <OuterModal hideReservationModal={props.hideReservationModal} />
-      <ReservationForm />
+      <OuterModal />
+      <InnerModal />
     </>
   );
 };

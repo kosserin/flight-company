@@ -73,9 +73,10 @@ html {
   overflow-x: hidden;
 }
 
-html {
+/* should not be used because it's buggy with react router */
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 @media (max-width: 500px) {
   h1,
