@@ -35,7 +35,7 @@
 .modal-header button {
   position: absolute;
   top: 50%;
-  left: 8px;
+  left: 32px;
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
@@ -44,4 +44,10 @@
   font-size: 0.875rem;
   color: gray;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modal-header button {
+    left: 16px;
+  }
 }

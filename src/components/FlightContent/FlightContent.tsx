@@ -267,6 +267,7 @@ const FlightContent = () => {
       )}&to=${searchParams.get("to")}&date=${tomorrow}`
     );
     searchForFlightHandler();
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {

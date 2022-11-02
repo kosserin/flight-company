@@ -134,6 +134,7 @@ form.form-content {
   display: flex;
   align-items: center;
   flex-grow: 1;
+  border: 1px solid #dcdcdc;
 }
 
 .label-holder {
@@ -156,7 +157,7 @@ form.form-content {
 .label-holder label {
   font-weight: 600;
   font-size: 1rem;
-  color: #7c7484;
+  color: #4c494e;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;

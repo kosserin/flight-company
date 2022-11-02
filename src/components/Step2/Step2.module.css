@@ -1,6 +1,10 @@
 .step-2 {
-  max-height: 90vh;
+  max-height: 80vh;
   overflow-y: scroll;
+  padding-inline: 2rem;
+  padding-top: 2rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -9,25 +13,21 @@
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.step-2 {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+.step-2 h4 {
+  font-size: 1.125rem;
+}
+
+.step-2 p {
+  margin-bottom: 0rem;
+  margin-top: 4px;
 }
 
 .step-action {
-  position: fixed;
-  bottom: 0vh;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--white-primary);
-  z-index: 3;
+  padding: 2rem 0 1rem 0;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
 }
+
 .step-action button {
   border: none;
   outline: none;
@@ -46,6 +46,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  flex-grow: 0;
 }
 
 .step-action button img {
@@ -66,19 +67,154 @@
   color: #000;
 }
 
-.space-for-action {
+.form-holder {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 100%;
+}
+
+.card-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-group input {
+  width: 1.25rem;
+  position: relative;
+}
+
+.radio-group label {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.card-images {
+  display: flex;
+  gap: 4px;
+}
+
+.card-images img {
+  width: 3rem;
+  object-fit: contain;
+}
+
+.two-form-controls {
+  display: flex;
+  gap: 16px;
+}
+
+.form-group {
+  position: relative;
+  background-color: var(--white-secondary);
+  border-radius: 5px;
   width: 100%;
-  background-color: red;
-  height: 5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+}
+
+.label-holder {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 500ms ease-out;
+}
+
+textarea + .label-holder {
+  top: 28px;
+}
+
+.label-holder label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4c494e;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
+
+input,
+textarea {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0 16px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 250ms ease-out;
+}
+
+.invalid-input {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+input {
+  height: 57px;
+}
+
+textarea {
+  padding: 28px 16px;
+}
+
+::placeholder {
+  opacity: 0;
+}
+
+input:focus + .label-holder,
+input:not(:placeholder-shown) + .label-holder,
+textarea:focus + .label-holder,
+textarea:not(:placeholder-shown) + .label-holder {
+  top: 10px;
+  transform: translateY(-50%);
+}
+
+input:focus + .label-holder label,
+textarea:focus + .label-holder label,
+input:not(:placeholder-shown) + .label-holder label,
+textarea:not(:placeholder-shown) + .label-holder label {
+  font-size: 12px;
+}
+
+input:focus + .label-holder img,
+input:not(:placeholder-shown) + .label-holder img {
+  width: 12px;
+  height: 12px;
 }
 
 @media (max-width: 768px) {
   .step-2 {
     min-height: 90vh;
+    padding-bottom: 88px;
   }
 
   .step-action {
+    position: fixed;
+    bottom: 0vh;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 3;
+    box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
     justify-content: center;
+    background-color: var(--white-primary);
+    padding-top: 1rem;
   }
 
   .step-action button {
