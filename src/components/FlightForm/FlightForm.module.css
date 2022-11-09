@@ -126,124 +126,6 @@ form.form-content {
   position: relative;
 }
 
-.form-group {
-  position: relative;
-  background-color: rgb(225, 225, 225);
-  border-radius: 5px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  border: 1px solid #dcdcdc;
-}
-
-.label-holder {
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: 500ms ease-out;
-}
-
-.label-holder img {
-  width: 21px;
-  height: 21px;
-}
-
-.label-holder label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #4c494e;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
-
-input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 0 16px;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: 250ms ease-out;
-}
-
-.invalid-input {
-  background-color: rgba(255, 0, 0, 0.2);
-}
-
-::placeholder {
-  opacity: 0;
-}
-
-/* input[type="date"] {
-  color: transparent;
-} */
-
-input:focus + .label-holder,
-input:not(:placeholder-shown) + .label-holder {
-  top: 12px;
-  transform: translateY(-50%);
-}
-
-input:focus + .label-holder label,
-input:not(:placeholder-shown) + .label-holder label {
-  font-size: 0.875rem;
-}
-
-input:focus + .label-holder img,
-input:not(:placeholder-shown) + .label-holder img {
-  width: 12px;
-  height: 12px;
-}
-
-.passengers-group {
-  max-width: 106px;
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.flight-form button[type="submit"] {
-  background-color: var(--purple-primary);
-  color: var(--white-primary);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  height: 57px;
-  min-width: 136px;
-  font-size: 1rem;
-  font-weight: 600;
-  flex-grow: 1;
-  max-width: 320px;
-  transition: 250ms ease-out;
-}
-
-.flight-form button[type="submit"]:hover {
-  background-color: var(--purple-secondary);
-}
-
 .second-type-of-form > button {
   width: 100%;
 }
@@ -282,7 +164,7 @@ input[type="number"] {
   background-color: rgb(225, 225, 225);
 }
 
-input:not(:focus) + .label-holder + .autocomplete-list {
+.form-group input:not(:focus) + .label-holder + .autocomplete-list {
   opacity: 0;
   visibility: hidden;
 }
@@ -322,14 +204,12 @@ input:not(:focus) + .label-holder + .autocomplete-list {
     font-size: 0.75rem;
   }
 
-  input,
-  .label-holder label {
-    font-size: 0.875rem;
+  .from-to__holder {
+    flex-direction: column;
   }
 
-  input:focus + .label-holder label,
-  input:not(:placeholder-shown) + .label-holder label {
-    font-size: 0.65rem;
+  .from-to__holder .form-group {
+    width: 100%;
   }
 }
 

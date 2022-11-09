@@ -90,67 +90,59 @@ const ContactForm = () => {
           onSubmit={contactSubmitHandler}
           className={styles["contact-form"]}
         >
-          <div className={styles["form-group"]}>
+          <div className={`${styles["name-control"]} form-group`}>
             <input
               placeholder="xd"
               type="text"
               onBlur={blurNameValueHandler}
               value={enteredName}
               onChange={changeNameValueHandler}
-              className={
-                nameInputClasses ? styles["invalid-input"] : styles.input
-              }
+              className={nameInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Име</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
+          <div className={`${styles["surname-control"]} form-group`}>
             <input
               placeholder="xd"
               type="text"
               onBlur={blurSurnameValueHandler}
               value={enteredSurname}
               onChange={changeSurnameValueHandler}
-              className={
-                surnameInputClasses ? styles["invalid-input"] : styles.input
-              }
+              className={surnameInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Презиме</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
+          <div className={`${styles["email-control"]} form-group`}>
             <input
               placeholder="xd"
               type="email"
               onBlur={blurEmailValueHandler}
               value={enteredEmail}
               onChange={changeEmailValueHandler}
-              className={
-                emailInputClasses ? styles["invalid-input"] : styles.input
-              }
+              className={emailInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Мејл адреса</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
+          <div className={`${styles["phone-control"]} form-group`}>
             <input
               placeholder="xd"
               type="text"
               onBlur={blurPhoneNumberValueHandler}
               value={enteredPhoneNumber}
               onChange={changePhoneNumberValueHandler}
-              className={
-                phoneNumberInputClasses ? styles["invalid-input"] : styles.input
-              }
+              className={phoneNumberInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Број телефона</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
+          <div className={`${styles["message-control"]} form-group`}>
             <textarea
               placeholder="xd"
               rows={5}
@@ -158,16 +150,16 @@ const ContactForm = () => {
               onBlur={blurMessageValueHandler}
               value={enteredMessage}
               onChange={changeMessageValueHandler}
-              className={
-                messageInputClasses ? styles["invalid-input"] : styles.input
-              }
+              className={messageInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Питање, примедба, сугестија...</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
-            <button type="submit">Пошаљите</button>
+          <div className={styles["submit-control"]}>
+            <button type="submit" className="submit-button">
+              Пошаљите
+            </button>
           </div>
           <div className={styles["contact-social"]}>
             <a href="#">

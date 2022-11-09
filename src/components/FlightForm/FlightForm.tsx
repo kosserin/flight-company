@@ -231,18 +231,16 @@ const FlightForm = () => {
       onSubmit={reserveFlightHandler}
     >
       <div className={styles["from-to__holder"]}>
-        <div className={styles["form-group"]}>
+        <div className={`${styles["form-group"]} form-group`}>
           <input
             placeholder="xd"
             type="text"
             value={enteredFrom}
             onChange={changeFromValueHandler}
             onBlur={blurFromValueHandler}
-            className={
-              fromInputClasses ? styles["invalid-input"] : styles.input
-            }
+            className={fromInputClasses ? "invalid-input" : "input"}
           />
-          <div className={styles["label-holder"]}>
+          <div className={`${styles["label-holder"]} label-holder`}>
             <label>Од</label>
           </div>
           {enteredFrom && (
@@ -265,16 +263,16 @@ const FlightForm = () => {
             </ul>
           )}
         </div>
-        <div className={styles["form-group"]}>
+        <div className={`${styles["form-group"]} form-group`}>
           <input
             placeholder="xd"
             type="text"
             value={enteredTo}
             onChange={changeToHandler}
             onBlur={blurToHandler}
-            className={toInputClasses ? styles["invalid-input"] : styles.input}
+            className={toInputClasses ? "invalid-input" : "input"}
           />
-          <div className={styles["label-holder"]}>
+          <div className={`${styles["label-holder"]} label-holder`}>
             <label>До</label>
           </div>
           {enteredTo && (
@@ -301,26 +299,24 @@ const FlightForm = () => {
           <img src={swapIcon} />
         </div>
       </div>
-      <div className={styles["date-passengers__holder"]}>
-        <div className={`${styles["form-group"]} ${styles["date-group"]}`}>
-          <input
-            placeholder="xd"
-            type="date"
-            required
-            value={enteredDepartureDate}
-            onChange={changeDepartureDateHandler}
-            onBlur={blurDepartureDateHandler}
-            className={
-              departureDateInputClasses ? styles["invalid-input"] : styles.input
-            }
-          />
-          <div className={styles["label-holder"]}>
-            <img src={calendarIcon} alt="" />
-            <label>Датум</label>
-          </div>
+      <div
+        className={`${styles["form-group"]} ${styles["date-group"]} form-group`}
+      >
+        <input
+          placeholder="xd"
+          type="date"
+          required
+          value={enteredDepartureDate}
+          onChange={changeDepartureDateHandler}
+          onBlur={blurDepartureDateHandler}
+          className={departureDateInputClasses ? "invalid-input" : "input"}
+        />
+        <div className="label-holder">
+          <img src={calendarIcon} alt="" />
+          <label>Датум</label>
         </div>
       </div>
-      <button type="submit" className={styles["submit-btn"]}>
+      <button type="submit" className="submit-button">
         <span>Претражите</span>
       </button>
     </form>
@@ -331,22 +327,20 @@ const FlightForm = () => {
       className={`${styles["form-content"]} ${styles["second-type-of-form"]}`}
       onSubmit={checkReservationHandler}
     >
-      <div className={styles["form-group"]}>
+      <div className="form-group">
         <input
           placeholder="xd"
           type="text"
           onBlur={blurReservationIdHandler}
           value={enteredReservationId}
           onChange={changeReservationIdHandler}
-          className={
-            reservationIdInputClasses ? styles["invalid-input"] : styles.input
-          }
+          className={reservationIdInputClasses ? "invalid-input" : "input"}
         />
-        <div className={styles["label-holder"]}>
+        <div className="label-holder">
           <label>Шифра резервације</label>
         </div>
       </div>
-      <button type="submit" className={styles["submit-btn"]}>
+      <button type="submit" className="submit-button">
         <span>Претражите</span>
       </button>
     </form>
@@ -356,22 +350,20 @@ const FlightForm = () => {
       className={`${styles["form-content"]} ${styles["second-type-of-form"]}`}
       onSubmit={flightStatusHandler}
     >
-      <div className={styles["form-group"]}>
+      <div className="form-group">
         <input
           placeholder="xd"
           type="text"
           value={enteredFlightId}
           onBlur={blurFlightIdHandler}
-          className={
-            flightIdInputClasses ? styles["invalid-input"] : styles.input
-          }
+          className={flightIdInputClasses ? "invalid-input" : "input"}
           onChange={changeFlightIdHandler}
         />
-        <div className={styles["label-holder"]}>
+        <div className="label-holder">
           <label>Број лета</label>
         </div>
       </div>
-      <button type="submit" className={styles["submit-btn"]}>
+      <button type="submit" className="submit-button">
         <span>Претражите</span>
       </button>
     </form>

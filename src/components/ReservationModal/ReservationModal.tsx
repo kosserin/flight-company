@@ -6,6 +6,7 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+import ReservationDetailsContextProvider from "../../store/reservation-details-context";
 import ReservationForm from "../ReservationForm/ReservationForm";
 import styles from "./ReservationModal.module.css";
 
@@ -53,10 +54,12 @@ const InnerModal = () => {
 
 const ReservationModal = () => {
   return (
-    <>
-      <OuterModal />
-      <InnerModal />
-    </>
+    <ReservationDetailsContextProvider>
+      <>
+        <OuterModal />
+        <InnerModal />
+      </>
+    </ReservationDetailsContextProvider>
   );
 };
 

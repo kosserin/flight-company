@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Step3.module.css";
 import chevron from "../../assets/chevron-white.png";
 import { useNavigate, useParams } from "react-router-dom";
 import visa from "../../assets/visa.png";
+import mastercard from "../../assets/mastercard.png";
+import { ReservationDetailsContext } from "../../store/reservation-details-context";
 
 const Step3 = () => {
+  const ctx = useContext(ReservationDetailsContext);
   const navigate = useNavigate();
   const params = useParams();
-  const reserveFlightHandler = () => {
-    alert("reservation done!");
+  const reserveFlightHandler = async () => {
+    const data = await fetch(
+      `http://localhost:8086/api/flights/${params.flightId}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          lastName: ctx.surname,
+        }),
+      }
+    );
+
+    const res = data.json();
+    console.log(res);
     // navigate("/");
   };
 
@@ -38,12 +52,12 @@ const Step3 = () => {
           </div>
           <div className={styles["review-body"]}>
             <div className={styles["payment-card-number"]}>
-              <img src={visa} />
+              <img src={ctx.cardNumber.startsWith("4") ? visa : mastercard} />
               <p>
-                <span>****</span> 1234
+                <span>****</span> {ctx.cardNumber.slice(-4)}
               </p>
             </div>
-            <p>11/26</p>
+            <p>{ctx.expirationDate}</p>
           </div>
         </div>
         <div className={styles["review-holder"]}>
@@ -54,19 +68,19 @@ const Step3 = () => {
           <div className={styles["review-items"]}>
             <div className={styles["review-item"]}>
               <p>Име</p>
-              <p>Мирко</p>
+              <p>{ctx.name}</p>
             </div>
             <div className={styles["review-item"]}>
               <p>Презиме</p>
-              <p>Микић</p>
+              <p>{ctx.surname}</p>
             </div>
             <div className={styles["review-item"]}>
               <p>Мејл адреса</p>
-              <p>mirko@gmail.com</p>
+              <p>{ctx.email}</p>
             </div>
             <div className={styles["review-item"]}>
               <p>Број телефона</p>
-              <p>061 241 3511</p>
+              <p>{ctx.phoneNumber}</p>
             </div>
           </div>
         </div>

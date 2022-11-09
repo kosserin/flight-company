@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Step2.module.css";
 import chevron from "../../assets/chevron-white.png";
 import mastercard from "../../assets/mastercard.png";
 import visa from "../../assets/visa.png";
 import useInput from "../../hooks/use-input";
+import { ReservationDetailsContext } from "../../store/reservation-details-context";
+import { Step2Details } from "../../models/reservation.model";
 
 const Step2 = () => {
+  const ctx = useContext(ReservationDetailsContext);
   const navigate = useNavigate();
   const params = useParams();
   const cardholderValueHandler = (value: any) =>
@@ -22,6 +25,7 @@ const Step2 = () => {
     changeInputValueHandler: changeCardholderValueHandler,
     blurInputValueHandler: blurCardholderValueHandler,
     reset: cardholderReset,
+    replaceInputValueHandler: replaceCardholderValue,
   } = useInput(cardholderValueHandler);
   const {
     value: enteredCardNumber,
@@ -29,6 +33,7 @@ const Step2 = () => {
     changeInputValueHandler: changeCardNumberValueHandler,
     blurInputValueHandler: blurCardNumberValueHandler,
     reset: cardNumberReset,
+    replaceInputValueHandler: replaceCardNumberValue,
   } = useInput(cardNumberValueHandler);
   const {
     value: enteredExpirationDate,
@@ -36,6 +41,7 @@ const Step2 = () => {
     changeInputValueHandler: changeExpirationDateValueHandler,
     blurInputValueHandler: blurExpirationDateValueHandler,
     reset: expirationDateReset,
+    replaceInputValueHandler: replaceExpirationDateValue,
   } = useInput(expirationDateValueHandler);
   const {
     value: enteredSecurityCode,
@@ -43,9 +49,9 @@ const Step2 = () => {
     changeInputValueHandler: changeSecurityCodeValueHandler,
     blurInputValueHandler: blurSecurityCodeValueHandler,
     reset: securityCodeReset,
+    replaceInputValueHandler: replaceSecurityCodeValue,
   } = useInput(securityCodeValueHandler);
   const step2SubmitHandler = (e: any) => {
-    console.log("xd");
     blurCardholderValueHandler();
     blurCardNumberValueHandler();
     blurExpirationDateValueHandler();
@@ -59,10 +65,13 @@ const Step2 = () => {
           enteredSecurityCode
       )
     ) {
-      const formValues = {
+      const formValues: Step2Details = {
         enteredCardholder,
         enteredCardNumber,
+        enteredExpirationDate,
+        enteredSecurityCode,
       };
+      ctx.saveStep2InfoHandler(formValues);
       // alert(formValues);
       navigate(`/reservation/flights/${params.flightId}/reserve-flight/step-3`);
       cardholderReset();
@@ -71,6 +80,13 @@ const Step2 = () => {
       securityCodeReset();
     }
   };
+
+  useEffect(() => {
+    replaceCardholderValue(ctx.cardholderName);
+    replaceCardNumberValue(ctx.cardNumber);
+    replaceExpirationDateValue(ctx.expirationDate);
+    replaceSecurityCodeValue(ctx.securityCode);
+  }, []);
 
   return (
     <form className={styles["step-2"]} onSubmit={step2SubmitHandler}>
@@ -87,6 +103,7 @@ const Step2 = () => {
               name="payment-method"
               id="paymentMethod"
               value="credit-card"
+              readOnly
               checked
             />
             <label htmlFor="paymentMethod">Credit card</label>
@@ -96,68 +113,56 @@ const Step2 = () => {
             <img src={visa} />
           </div>
         </div>
-        <div className={styles["form-group"]}>
+        <div className="form-group">
           <input
             placeholder="xd"
             type="text"
             onBlur={blurCardholderValueHandler}
             value={enteredCardholder}
             onChange={changeCardholderValueHandler}
-            className={
-              cardholderInputClasses ? styles["invalid-input"] : styles.input
-            }
+            className={cardholderInputClasses ? "invalid-input" : "input"}
           />
-          <div className={styles["label-holder"]}>
+          <div className="label-holder">
             <label>Име на картици</label>
           </div>
         </div>
-        <div className={styles["form-group"]}>
+        <div className="form-group">
           <input
             placeholder="xd"
             type="text"
             onBlur={blurCardNumberValueHandler}
             value={enteredCardNumber}
             onChange={changeCardNumberValueHandler}
-            className={
-              cardNumberInputClasses ? styles["invalid-input"] : styles.input
-            }
+            className={cardNumberInputClasses ? "invalid-input" : "input"}
           />
-          <div className={styles["label-holder"]}>
+          <div className="label-holder">
             <label>Број картице</label>
           </div>
         </div>
         <div className={styles["two-form-controls"]}>
-          <div className={styles["form-group"]}>
+          <div className="form-group">
             <input
               placeholder="xd"
               type="text"
               onBlur={blurExpirationDateValueHandler}
               value={enteredExpirationDate}
               onChange={changeExpirationDateValueHandler}
-              className={
-                expirationDateInputClasses
-                  ? styles["invalid-input"]
-                  : styles.input
-              }
+              className={expirationDateInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Датум истека (MM/YY)</label>
             </div>
           </div>
-          <div className={styles["form-group"]}>
+          <div className="form-group">
             <input
               placeholder="xd"
               type="text"
               onBlur={blurSecurityCodeValueHandler}
               value={enteredSecurityCode}
               onChange={changeSecurityCodeValueHandler}
-              className={
-                securityCodeInputClasses
-                  ? styles["invalid-input"]
-                  : styles.input
-              }
+              className={securityCodeInputClasses ? "invalid-input" : "input"}
             />
-            <div className={styles["label-holder"]}>
+            <div className="label-holder">
               <label>Безбедоносни код</label>
             </div>
           </div>

@@ -48,6 +48,6 @@
 
 @media (max-width: 768px) {
   .modal-header button {
-    left: 16px;
+    left: 2rem;
   }
 }

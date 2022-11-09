@@ -21,138 +21,33 @@
   gap: 1rem;
 }
 
-.form-group {
-  position: relative;
-  background-color: var(--white-secondary);
-  border-radius: 5px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border: 1px solid #dcdcdc;
-}
-
-.label-holder {
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: 500ms ease-out;
-}
-
-textarea + .label-holder {
-  top: 28px;
-}
-
-.label-holder label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #4c494e;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-}
-
-input,
-textarea {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 0 16px;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: 250ms ease-out;
-}
-
-.invalid-input {
-  background-color: rgba(255, 0, 0, 0.4);
-}
-
-input {
-  height: 57px;
-}
-
-textarea {
-  padding: 28px 16px;
-}
-
-::placeholder {
-  opacity: 0;
-}
-
-input:focus + .label-holder,
-input:not(:placeholder-shown) + .label-holder,
-textarea:focus + .label-holder,
-textarea:not(:placeholder-shown) + .label-holder {
-  top: 10px;
-  transform: translateY(-50%);
-}
-
-input:focus + .label-holder label,
-textarea:focus + .label-holder label,
-input:not(:placeholder-shown) + .label-holder label,
-textarea:not(:placeholder-shown) + .label-holder label {
-  font-size: 12px;
-}
-
-input:focus + .label-holder img,
-input:not(:placeholder-shown) + .label-holder img {
-  width: 12px;
-  height: 12px;
-}
-
-.passengers-group {
-  max-width: 106px;
-}
-
-button[type="submit"] {
-  background-color: var(--purple-primary);
-  color: var(--white-primary);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-  height: 57px;
-  min-width: 136px;
-  font-size: 1rem;
-  font-weight: 600;
-  flex-grow: 1;
-  max-width: 100%;
-  transition: 250ms ease-out;
-}
-
-button[type="submit"]:hover {
-  background-color: var(--purple-secondary);
-}
-
-.form-group:first-of-type {
+.name-control {
   grid-area: a;
 }
 
-.form-group:nth-of-type(2) {
+.surname-control {
   grid-area: b;
 }
 
-.form-group:nth-of-type(3) {
+.email-control {
   grid-area: c;
 }
 
-.form-group:nth-of-type(4) {
+.phone-control {
   grid-area: d;
 }
 
-.form-group:nth-of-type(5) {
+.message-control {
   grid-area: e;
+  height: fit-content;
 }
 
-.form-group:nth-of-type(6) {
+.submit-control {
   grid-area: f;
+}
+
+.submit-control button {
+  width: 100%;
 }
 
 .contact-social {
@@ -228,9 +123,5 @@ button[type="submit"]:hover {
   .contact-info {
     flex-direction: column;
     margin-top: 16px;
-  }
-
-  .label-holder label {
-    font-size: 1rem;
   }
 }
