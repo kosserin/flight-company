@@ -37,7 +37,7 @@ const inputReducer = (state: any, action: any) => {
   return initialInputState;
 };
 
-const useInput = (validateValue: any, initialValue?: any) => {
+const useInput = (validateValue: any) => {
   const [inputState, dispatchInputAction] = useReducer(
     inputReducer,
     initialInputState

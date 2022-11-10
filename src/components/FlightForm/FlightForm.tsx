@@ -11,6 +11,9 @@ import calendarIcon from "../../assets/calendar.png";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
 import useInput from "../../hooks/use-input";
+import moment from "moment";
+import ReactDOM from "react-dom";
+import CheckReservationModal from "../CheckReservationModal/CheckReservationModal";
 const FlightForm = () => {
   let navigate = useNavigate();
 
@@ -27,6 +30,10 @@ const FlightForm = () => {
   const [showCheckReservationContent, setShowCheckReservationContent] =
     useState(false);
   const [showFlightStatusContent, setShowFlightStatusContent] = useState(false);
+  const [showCheckReservationModal, setShowCheckReservationModal] =
+    useState(false);
+  const [showCheckFlightStatusModal, setShowCheckFlightStatusModal] =
+    useState(false);
 
   const fromValueHandler = (value: any) =>
     value.trim() !== "" && value.length > 2;
@@ -67,7 +74,7 @@ const FlightForm = () => {
     blurInputValueHandler: blurDepartureDateHandler,
     reset: departureDateReset,
     replaceInputValueHandler: replaceDepartureDateHandler,
-  } = useInput(departureDateValueHandler, "30-10-2022");
+  } = useInput(departureDateValueHandler);
 
   const {
     value: enteredReservationId,
@@ -117,9 +124,18 @@ const FlightForm = () => {
     blurReservationIdHandler();
     e.preventDefault();
     if (reservationIdValueHandler(enteredReservationId)) {
-      getReservationInfo(enteredReservationId);
-      reservationIdReset();
+      // getReservationInfo(enteredReservationId);
+      setShowCheckReservationModal(true);
     }
+  };
+
+  const showCheckReservationModalHandler = () => {
+    setShowCheckReservationModal(true);
+  };
+
+  const hideCheckReservationModalHandler = () => {
+    setShowCheckReservationModal(false);
+    reservationIdReset();
   };
 
   async function getReservationInfo(resId: string) {
@@ -200,7 +216,7 @@ const FlightForm = () => {
         left: 0,
       };
     });
-    replaceDepartureDateHandler("2022-10-30");
+    replaceDepartureDateHandler(moment().format("YYYY-MM-DD"));
     replaceFromHandler("Београд");
   }, []);
 
@@ -305,6 +321,7 @@ const FlightForm = () => {
         <input
           placeholder="xd"
           type="date"
+          min={new Date().toISOString().split("T")[0]}
           required
           value={enteredDepartureDate}
           onChange={changeDepartureDateHandler}
@@ -370,6 +387,15 @@ const FlightForm = () => {
   );
   return (
     <div className={styles["flight-form"]}>
+      {showCheckReservationModal &&
+        ReactDOM.createPortal(
+          <CheckReservationModal
+            showCheckReservationModal={showCheckReservationModalHandler}
+            hideCheckReservationModal={hideCheckReservationModalHandler}
+            reservationId={enteredReservationId}
+          />,
+          document.getElementById("modal-root") as HTMLElement
+        )}
       <div className={styles["form-header"]} id="formHeader">
         <div
           onClick={activeFormHandler}

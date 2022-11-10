@@ -163,7 +163,7 @@ const FlightContent = () => {
     searchParams.has("to") ||
     searchParams.has("date");
   const [selectedValue, setSelectedValue] = useState<string>("none");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const day = moment(searchParams.get("date")).format("dddd"); // for the word
   let dayOnSerbian: string;
   let monthOnSerbian: string;
