@@ -1,5 +1,4 @@
-import moment from "moment";
-import React from "react";
+import { addDays, format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { Destination } from "../../models/destination.model";
 import styles from "./DiscoverDestinations.module.css";
@@ -69,9 +68,7 @@ const DUMMY_DESTINATIONS: Destination[] = [
 
 const DiscoverDestinations = () => {
   const navigate = useNavigate();
-  const tomorrow = moment(new Date(), "YYYY-MM-DD")
-    .add(1, "days")
-    .format("YYYY-MM-DD");
+  const tomorrow = format(addDays(new Date(), 1), "yyyy-MM-dd");
 
   const destinationClickHandler = (toDestination: string) => {
     navigate(

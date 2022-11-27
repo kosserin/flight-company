@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Step1.module.css";
-import chevron from "../../assets/chevron-white.png";
 import useInput from "../../hooks/use-input";
 import { ReservationDetailsContext } from "../../store/reservation-details-context";
 import { Step1Details } from "../../models/reservation.model";
@@ -11,7 +10,21 @@ const Step1 = () => {
   const params = useParams();
   const ctx = useContext(ReservationDetailsContext);
 
-  const valueHandler = (value: any) => value.trim() !== "";
+  const valueHandler = (value: string) =>
+    value.trim() !== "" && value.length > 2;
+  const validateEmailHandler = (value: string) => {
+    const basicValidation = value.trim() !== "";
+    const emailValidation = value.match(
+      "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+    );
+    return basicValidation && emailValidation;
+  };
+
+  const validatePhoneNumberHandler = (value: string) => {
+    const basicValidation = value.trim() !== "";
+    const emailValidation = value.match("(([+]3816)|06)([0-9]){7,8}$");
+    return basicValidation && emailValidation;
+  };
   const {
     value: enteredName,
     valueInputClasses: nameInputClasses,
@@ -37,7 +50,7 @@ const Step1 = () => {
     blurInputValueHandler: blurEmailValueHandler,
     reset: emailReset,
     replaceInputValueHandler: replaceEmail,
-  } = useInput(valueHandler);
+  } = useInput(validateEmailHandler);
 
   const {
     value: enteredPhoneNumber,
@@ -46,7 +59,7 @@ const Step1 = () => {
     blurInputValueHandler: blurPhoneNumberValueHandler,
     reset: phoneNumberReset,
     replaceInputValueHandler: replacePhoneNumber,
-  } = useInput(valueHandler);
+  } = useInput(validatePhoneNumberHandler);
 
   const step1SubmitHandler = (e: any) => {
     blurNameValueHandler();
@@ -57,7 +70,7 @@ const Step1 = () => {
     if (
       valueHandler(enteredName) &&
       valueHandler(enteredSurname) &&
-      valueHandler(enteredEmail) &&
+      validateEmailHandler(enteredEmail) &&
       valueHandler(enteredPhoneNumber)
     ) {
       const formValues: Step1Details = {
@@ -144,7 +157,6 @@ const Step1 = () => {
       <div className={styles["step-action"]}>
         <button type="submit">
           <span>Наставите</span>
-          <img src={chevron} />
         </button>
       </div>
     </form>

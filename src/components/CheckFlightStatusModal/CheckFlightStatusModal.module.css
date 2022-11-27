@@ -17,55 +17,55 @@
   transform: translate(-50%, -50%);
   padding: 2rem;
   border-radius: 5px;
-  width: 700px;
   max-width: 90vw;
-}
-
-.res-modal {
-  display: flex;
-  flex-direction: column;
-}
-
-.res-modal div {
+  width: 900px;
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  align-items: center;
 }
 
-.res-modal div img {
-  width: 4rem;
-}
-
-.res-modal h4 {
+.inner-modal__content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  width: 100%;
 }
 
-.res-modal h4 span {
-  font-weight: 600;
+.inner-modal__content div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+  align-items: center;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.inner-modal__content div img {
+  width: 3rem;
+}
+
+.inner-modal h5 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.non-existing-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.non-existing-content div {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  font-size: 1.25rem;
 }
 
-.res-modal h5 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 400;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  gap: 4px;
-}
-
-.res-modal h5 span {
-  font-weight: 600;
-  font-size: 1rem;
+.non-existing-content img {
+  width: 3rem;
 }
 
 .inner-modal button {
@@ -79,33 +79,6 @@
 
 .inner-modal button:hover {
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-.non-existing-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.non-existing-content div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.non-existing-content img {
-  width: 3rem;
-}
-
-.non-existing-content p {
-  font-weight: 500;
-  line-height: 20px;
-  font-size: 1rem;
 }
 
 .lds-ring {
@@ -151,12 +124,19 @@
   .inner-modal {
     padding: 2rem 1rem;
   }
+  .non-existing-content img {
+    width: 3rem;
+  }
 
-  .res-modal button {
+  .non-existing-content h4 {
+    font-size: 1rem;
+  }
+
+  .non-existing-content button {
     width: 100%;
   }
 
-  .res-modal h5 {
+  .inner-modal__content h5 {
     font-size: 0.875rem;
   }
 }

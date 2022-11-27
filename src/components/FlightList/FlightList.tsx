@@ -9,7 +9,7 @@ const FlightList = () => {
   useEffect(() => {}, []);
 
   return (
-    <ul className={styles["flight-list"]} id="flightList">
+    <ul className={styles["flight-list"]}>
       {ctx.flights.map((f) => (
         <FlightItem flight={f} key={f.id} />
       ))}

@@ -11,34 +11,34 @@ export const InnerModal = (props: any) => {
     null
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   let innerModalContent = <div></div>;
 
   useEffect(() => {
-    console.log(props.reservationId);
-
     getReservationInfo(props.reservationId);
   }, []);
 
   async function getReservationInfo(resId: string) {
     setIsLoading(true);
+    setError(null);
     try {
-      // const response = await fetch(
-      //   `http://localhost:8086/api/flights/${resId}`
-      // );
-      // const data = await response.json();
-      // setReservation(data);
-      setTimeout(() => {
-        setReservation({
-          resId: "36545873543543534",
-          surname: "Костић",
-          flightId: "4387978324723849732948247",
-          from: "Београд",
-          to: "Атина",
-          dateOfDeparture: "2022-11-22T20:45:00",
-        });
-        setIsLoading(false);
-      }, 2000);
+      setReservation({
+        resId: "36545873543543534",
+        surname: "Костић",
+        flightId: "4387978324723849732948247",
+        from: "Београд",
+        to: "Атина",
+        dateOfDeparture: "2022-11-22T20:45:00",
+      });
+      setIsLoading(false);
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      //   throw new Error("dsajdioas");
+      // }, 500);
     } catch (err: any) {
+      setError(
+        "Не постоји резервација са унетом шифром у нашој бази података."
+      );
       setIsLoading(false);
     }
   }
@@ -47,14 +47,12 @@ export const InnerModal = (props: any) => {
     props.hideModal();
   };
 
-  if (!isLoading && !reservation) {
+  if (error) {
     innerModalContent = (
-      <div className={styles["non-existing-reservation"]}>
+      <div className={styles["non-existing-content"]}>
         <div>
           <img src={sad} />
-          <h4>
-            Не постоји резервација са унетом шифром у нашој бази података.
-          </h4>
+          <p>{error}</p>
         </div>
         <button onClick={closeModal} className="submit-button">
           У реду

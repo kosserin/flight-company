@@ -37,14 +37,14 @@ interface Props {
 }
 
 const ReservationDetailsContextProvider: React.FC<Props> = (props) => {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("2");
-  const [email, setEmail] = useState("3@d");
-  const [phoneNumber, setPhoneNumber] = useState("4");
-  const [cardholderName, setCardholderName] = useState("5");
-  const [cardNumber, setCardNumber] = useState("55555555555555");
-  const [expirationDate, setExpirationDate] = useState("dsad");
-  const [securityCode, setSecurityCode] = useState("3232");
+  const [name, setName] = useState("Андрија");
+  const [surname, setSurname] = useState("Костић");
+  const [email, setEmail] = useState("kostic.andrija00@gmail.com");
+  const [phoneNumber, setPhoneNumber] = useState("0612413514");
+  const [cardholderName, setCardholderName] = useState("Andrija Kostic");
+  const [cardNumber, setCardNumber] = useState("4142567833221");
+  const [expirationDate, setExpirationDate] = useState("02/21");
+  const [securityCode, setSecurityCode] = useState("123");
 
   const saveStep1InfoHandler = (info: Step1Details) => {
     setName(info.enteredName);

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Step2.module.css";
-import chevron from "../../assets/chevron-white.png";
 import mastercard from "../../assets/mastercard.png";
 import visa from "../../assets/visa.png";
 import useInput from "../../hooks/use-input";
@@ -12,13 +11,20 @@ const Step2 = () => {
   const ctx = useContext(ReservationDetailsContext);
   const navigate = useNavigate();
   const params = useParams();
-  const cardholderValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
-  const expirationDateValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
-  const securityCodeValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
-  const cardNumberValueHandler = (value: any) => value.length === 12;
+  const cardholderValueHandler = (value: string) => {
+    let first = value.trim() !== "" && value.length > 2;
+    return first;
+  };
+  const expirationDateValueHandler = (value: string) =>
+    value.match("^(0[1-9]|1[0-2])/?([0-9]{2})$");
+  const securityCodeValueHandler = (value: string) => value.match("^[0-9]{3}$");
+  const cardNumberValueHandler = (value: string) => {
+    const visaValidation = value.match("^4[0-9]{12}(?:[0-9]{3})?$");
+    const masterCardValidation = value.match(
+      "^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"
+    );
+    return visaValidation || masterCardValidation;
+  };
   const {
     value: enteredCardholder,
     valueInputClasses: cardholderInputClasses,
@@ -58,12 +64,10 @@ const Step2 = () => {
     blurSecurityCodeValueHandler();
     e.preventDefault();
     if (
-      cardholderValueHandler(
-        enteredCardholder &&
-          enteredCardNumber &&
-          enteredExpirationDate &&
-          enteredSecurityCode
-      )
+      cardholderValueHandler(enteredCardholder) &&
+      cardNumberValueHandler(enteredCardNumber) &&
+      expirationDateValueHandler(enteredExpirationDate) &&
+      securityCodeValueHandler(enteredSecurityCode)
     ) {
       const formValues: Step2Details = {
         enteredCardholder,
@@ -87,6 +91,16 @@ const Step2 = () => {
     replaceExpirationDateValue(ctx.expirationDate);
     replaceSecurityCodeValue(ctx.securityCode);
   }, []);
+
+  const blurExpDateHandler = (e: any) => {
+    if (e.target.value.match("^[0-9]{4}$")) {
+      const valueWithSlash =
+        e.target.value.slice(0, 2) + "/" + e.target.value.slice(-2);
+      replaceExpirationDateValue(valueWithSlash);
+    }
+
+    return blurExpirationDateValueHandler();
+  };
 
   return (
     <form className={styles["step-2"]} onSubmit={step2SubmitHandler}>
@@ -144,7 +158,7 @@ const Step2 = () => {
             <input
               placeholder="xd"
               type="text"
-              onBlur={blurExpirationDateValueHandler}
+              onBlur={blurExpDateHandler}
               value={enteredExpirationDate}
               onChange={changeExpirationDateValueHandler}
               className={expirationDateInputClasses ? "invalid-input" : "input"}
@@ -171,7 +185,6 @@ const Step2 = () => {
       <div className={styles["step-action"]}>
         <button type="submit">
           <span>Наставите</span>
-          <img src={chevron} />
         </button>
       </div>
     </form>

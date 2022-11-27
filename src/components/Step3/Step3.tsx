@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Step3.module.css";
-import chevron from "../../assets/chevron-white.png";
 import { useNavigate, useParams } from "react-router-dom";
 import visa from "../../assets/visa.png";
 import mastercard from "../../assets/mastercard.png";
@@ -10,24 +9,45 @@ const Step3 = () => {
   const ctx = useContext(ReservationDetailsContext);
   const navigate = useNavigate();
   const params = useParams();
-  const reserveFlightHandler = async () => {
-    const data = await fetch(
-      `http://localhost:8086/api/flights/${params.flightId}`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          lastName: ctx.surname,
-        }),
-      }
-    );
-
-    const res = data.json();
-    console.log(res);
-    // navigate("/");
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [flightPrice, setFlightPrice] = useState<number | null>(null);
 
   const tax = 20;
-  const price = 5432;
+
+  const getFlightInfo = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      // const response = await fetch(
+      //   "http://localhost:8086/api/flights/6319b44f167a9b1caef8c5b3"
+      // );
+      // const fetchedFlight: Flight = await response.json();
+      // setFlightPrice(fetchedFlight.price);
+      setFlightPrice(5000.0);
+      setIsLoading(false);
+    } catch (err: any) {
+      setError("Нешто није у реду. Молимо покушајте поново.");
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      ctx.name &&
+      ctx.surname &&
+      ctx.email &&
+      ctx.phoneNumber &&
+      ctx.cardholderName &&
+      ctx.cardNumber &&
+      ctx.expirationDate &&
+      ctx.securityCode
+    ) {
+      getFlightInfo();
+    } else {
+      navigate(`/reservation/flights/${params.flightId}`);
+    }
+  }, []);
 
   const editPayment = () => {
     navigate(-1);
@@ -52,7 +72,7 @@ const Step3 = () => {
           </div>
           <div className={styles["review-body"]}>
             <div className={styles["payment-card-number"]}>
-              <img src={ctx.cardNumber.startsWith("4") ? visa : mastercard} />
+              <img src={ctx.cardNumber.startsWith("5") ? mastercard : visa} />
               <p>
                 <span>****</span> {ctx.cardNumber.slice(-4)}
               </p>
@@ -84,30 +104,63 @@ const Step3 = () => {
             </div>
           </div>
         </div>
-        <div className={styles["review-holder"]}>
-          <div className={styles["review-header"]}>
-            <h5>Преглед резервације</h5>
+        {!isLoading && flightPrice && (
+          <div className={styles["review-holder"]}>
+            <div className={styles["review-header"]}>
+              <h5>Преглед резервације</h5>
+            </div>
+            <div className={styles["review-items"]}>
+              <div className={styles["review-item"]}>
+                <p>Цена карте</p>
+                <p>{flightPrice.toFixed(2)} рсд</p>
+              </div>
+              <div className={styles["review-item"]}>
+                <p>Порез</p>
+                <p>{(flightPrice * (tax / 100)).toFixed(2)} рсд</p>
+              </div>
+              <div
+                className={`${styles["review-item"]} ${styles["total-item"]}`}
+              >
+                <p>Укупно</p>
+                <p>
+                  {(flightPrice + flightPrice * (tax / 100)).toFixed(2)} рсд
+                </p>
+              </div>
+            </div>
           </div>
-          <div className={styles["review-items"]}>
-            <div className={styles["review-item"]}>
-              <p>Међузбир</p>
-              <p>5432.00 рсд</p>
+        )}
+        {isLoading && (
+          <div className={styles["review-holder"]}>
+            <div className={styles["review-header"]}>
+              <h5>Преглед резервације</h5>
             </div>
-            <div className={styles["review-item"]}>
-              <p>Порез</p>
-              <p>{(price * (tax / 100)).toFixed(2)} рсд</p>
-            </div>
-            <div className={`${styles["review-item"]} ${styles["total-item"]}`}>
-              <p>Укупно</p>
-              <p>{(price + price * (tax / 100)).toFixed(2)} рсд</p>
+            <div className={styles["lds-ring"]}>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
-        </div>
+        )}
+        {!isLoading && error && (
+          <div
+            className={`${styles["review-holder"]} ${styles["review-holder__error"]}`}
+          >
+            <div className={styles["review-header"]}>
+              <h5>Преглед резервације</h5>
+            </div>
+            <p className={styles["error-text"]}>{error}</p>
+          </div>
+        )}
       </div>
       <div className={styles["step-action"]}>
-        <button onClick={reserveFlightHandler}>
+        <button
+          onClick={() =>
+            navigate(`/reservation/flights/${params.flightId}/reservation-done`)
+          }
+          disabled={isLoading || !!error}
+        >
           <span>Резервишите карту</span>
-          <img src={chevron} />
         </button>
       </div>
     </div>

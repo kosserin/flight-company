@@ -39,6 +39,7 @@
 @media (max-width: 768px) {
   .section-content {
     max-width: 90vw;
+    width: 250px;
     display: flex;
     flex-direction: column;
   }

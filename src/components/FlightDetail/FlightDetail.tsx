@@ -10,6 +10,7 @@ const FlightDetail = () => {
   const [doesExist, setDoesExist] = useState<boolean>(false);
   const [flight, setFlight] = useState<Flight | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (params.flightId) {
@@ -18,8 +19,9 @@ const FlightDetail = () => {
   }, []);
 
   async function getFlightInfo(flightId: string) {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
       const response = await fetch(
         `http://localhost:8086/api/flights/${flightId}`
       );
@@ -34,15 +36,16 @@ const FlightDetail = () => {
         numberOfSeats: data.numberOfSeats,
         price: 360,
         distanceBetween: 999,
-        seatsReserved: 30,
-        areSeatsAvailable: true,
         reservations: [],
+        model: "JAT32-679",
+        company: "Авионик",
       });
       setDoesExist(true);
       setIsLoading(false);
     } catch (err: any) {
       setDoesExist(false);
       setIsLoading(false);
+      setError("Лет који тражите не постоји.");
     }
   }
 
@@ -52,7 +55,7 @@ const FlightDetail = () => {
     flightDetailContent = <FlightDetailContent flight={flight} />;
   }
 
-  if (isLoading && !doesExist) {
+  if (isLoading) {
     flightDetailContent = (
       <div className={styles["lds-ring"]}>
         <div></div>
@@ -63,8 +66,8 @@ const FlightDetail = () => {
     );
   }
 
-  if (!doesExist && !isLoading) {
-    flightDetailContent = <NotFound message={"Лет који тражите не постоји."} />;
+  if (error) {
+    flightDetailContent = <NotFound message={error} />;
   }
   return (
     <>

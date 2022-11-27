@@ -8,7 +8,21 @@ import locationIcon from "../../assets/contact/location.svg";
 import useInput from "../../hooks/use-input";
 
 const ContactForm = () => {
-  const valueHandler = (value: any) => value.trim() !== "";
+  const valueHandler = (value: any) => value.trim() !== "" && value.length > 2;
+  const validateEmailHandler = (value: string) => {
+    const basicValidation = value.trim() !== "";
+    const emailValidation = value.match(
+      "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+    );
+    return basicValidation && emailValidation;
+  };
+  const validatePhoneNumberHandler = (value: string) => {
+    const basicValidation = value.trim() !== "";
+    const emailValidation = value.match("(([+]3816)|06)([0-9]){7,8}$");
+    return basicValidation && emailValidation;
+  };
+  const validateMessageHandler = (value: any) =>
+    value.trim() !== "" && value.length > 10;
 
   const {
     value: enteredName,
@@ -32,7 +46,7 @@ const ContactForm = () => {
     changeInputValueHandler: changeEmailValueHandler,
     blurInputValueHandler: blurEmailValueHandler,
     reset: emailReset,
-  } = useInput(valueHandler);
+  } = useInput(validateEmailHandler);
 
   const {
     value: enteredPhoneNumber,
@@ -40,7 +54,7 @@ const ContactForm = () => {
     changeInputValueHandler: changePhoneNumberValueHandler,
     blurInputValueHandler: blurPhoneNumberValueHandler,
     reset: phoneNumberReset,
-  } = useInput(valueHandler);
+  } = useInput(validatePhoneNumberHandler);
 
   const {
     value: enteredMessage,
@@ -48,7 +62,7 @@ const ContactForm = () => {
     changeInputValueHandler: changeMessageValueHandler,
     blurInputValueHandler: blurMessageValueHandler,
     reset: messageReset,
-  } = useInput(valueHandler);
+  } = useInput(validateMessageHandler);
   const contactSubmitHandler = (e: FormEvent) => {
     blurNameValueHandler();
     blurSurnameValueHandler();
@@ -59,9 +73,9 @@ const ContactForm = () => {
     if (
       valueHandler(enteredName) &&
       valueHandler(enteredSurname) &&
-      valueHandler(enteredEmail) &&
-      valueHandler(enteredPhoneNumber) &&
-      valueHandler(enteredMessage)
+      validateEmailHandler(enteredEmail) &&
+      validatePhoneNumberHandler(enteredPhoneNumber) &&
+      validateMessageHandler(enteredMessage)
     ) {
       const formValues = {
         enteredName,

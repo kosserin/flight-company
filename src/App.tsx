@@ -11,6 +11,7 @@ import ReservationModal from "./components/ReservationModal/ReservationModal";
 import Step1 from "./components/Step1/Step1";
 import Step2 from "./components/Step2/Step2";
 import Step3 from "./components/Step3/Step3";
+import ReservationDoneModal from "./components/ReservationDoneModal/ReservationDoneModal";
 
 const App = () => {
   return (
@@ -30,6 +31,10 @@ const App = () => {
                 <Route path="step-2" element={<Step2 />} />
                 <Route path="step-3" element={<Step3 />} />
               </Route>
+              <Route
+                path="reservation-done"
+                element={<ReservationDoneModal />}
+              />
             </Route>
           </Route>
         </Route>

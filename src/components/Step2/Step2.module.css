@@ -44,10 +44,6 @@
   flex-grow: 0;
 }
 
-.step-action button img {
-  width: 1.125rem;
-}
-
 .step-action button:hover {
   background-color: var(--purple-secondary);
   color: var(--white-primary);

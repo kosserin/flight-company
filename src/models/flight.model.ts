@@ -2,14 +2,22 @@ export interface Flight {
   id: string;
   fromCity: string;
   toCity: string;
-  flightDuration: number;
   dateOfDeparture: string;
+  flightDuration: number;
   numberOfSeats: number;
   price: number;
   distanceBetween: number;
-  seatsReserved?: any;
-  areSeatsAvailable?: any;
-  reservations?: any;
-  company?: string;
-  model?: string;
+  reservations: any;
+  company: string;
+  model: string;
+  cancelled?: boolean;
+  delayed?: boolean;
+}
+
+export enum FlightStatus {
+  InFlight = "У ЛЕТУ",
+  Landed = "СЛЕТЕО",
+  Cancelled = "ОДЛОЖЕН",
+  Delayed = "ПОМЕРЕН",
+  Active = "АКТИВАН",
 }

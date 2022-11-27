@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./WhyUs.module.css";
-import trophyIcon from "../../assets/trophy.png";
-import companyIcon from "../../assets/profile.png";
-import hygieneIcon from "../../assets/hygiene.png";
+import trophyIcon from "../../assets/medal.png";
+import companyIcon from "../../assets/businessman.png";
+import hygieneIcon from "../../assets/sanitary.png";
 
 const WhyUs = () => {
   return (

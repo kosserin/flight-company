@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
 import { FlightsContext } from "../../store/flights-context";
@@ -7,6 +6,8 @@ import styles from "./FlightContent.module.css";
 import sortIcon from "../../assets/sort-white.png";
 import arrowRight from "../../assets/right-arrow-white.png";
 import { Flight } from "../../models/flight.model";
+import { sr } from "date-fns/locale";
+import { addDays, format } from "date-fns";
 
 const DUMMY_FLIGHTS: Flight[] = [
   {
@@ -16,11 +17,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 150,
     dateOfDeparture: "2022-10-22T20:45:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 350,
     distanceBetween: 2250,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367k",
@@ -29,11 +30,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 170,
     dateOfDeparture: "2022-10-22T09:45:00",
     numberOfSeats: 40,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 430,
     distanceBetween: 750,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367j",
@@ -42,11 +43,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 290,
     dateOfDeparture: "2022-10-22T22:00:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 250,
     distanceBetween: 410,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367i",
@@ -55,11 +56,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 55,
     dateOfDeparture: "2022-10-22T22:10:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 580,
     distanceBetween: 550,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367h",
@@ -68,11 +69,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 80,
     dateOfDeparture: "2022-10-22T20:00:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 1150,
     distanceBetween: 950,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367g",
@@ -81,11 +82,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 300,
     dateOfDeparture: "2022-10-22T16:45:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 50,
     distanceBetween: 750,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367f",
@@ -94,11 +95,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 250,
     dateOfDeparture: "2022-10-22T12:45:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 50,
     distanceBetween: 150,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367e",
@@ -107,11 +108,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 400,
     dateOfDeparture: "2022-10-22T20:05:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 50,
     distanceBetween: 550,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367d",
@@ -120,11 +121,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 140,
     dateOfDeparture: "2022-10-22T11:45:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 50,
     distanceBetween: 2150,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367c",
@@ -133,11 +134,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 600,
     dateOfDeparture: "2022-10-22T20:15:00",
     numberOfSeats: 50,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 50,
     distanceBetween: 1250,
+    model: "JAT32-679",
+    company: "Авионик",
   },
   {
     id: "6319d30889f0f0784af9367a",
@@ -146,11 +147,11 @@ const DUMMY_FLIGHTS: Flight[] = [
     flightDuration: 300,
     dateOfDeparture: "2022-10-22T22:45:00",
     numberOfSeats: 150,
-    seatsReserved: null,
-    areSeatsAvailable: true,
     reservations: null,
     price: 750,
     distanceBetween: 2250,
+    model: "JAT32-679",
+    company: "Авионик",
   },
 ];
 
@@ -164,89 +165,32 @@ const FlightContent = () => {
     searchParams.has("date");
   const [selectedValue, setSelectedValue] = useState<string>("none");
   const [isLoading, setIsLoading] = useState(true);
-  const day = moment(searchParams.get("date")).format("dddd"); // for the word
-  let dayOnSerbian: string;
-  let monthOnSerbian: string;
+  const [error, setError] = useState<string | null>(null);
+  const day = format(new Date(searchParams.get("date") || new Date()), "EEEE", {
+    locale: sr,
+  });
+  const month = format(
+    new Date(searchParams.get("date") || new Date()),
+    "MMMM",
+    {
+      locale: sr,
+    }
+  );
 
-  const month = moment(searchParams.get("date")).format("MM");
-  switch (month) {
-    case "1":
-      monthOnSerbian = "Јануар";
-      break;
-    case "2":
-      monthOnSerbian = "Фебруар";
-      break;
-    case "3":
-      monthOnSerbian = "Март";
-      break;
-    case "4":
-      monthOnSerbian = "Април";
-      break;
-    case "5":
-      monthOnSerbian = "Мај";
-      break;
-    case "6":
-      monthOnSerbian = "Јун";
-      break;
-    case "7":
-      monthOnSerbian = "Јул";
-      break;
-    case "8":
-      monthOnSerbian = "Август";
-      break;
-    case "9":
-      monthOnSerbian = "Септембар";
-      break;
-    case "10":
-      monthOnSerbian = "Октобар";
-      break;
-    case "11":
-      monthOnSerbian = "Новембар";
-      break;
-    default:
-      monthOnSerbian = "Децембар";
-      break;
-  }
-  switch (day) {
-    case "Monday":
-      dayOnSerbian = "Понедељак";
-      break;
-    case "Tuesday":
-      dayOnSerbian = "Уторак";
-      break;
-    case "Wednesday":
-      dayOnSerbian = "Среда";
-      break;
-    case "Thursday":
-      dayOnSerbian = "Четвртак";
-      break;
-    case "Friday":
-      dayOnSerbian = "Петак";
-      break;
-    case "Saturday":
-      dayOnSerbian = "Субота";
-      break;
-    default:
-      dayOnSerbian = "Недеља";
-      break;
-  }
-
-  let tomorrow = moment(searchParams.get("date"), "YYYY-MM-DD")
-    .add(1, "days")
-    .format("YYYY-MM-DD");
+  const tomorrow = format(
+    addDays(new Date(searchParams.get("date") || new Date()), 1),
+    "yyyy-MM-dd"
+  );
 
   let headingContent: any = `${searchParams.get("from")} - ${searchParams.get(
     "to"
-  )} - ${dayOnSerbian}, ${moment(searchParams.get("date")).format(
-    "D"
-  )}. ${monthOnSerbian}`;
+  )} - ${day.charAt(0).toUpperCase() + day.slice(1)}, ${format(
+    new Date(searchParams.get("date") || new Date()),
+    "d"
+  )}. ${month.charAt(0).toUpperCase() + month.slice(1)}`;
 
-  if (ctx.flights.length === 0 && !isLoading) {
-    headingContent = `Нема летова који одговарају унетим критеријумима ${searchParams.get(
-      "from"
-    )} - ${searchParams.get("to")} - ${dayOnSerbian}, ${moment(
-      searchParams.get("date")
-    ).format("D")}. ${monthOnSerbian}`;
+  if (error && !isLoading) {
+    headingContent = error;
   }
 
   if (isLoading) {
@@ -280,6 +224,7 @@ const FlightContent = () => {
   async function searchForFlightHandler() {
     try {
       setIsLoading(true);
+      setError(null);
       const from = searchParams.get("from");
       const to = searchParams.get("to");
       const date = searchParams.get("date");
@@ -290,6 +235,15 @@ const FlightContent = () => {
       ctx.appendFlights(DUMMY_FLIGHTS);
       setIsLoading(false);
     } catch (err: any) {
+      setError(
+        `Нема летова који одговарају унетим критеријумима ${searchParams.get(
+          "from"
+        )} - ${searchParams.get("to")} - ${
+          day.charAt(0).toUpperCase() + day.slice(1)
+        }, ${format(new Date(searchParams.get("date") || new Date()), "d")}. ${
+          month.charAt(0).toUpperCase() + month.slice(1)
+        }`
+      );
       ctx.appendFlights([]);
       setIsLoading(false);
     }
@@ -327,7 +281,7 @@ const FlightContent = () => {
       {displayFlights && (
         <div>
           <h2>{headingContent}</h2>
-          {ctx.flights.length !== 0 && !isLoading && (
+          {!error && !isLoading && (
             <div className={styles["sorting-holder"]}>
               <label htmlFor="sortSelect">
                 <img src={sortIcon} alt="" />
@@ -347,7 +301,7 @@ const FlightContent = () => {
               </select>
             </div>
           )}
-          {ctx.flights.length !== 0 && !isLoading && <FlightList />}
+          {!error && !isLoading && <FlightList />}
           <div className={styles["flights-actions"]}>
             {!isLoading && (
               <button onClick={checkNextDayFlightsHandler}>

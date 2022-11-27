@@ -1,8 +1,6 @@
-import moment from "moment";
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import { format } from "date-fns";
+import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import ReservationModal from "../../ReservationModal/ReservationModal";
 import styles from "./FlightDetailContent.module.css";
 
 const FlightDetailContent = (props: any) => {
@@ -24,8 +22,9 @@ const FlightDetailContent = (props: any) => {
     (arrivalTime.getMinutes() < 10 ? "0" : "") +
     arrivalTime.getMinutes();
 
-  const formatedDepartureDate = moment(props.flight.dateOfDeparture).format(
-    "DD.MM.YYYY"
+  const formatedDepartureDate = format(
+    new Date(props.flight.dateOfDeparture),
+    "dd.MM.yyyy"
   );
 
   const toHoursAndMinutes = (totalMinutes: number) => {
@@ -52,21 +51,9 @@ const FlightDetailContent = (props: any) => {
     setIsReservationModalShown(true);
   };
 
-  const hideReservationModalHandler = () => {
-    navigate(-1);
-    setIsReservationModalShown(false);
-  };
-
   return (
     <>
       <div className={styles["flight-detail"]}>
-        {/* {isReservationModalShown &&
-          ReactDOM.createPortal(
-            <ReservationModal
-              hideReservationModal={hideReservationModalHandler}
-            />,
-            document.getElementById("modal-root") as HTMLElement
-          )} */}
         <span>{formatedDepartureDate}</span>
         <h2>
           {props.flight.fromCity} - {props.flight.toCity}
@@ -79,10 +66,10 @@ const FlightDetailContent = (props: any) => {
           Цена за једног путника: <span>{props.flight.price}.00 рсд</span>
         </h4>
         <h4 className={styles["detail-item"]}>
-          Модел: <span>JAT32-679</span>
+          Модел: <span>{props.flight.model}</span>
         </h4>
         <h4 className={styles["detail-item"]}>
-          Превозник: <span>Авионик</span>
+          Превозник: <span>{props.flight.company}</span>
         </h4>
         <h4 className={styles["detail-item"]}>
           Растојање: <span>{props.flight.distanceBetween}км</span>
@@ -95,12 +82,14 @@ const FlightDetailContent = (props: any) => {
           Број седишта у авиону: <span>{props.flight.numberOfSeats}</span>
         </h4>
         <h4 className={styles["detail-item"]}>
-          Резервисаних седишта: <span>{props.flight.seatsReserved}</span>
+          Резервисаних седишта: <span>{props.flight.reservations.length}</span>
         </h4>
         <div className={styles["detail-actions"]}>
           <button
             onClick={showReservationModalHandler}
-            disabled={props.flight.seatsReserved >= props.flight.numberOfSeats}
+            disabled={
+              props.flight.reservations.length >= props.flight.numberOfSeats
+            }
           >
             Резервишите
           </button>
