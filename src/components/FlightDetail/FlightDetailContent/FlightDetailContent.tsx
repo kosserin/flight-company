@@ -7,25 +7,10 @@ const FlightDetailContent = (props: any) => {
   const navigate = useNavigate();
   const [isReservationModalShown, setIsReservationModalShown] = useState(false);
   const fetchedDate = new Date(props.flight.dateOfDeparture || "");
-  const onlyHoursAndMinutesOfStart =
-    fetchedDate.getHours() +
-    ":" +
-    (fetchedDate.getMinutes() < 10 ? "0" : "") +
-    fetchedDate.getMinutes();
-
-  let arrivalTime = new Date(
-    fetchedDate.getTime() + (props.flight.flightDuration || 0) * 60000
-  );
-  const onlyHoursAndMinutesOfArrival =
-    arrivalTime.getHours() +
-    ":" +
-    (arrivalTime.getMinutes() < 10 ? "0" : "") +
-    arrivalTime.getMinutes();
-
-  const formatedDepartureDate = format(
-    new Date(props.flight.dateOfDeparture),
-    "dd.MM.yyyy"
-  );
+  const arrivalTime = new Date(fetchedDate.getTime() + (props.flight.flightDuration || 0) * 60000);
+  const onlyHoursAndMinutesOfStart = format(fetchedDate, "HH:mm");
+  const onlyHoursAndMinutesOfArrival = format(arrivalTime, "HH:mm");
+  const formatedDepartureDate = format(new Date(props.flight.dateOfDeparture), "dd.MM.yyyy");
 
   const toHoursAndMinutes = (totalMinutes: number) => {
     const minutes = totalMinutes % 60;
@@ -42,9 +27,7 @@ const FlightDetailContent = (props: any) => {
     return num.toString().padStart(2);
   };
 
-  const convertedFlightDuration: string = toHoursAndMinutes(
-    props.flight.flightDuration
-  );
+  const convertedFlightDuration: string = toHoursAndMinutes(props.flight.flightDuration);
 
   const showReservationModalHandler = () => {
     navigate("reserve-flight");
@@ -55,15 +38,15 @@ const FlightDetailContent = (props: any) => {
     <>
       <div className={styles["flight-detail"]}>
         <span>{formatedDepartureDate}</span>
-        <h2>
+        <h1>
           {props.flight.fromCity} - {props.flight.toCity}
-        </h2>
+        </h1>
         <h3>
           {onlyHoursAndMinutesOfStart} - {onlyHoursAndMinutesOfArrival}
         </h3>
         <div className={styles["detail-line"]}></div>
         <h4 className={styles["detail-price"]}>
-          Цена за једног путника: <span>{props.flight.price}.00 рсд</span>
+          Цена за једног путника: <span>{props.flight.price.toFixed(2)} рсд</span>
         </h4>
         <h4 className={styles["detail-item"]}>
           Модел: <span>{props.flight.model}</span>
@@ -87,9 +70,7 @@ const FlightDetailContent = (props: any) => {
         <div className={styles["detail-actions"]}>
           <button
             onClick={showReservationModalHandler}
-            disabled={
-              props.flight.reservations.length >= props.flight.numberOfSeats
-            }
+            disabled={props.flight.reservations.length >= props.flight.numberOfSeats}
           >
             Резервишите
           </button>

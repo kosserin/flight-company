@@ -112,7 +112,7 @@ const FlightForm = () => {
       toReset();
       departureDateReset();
       navigate(
-        `/reservation/flights?from=${enteredFrom}&to=${enteredTo}&date=${enteredDepartureDate}`
+        `/reservation/flights?from=${enteredFrom}&to=${enteredTo}&dateOfDeparture=${enteredDepartureDate}`
       );
     }
   };
@@ -154,7 +154,7 @@ const FlightForm = () => {
   async function getReservationInfo(resId: string) {
     try {
       const response = await fetch(
-        `http://localhost:8086/api/flights/${resId}`
+        `http://localhost:8089/api/flights/${resId}`
       );
       const data = await response.json();
     } catch (err: any) {}
@@ -235,14 +235,14 @@ const FlightForm = () => {
 
   async function fetchFromDestinations() {
     const response = await fetch(
-      "http://localhost:8086/api/flights/names/from"
+      "http://localhost:8089/api/flights/names/from"
     );
     const data = await response.json();
     setFetchedFrom(data);
   }
 
   async function fetchToDestinations() {
-    const response = await fetch("http://localhost:8086/api/flights/names/to");
+    const response = await fetch("http://localhost:8089/api/flights/names/to");
     const data = await response.json();
     setFetchedTo(data);
   }

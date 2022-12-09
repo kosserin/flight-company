@@ -21,7 +21,7 @@
 
 h1 {
   font-size: 2.625rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 h2 {
@@ -40,7 +40,7 @@ h4 {
 }
 
 p {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 22px;
 }
@@ -81,8 +81,7 @@ html {
 
 @media (max-width: 500px) {
   h1,
-  h3,
-  h2 {
+  h3 {
     font-size: 1.75rem;
   }
 

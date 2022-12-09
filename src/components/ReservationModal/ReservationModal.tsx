@@ -1,11 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  useNavigate,
-  useLocation,
-  Outlet,
-  Link,
-  useParams,
-} from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation, Outlet, useParams } from "react-router-dom";
 import ReservationDetailsContextProvider from "../../store/reservation-details-context";
 import styles from "./ReservationModal.module.css";
 

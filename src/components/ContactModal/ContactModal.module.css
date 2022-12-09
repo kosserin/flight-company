@@ -8,7 +8,7 @@
   z-index: 103;
 }
 
-.reservation-modal {
+.inner-modal {
   background-color: var(--white-primary);
   position: fixed;
   z-index: 104;
@@ -18,7 +18,7 @@
   padding: 2rem;
   border-radius: 5px;
   max-width: 90vw;
-  min-width: 250px;
+  width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,69 +63,52 @@
   }
 }
 
-.reservation-response {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.inner-modal {
+  /* display: flex;
+  gap: 1rem;
   justify-content: center;
-}
-
-.reservation-response div {
+  align-items: center; */
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
-.reservation-response div img {
-  width: 3rem;
-  height: 3rem;
+.inner-modal img {
+  width: 4rem;
 }
 
-.reservation-response div p {
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.reservation-response div p span {
-  font-weight: 600;
-}
-
-.modal-button {
-  margin-top: 16px;
+.inner-modal button {
   background-color: transparent;
-  color: #000;
+  color: var(--purple-primary);
   border: 2px solid var(--purple-primary);
   align-self: center;
-  width: 250px;
   height: 45px;
+  font-weight: 500;
 }
 
-.modal-button:hover {
+.inner-modal button:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.inner-modal p {
+  font-weight: 500;
+  line-height: 20px;
+  font-size: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
-  .reservation-modal {
-    width: 90vw;
+  .inner-modal {
+    padding: 2rem 1rem;
   }
 
-  .reservation-response {
-    text-align: center;
-  }
-
-  .reservation-response div p {
-    font-size: 0.875rem;
-    line-height: 20px;
-  }
-
-  .reservation-response div p span {
-    font-size: 1rem;
-  }
-
-  .modal-button {
+  .inner-modal button {
     width: 100%;
-    height: 45px;
+  }
+
+  .inner-modal img {
+    width: 3rem;
   }
 }

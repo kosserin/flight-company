@@ -1,10 +1,10 @@
 .item-holder {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
 }
 
 .item-header {
+  cursor: pointer;
   background-color: var(--white-primary);
   padding: 0 1rem;
   transition: 250ms ease-out;

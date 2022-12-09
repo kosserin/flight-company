@@ -18,13 +18,13 @@ const Footer = (props: any) => {
       </p>
       <Link to="/contact">Пишите нам</Link>
       <div className={styles["footer-social"]}>
-        <a href="#">
+        <a href="https://www.facebook.com/" target="_blank">
           <img src={facebookIcon} alt="" />
         </a>
-        <a href="#">
+        <a href="https://telegram.org/" target="_blank">
           <img src={telegramIcon} alt="" />
         </a>
-        <a href="#">
+        <a href="https://www.instagram.com/" target="_blank">
           <img src={instagramIcon} alt="" />
         </a>
       </div>

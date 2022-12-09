@@ -8,13 +8,11 @@
   font-weight: 500;
 }
 
-.flight-detail h2 {
+.flight-detail h1 {
   color: var(--white-primary);
-  font-weight: 600;
   text-align: left;
   margin-top: 4px;
   margin-bottom: 0;
-  font-size: 3rem;
 }
 
 .flight-detail h3 {
@@ -100,10 +98,6 @@
 }
 
 @media (max-width: 768px) {
-  .flight-detail h2 {
-    font-size: 2rem;
-  }
-
   .flight-detail h3 {
     font-size: 2.125rem;
   }

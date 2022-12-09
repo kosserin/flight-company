@@ -10,14 +10,14 @@ export interface Flight {
   reservations: any;
   company: string;
   model: string;
-  cancelled?: boolean;
+  canceled?: boolean;
   delayed?: boolean;
 }
 
 export enum FlightStatus {
   InFlight = "У ЛЕТУ",
   Landed = "СЛЕТЕО",
-  Cancelled = "ОДЛОЖЕН",
+  Canceled = "ОДЛОЖЕН",
   Delayed = "ПОМЕРЕН",
   Active = "АКТИВАН",
 }

@@ -1,13 +1,14 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import styles from "./ContactForm.module.css";
 import facebookIcon from "../../assets/social/facebook.svg";
 import telegramIcon from "../../assets/social/telegram.svg";
 import instagramIcon from "../../assets/social/instagram.svg";
-import supportIcon from "../../assets/contact/support.svg";
-import locationIcon from "../../assets/contact/location.svg";
 import useInput from "../../hooks/use-input";
+import ContactModal from "../ContactModal/ContactModal";
+import ReactDOM from "react-dom";
 
 const ContactForm = () => {
+  const [isFormValid, setIsFormValid] = useState(false);
   const valueHandler = (value: any) => value.trim() !== "" && value.length > 2;
   const validateEmailHandler = (value: string) => {
     const basicValidation = value.trim() !== "";
@@ -84,7 +85,7 @@ const ContactForm = () => {
         enteredPhoneNumber,
         enteredMessage,
       };
-      alert(formValues);
+      setIsFormValid(true);
       nameReset();
       surnameReset();
       emailReset();
@@ -93,8 +94,17 @@ const ContactForm = () => {
     }
   };
 
+  const closeModalHandler = () => {
+    setIsFormValid(false);
+  };
+
   return (
     <div className={styles["contact-form-component"]}>
+      {isFormValid &&
+        ReactDOM.createPortal(
+          <ContactModal closeModal={closeModalHandler} />,
+          document.getElementById("modal-root") as HTMLElement
+        )}
       <div className={styles["contact-left"]}>
         <h4>
           Ту смо да Вам помогнемо, било путем друштвених мрежа, у пословницама
@@ -176,33 +186,17 @@ const ContactForm = () => {
             </button>
           </div>
           <div className={styles["contact-social"]}>
-            <a href="#">
+            <a href="https://www.facebook.com/" target="_blank">
               <img src={facebookIcon} alt="" />
             </a>
-            <a href="#">
+            <a href="https://telegram.org/" target="_blank">
               <img src={telegramIcon} alt="" />
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/" target="_blank">
               <img src={instagramIcon} alt="" />
             </a>
           </div>
         </form>
-      </div>
-      <div className={styles["contact-info"]}>
-        <div className={styles["info-item"]}>
-          <img src={supportIcon} />
-          <div className={styles["info-holder"]}>
-            <a href="#">060 2806 1389</a>
-            <p>Радним данима од 06.00 - 24.00</p>
-          </div>
-        </div>
-        <div className={styles["info-item"]}>
-          <img src={locationIcon} />
-          <div className={styles["info-holder"]}>
-            <a href="#">Авионик а.д. Београд</a>
-            <p>Јурија Гагарина 12, 11070 Нови Београд</p>
-          </div>
-        </div>
       </div>
     </div>
   );

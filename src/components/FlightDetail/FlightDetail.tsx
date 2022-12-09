@@ -23,7 +23,7 @@ const FlightDetail = () => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:8086/api/flights/${flightId}`
+        `http://localhost:8089/api/flights/${flightId}`
       );
       const data = await response.json();
       console.log(data);
@@ -34,11 +34,11 @@ const FlightDetail = () => {
         flightDuration: data.flightDuration,
         dateOfDeparture: data.dateOfDeparture,
         numberOfSeats: data.numberOfSeats,
-        price: 360,
-        distanceBetween: 999,
-        reservations: [],
-        model: "JAT32-679",
-        company: "Авионик",
+        price: data.price,
+        distanceBetween: data.distanceBetween,
+        reservations: data.reservations,
+        model: data.model,
+        company: data.company,
       });
       setDoesExist(true);
       setIsLoading(false);

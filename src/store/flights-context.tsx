@@ -32,32 +32,32 @@ const FlightsContextProvider: React.FC<Props> = (props) => {
     setFlights(newFlights);
   };
 
-  const sortLowestFirst = (flights: Flight[]) => {
-    return flights.sort((a: any, b: any) => {
+  const sortLowestFirst = (givenFlights: Flight[]) => {
+    return givenFlights.sort((a: any, b: any) => {
       return a.price - b.price;
     });
   };
 
-  const sortHighestFirst = (flights: Flight[]) => {
-    return flights.sort((a: any, b: any) => {
+  const sortHighestFirst = (givenFlights: Flight[]) => {
+    return givenFlights.sort((a: any, b: any) => {
       return b.price - a.price;
     });
   };
 
-  const sortFastestTravel = (flights: Flight[]) => {
-    return flights.sort((a: any, b: any) => {
+  const sortFastestTravel = (givenFlights: Flight[]) => {
+    return givenFlights.sort((a: any, b: any) => {
       return a.flightDuration - b.flightDuration;
     });
   };
 
-  const sortShortestDistance = (flights: Flight[]) => {
-    return flights.sort((a: any, b: any) => {
+  const sortShortestDistance = (givenFlights: Flight[]) => {
+    return givenFlights.sort((a: any, b: any) => {
       return a.distanceBetween - b.distanceBetween;
     });
   };
 
-  const sortEarliestFlight = (flights: Flight[]) => {
-    return flights.sort((a: any, b: any) => {
+  const sortEarliestFlight = (givenFlights: Flight[]) => {
+    return givenFlights.sort((a: any, b: any) => {
       const aDate = new Date(a.dateOfDeparture).getTime();
       const bDate = new Date(b.dateOfDeparture).getTime();
       return aDate - bDate;
@@ -74,11 +74,7 @@ const FlightsContextProvider: React.FC<Props> = (props) => {
     sortEarliestFlight,
   };
 
-  return (
-    <FlightsContext.Provider value={contextValue}>
-      {props.children}
-    </FlightsContext.Provider>
-  );
+  return <FlightsContext.Provider value={contextValue}>{props.children}</FlightsContext.Provider>;
 };
 
 export default FlightsContextProvider;

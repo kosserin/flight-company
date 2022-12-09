@@ -1,4 +1,3 @@
-import React from "react";
 import nextIcon from "../../assets/next.svg";
 import prevIcon from "../../assets/prev.svg";
 
@@ -20,27 +19,27 @@ import { format } from "date-fns";
 const DUMMY_DESTINATIONS: Destination[] = [
   {
     title: "Беч",
-    imagePath: "/assets/destinations-images/vienna.jpg",
+    imagePath: "vienna.jpg",
   },
   {
     title: "Берлин",
-    imagePath: "/assets/destinations-images/berlin.jpg",
+    imagePath: "berlin.jpg",
   },
   {
     title: "Москва",
-    imagePath: "/assets/destinations-images/russia.jpg",
+    imagePath: "russia.jpg",
   },
   {
-    title: "Санкт Петерсбург",
-    imagePath: "/assets/destinations-images/sankt-petersburg.jpg",
+    title: "Осло",
+    imagePath: "oslo.jpg",
   },
   {
     title: "Тиват",
-    imagePath: "/assets/destinations-images/tivat.jpg",
+    imagePath: "tivat.jpg",
   },
   {
     title: "Будимпешта",
-    imagePath: "/assets/destinations-images/bucharest.jpg",
+    imagePath: "bucharest.jpg",
   },
 ];
 
@@ -50,7 +49,7 @@ const Destinations = () => {
 
   const destinationClickHandler = (toDestination: string) => {
     navigate(
-      `/reservation/flights?from=Београд&to=${toDestination}&date=${tomorrow}`
+      `/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`
     );
   };
 
@@ -83,7 +82,10 @@ const Destinations = () => {
                 key={"" + destination + index}
                 onClick={() => destinationClickHandler(destination.title)}
               >
-                <img src={destination.imagePath} alt="" />
+                <img
+                  src={require(`../../assets/destinations/${destination.imagePath}`)}
+                  alt=""
+                />
                 <div className={styles["destination-overlay"]}></div>
                 <h3>{destination.title}</h3>
               </SwiperSlide>

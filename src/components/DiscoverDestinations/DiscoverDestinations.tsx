@@ -6,63 +6,147 @@ import styles from "./DiscoverDestinations.module.css";
 const DUMMY_DESTINATIONS: Destination[] = [
   {
     title: "Беч",
-    imagePath: "/assets/destinations-images/vienna.jpg",
+    imagePath: "vienna.jpg",
   },
   {
     title: "Берлин",
-    imagePath: "/assets/destinations-images/berlin.jpg",
+    imagePath: "berlin.jpg",
   },
   {
     title: "Москва",
-    imagePath: "/assets/destinations-images/russia.jpg",
+    imagePath: "russia.jpg",
   },
   {
     title: "Тиват",
-    imagePath: "/assets/destinations-images/tivat.jpg",
+    imagePath: "tivat.jpg",
   },
   {
     title: "Будимпешта",
-    imagePath: "/assets/destinations-images/bucharest.jpg",
+    imagePath: "bucharest.jpg",
   },
   {
     title: "Беч",
-    imagePath: "/assets/destinations-images/vienna.jpg",
+    imagePath: "vienna.jpg",
   },
   {
     title: "Берлин",
-    imagePath: "/assets/destinations-images/berlin.jpg",
+    imagePath: "berlin.jpg",
   },
   {
     title: "Москва",
-    imagePath: "/assets/destinations-images/russia.jpg",
+    imagePath: "russia.jpg",
   },
   {
     title: "Тиват",
-    imagePath: "/assets/destinations-images/tivat.jpg",
+    imagePath: "tivat.jpg",
   },
   {
     title: "Будимпешта",
-    imagePath: "/assets/destinations-images/bucharest.jpg",
+    imagePath: "bucharest.jpg",
   },
   {
     title: "Беч",
-    imagePath: "/assets/destinations-images/vienna.jpg",
+    imagePath: "vienna.jpg",
   },
   {
     title: "Берлин",
-    imagePath: "/assets/destinations-images/berlin.jpg",
+    imagePath: "berlin.jpg",
   },
   {
     title: "Москва",
-    imagePath: "/assets/destinations-images/russia.jpg",
+    imagePath: "russia.jpg",
   },
   {
     title: "Тиват",
-    imagePath: "/assets/destinations-images/tivat.jpg",
+    imagePath: "tivat.jpg",
   },
   {
     title: "Будимпешта",
-    imagePath: "/assets/destinations-images/bucharest.jpg",
+    imagePath: "bucharest.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
+  },
+  {
+    title: "Беч",
+    imagePath: "vienna.jpg",
+  },
+  {
+    title: "Берлин",
+    imagePath: "berlin.jpg",
+  },
+  {
+    title: "Москва",
+    imagePath: "russia.jpg",
   },
 ];
 
@@ -72,7 +156,7 @@ const DiscoverDestinations = () => {
 
   const destinationClickHandler = (toDestination: string) => {
     navigate(
-      `/reservation/flights?from=Београд&to=${toDestination}&date=${tomorrow}`
+      `/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`
     );
   };
 
@@ -95,7 +179,10 @@ const DiscoverDestinations = () => {
               key={index + destination.title}
               onClick={() => destinationClickHandler(destination.title)}
             >
-              <img src={destination.imagePath} alt="" />
+              <img
+                src={require(`../../assets/destinations/${destination.imagePath}`)}
+                alt=""
+              />
               <div className={styles["image-overlay"]}></div>
               <h3>{destination.title}</h3>
             </li>

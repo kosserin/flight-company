@@ -20,7 +20,7 @@ const Step3 = () => {
     setError(null);
     try {
       // const response = await fetch(
-      //   "http://localhost:8086/api/flights/6319b44f167a9b1caef8c5b3"
+      //   "http://localhost:8089/api/flights/6319b44f167a9b1caef8c5b3"
       // );
       // const fetchedFlight: Flight = await response.json();
       // setFlightPrice(fetchedFlight.price);

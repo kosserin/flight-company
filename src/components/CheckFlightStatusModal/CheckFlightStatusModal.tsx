@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CheckFlightStatusModal.module.css";
-import sad from "../../assets/sad.png";
-import inFlightFlight from "../../assets/in-air-flight.png";
-import cancelledFlight from "../../assets/cancelled-flight.png";
-import delayedFlight from "../../assets/delayed-flight.png";
-import activeFlight from "../../assets/active-flight.png";
-import landedFlight from "../../assets/landed-flight.png";
+import failed from "../../assets/status/failed.png";
+import inFlightFlight from "../../assets/flight-status/in-air-flight.png";
+import canceledFlight from "../../assets/flight-status/cancelled-flight.png";
+import delayedFlight from "../../assets/flight-status/delayed-flight.png";
+import activeFlight from "../../assets/flight-status/active-flight.png";
+import landedFlight from "../../assets/flight-status/landed-flight.png";
 import { Flight, FlightStatus } from "../../models/flight.model";
 
 export const InnerModal = (props: any) => {
-  const [flightStatusResponse, setFlightStatusResponse] =
-    useState<FlightStatus | null>(null);
+  const [flightStatusResponse, setFlightStatusResponse] = useState<FlightStatus | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   let innerModalContent = <div></div>;
@@ -23,38 +22,27 @@ export const InnerModal = (props: any) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        "http://localhost:8086/api/flights/6319b44f167a9b1caef8c5b3"
-      );
-      const data: Flight = await response.json();
-      console.log(data);
+      const response = await fetch(`http://localhost:8089/api/flights/${flightId}`);
+      const flightRes: Flight = await response.json();
       // here check if flight is delayed, cancelled or smh else
-      if (data.delayed) {
+      if (flightRes.delayed) {
         setFlightStatusResponse(FlightStatus.Delayed);
       }
-      if (data.cancelled) {
-        setFlightStatusResponse(FlightStatus.Cancelled);
+      if (flightRes.canceled) {
+        setFlightStatusResponse(FlightStatus.Canceled);
       }
-      let dateOfArrival = new Date(data.dateOfDeparture);
+      let dateOfArrival = new Date(flightRes.dateOfDeparture);
       let tmp = dateOfArrival.getMinutes() + 90;
       dateOfArrival.setMinutes(tmp);
-      if (!data.delayed && !data.cancelled) {
-        let dateOfArrival = new Date(data.dateOfDeparture);
-        let tmp = dateOfArrival.getMinutes() + 90;
-        dateOfArrival.setMinutes(tmp);
-        console.log(dateOfArrival > new Date());
-
-        if (
-          new Date(data.dateOfDeparture) > new Date() &&
-          dateOfArrival < new Date()
-        ) {
-          setFlightStatusResponse(FlightStatus.InFlight);
-        }
-        if (new Date(data.dateOfDeparture) < new Date()) {
-          setFlightStatusResponse(FlightStatus.Active);
-        }
+      if (new Date(flightRes.dateOfDeparture) > new Date() && dateOfArrival < new Date()) {
+        setFlightStatusResponse(FlightStatus.InFlight);
+      }
+      if (new Date(flightRes.dateOfDeparture) < new Date()) {
+        setFlightStatusResponse(FlightStatus.Landed);
+      }
+      if (!flightRes.delayed && !flightRes.canceled) {
         if (dateOfArrival > new Date()) {
-          setFlightStatusResponse(FlightStatus.Landed);
+          setFlightStatusResponse(FlightStatus.Active);
         }
       }
       setIsLoading(false);
@@ -72,7 +60,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["non-existing-content"]}>
         <div>
-          <img src={sad} />
+          <img src={failed} />
           <h5>{error}</h5>
         </div>
         <button onClick={closeModal} className="submit-button">
@@ -102,8 +90,8 @@ export const InnerModal = (props: any) => {
         iconToDisplay = activeFlight;
         textToDisplay = "Лет полеће у заказано време.";
         break;
-      case FlightStatus.Cancelled:
-        iconToDisplay = cancelledFlight;
+      case FlightStatus.Canceled:
+        iconToDisplay = canceledFlight;
         textToDisplay = "Лет је отказан.";
         break;
       case FlightStatus.Delayed:
@@ -119,7 +107,7 @@ export const InnerModal = (props: any) => {
         textToDisplay = "Авион је слетео.";
         break;
       default:
-        iconToDisplay = sad;
+        iconToDisplay = failed;
         textToDisplay = "Немамо податке о датом лету.";
         break;
     }
@@ -152,7 +140,7 @@ const CheckFlightStatusModal = (props: any) => {
       <InnerModal
         hideModal={props.hideCheckFlightStatusModal}
         showModal={props.showCheckFlightStatusModal}
-        reservationId={props.reservationId}
+        flightId={props.flightId}
       />
     </>
   );

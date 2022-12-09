@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CheckReservationModal.module.css";
-import sad from "../../assets/sad.png";
-import happy from "../../assets/smiley.png";
+import failed from "../../assets/status/failed.png";
+import success from "../../assets/status/success.png";
 import { CheckReservationModel } from "../../models/reservation.model";
 import { format } from "date-fns";
 import sr from "date-fns/locale/sr";
 
 export const InnerModal = (props: any) => {
-  const [reservation, setReservation] = useState<CheckReservationModel | null>(
-    null
-  );
+  const [reservation, setReservation] = useState<CheckReservationModel | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   let innerModalContent = <div></div>;
@@ -22,23 +20,24 @@ export const InnerModal = (props: any) => {
     setIsLoading(true);
     setError(null);
     try {
-      setReservation({
-        resId: "36545873543543534",
-        surname: "Костић",
-        flightId: "4387978324723849732948247",
-        from: "Београд",
-        to: "Атина",
-        dateOfDeparture: "2022-11-22T20:45:00",
-      });
+      const response = await fetch(`http://localhost:8089/api/reservations/${resId}`);
+      const data = await response.json();
+      setReservation(data);
       setIsLoading(false);
+      // setReservation({
+      //   resId: "36545873543543534",
+      //   surname: "Костић",
+      //   flightId: "4387978324723849732948247",
+      //   from: "Београд",
+      //   to: "Атина",
+      //   dateOfDeparture: "2022-11-22T20:45:00",
+      // });
       // setTimeout(() => {
       //   setIsLoading(false);
       //   throw new Error("dsajdioas");
       // }, 500);
     } catch (err: any) {
-      setError(
-        "Не постоји резервација са унетом шифром у нашој бази података."
-      );
+      setError("Не постоји резервација са унетом шифром у нашој бази података.");
       setIsLoading(false);
     }
   }
@@ -51,7 +50,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["non-existing-content"]}>
         <div>
-          <img src={sad} />
+          <img src={failed} />
           <p>{error}</p>
         </div>
         <button onClick={closeModal} className="submit-button">
@@ -73,17 +72,12 @@ export const InnerModal = (props: any) => {
   }
 
   if (reservation) {
-    const onlyHoursAndMinutesOfStart =
-      new Date(reservation.dateOfDeparture).getHours() +
-      ":" +
-      (new Date(reservation.dateOfDeparture).getMinutes() < 10 ? "0" : "") +
-      new Date(reservation.dateOfDeparture).getMinutes();
-    console.log(onlyHoursAndMinutesOfStart);
+    const onlyHoursAndMinutesOfStart = format(new Date(reservation.dateOfDeparture), "HH:mm");
 
     innerModalContent = (
       <div className={styles["res-modal"]}>
         <div>
-          <img src={happy} />
+          <img src={success} />
         </div>
         <h4>
           Шифра резервације
