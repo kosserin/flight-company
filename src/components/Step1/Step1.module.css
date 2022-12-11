@@ -3,6 +3,7 @@
   overflow-y: scroll;
   padding-inline: 2rem;
   padding-top: 2rem;
+  color: var(--black-color);
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -11,7 +12,11 @@
   display: none;
 }
 
-.step-1 p {
+.step-1 .step-heading {
+  font-size: var(--font-size-7);
+}
+
+.step-1 .step-desc {
   margin-bottom: 2rem;
   margin-top: 4px;
 }
@@ -26,11 +31,11 @@
 .step-action button {
   border: none;
   outline: none;
-  color: var(--white-primary);
-  font-weight: 600;
-  font-size: 16px;
+  color: var(--white-color);
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-8);
   max-width: 90vw;
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
   border-radius: 10px;
   width: 300px;
   height: 3rem;
@@ -45,8 +50,8 @@
 }
 
 .step-action button:hover {
-  background-color: var(--purple-secondary);
-  color: var(--white-primary);
+  background-color: var(--light-purple-color);
+  color: var(--white-color);
 }
 
 .step-action button:hover img {
@@ -54,12 +59,12 @@
 }
 
 .step-action button:disabled {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(var(--white-rgb), 0.5);
 }
 
 .step-action button:disabled:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #000;
+  background-color: rgba(var(--white-rgb), 0.5);
+  color: var(--black-color);
 }
 
 .form-holder {
@@ -82,13 +87,13 @@
     width: 100%;
     z-index: 3;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
-    background-color: var(--white-primary);
+    background-color: var(--white-color);
     justify-content: center;
     padding-top: 1rem;
   }
 
   .step-action button {
-    background-color: var(--purple-primary);
-    color: var(--white-primary);
+    background-color: var(--dark-purple-color);
+    color: var(--white-color);
   }
 }

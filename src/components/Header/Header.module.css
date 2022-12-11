@@ -1,7 +1,7 @@
 .header {
   position: relative;
   height: 10vh;
-  /* background-color: var(--purple-primary); */
+  /* background-color: var(--dark-purple-color); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 header.header-dark {
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
 }
 
 .header nav {
@@ -27,18 +27,18 @@ header.header-dark {
 }
 
 .header nav a {
-  color: var(--white-primary);
+  color: var(--white-color);
   text-decoration: none;
   transition: 250ms ease-out;
 }
 
 .header nav a:hover {
-  color: var(--purple-third);
+  color: var(--pink-color);
 }
 
 .header nav > a {
-  font-weight: 500;
-  font-size: 1.125rem;
+  font-weight: var(--font-weight-500);
+  font-size: var(--font-size-7);
 }
 
 .header nav ul {
@@ -49,8 +49,8 @@ header.header-dark {
 }
 
 .header nav ul li a {
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: var(--font-weight-500);
+  font-size: var(--font-size-8);
 }
 
 .burger {
@@ -79,8 +79,8 @@ header.header-dark {
     transform: translateX(0);
   }
   .header nav ul li a {
-    font-size: 2.625rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-700);
+    font-size: var(--font-size-3);
   }
   .burger {
     display: flex;
@@ -95,7 +95,7 @@ header.header-dark {
   .burger .line {
     width: 24px;
     height: 1.5px;
-    background-color: var(--white-primary);
+    background-color: var(--white-color);
     transition: 250ms ease-out;
   }
 
@@ -119,7 +119,7 @@ header.header-dark {
     width: 100%;
     position: fixed;
     height: 100vh;
-    background-color: #110619;
+    background-color: var(--dark-purple-color);
     top: 0;
     left: 0;
     right: 0;

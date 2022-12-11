@@ -4,12 +4,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(var(--black-rgb), 0.9);
   z-index: 103;
 }
 
 .reservation-modal {
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   position: fixed;
   z-index: 104;
   top: 50%;
@@ -40,10 +40,10 @@
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #000;
+  border: 8px solid var(--black-color);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #000 transparent transparent transparent;
+  border-color: var(--black-color) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -84,26 +84,26 @@
 }
 
 .reservation-response div p {
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: var(--font-weight-500);
+  font-size: var(--font-size-8);
 }
 
 .reservation-response div p span {
-  font-weight: 600;
+  font-weight: var(--font-weight-600);
 }
 
 .modal-button {
   margin-top: 16px;
   background-color: transparent;
-  color: #000;
-  border: 2px solid var(--purple-primary);
+  color: var(--black-color);
+  border: 2px solid var(--dark-purple-color);
   align-self: center;
   width: 250px;
   height: 45px;
 }
 
 .modal-button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--black-rgb), 0.1);
 }
 
 @media (max-width: 768px) {
@@ -116,12 +116,12 @@
   }
 
   .reservation-response div p {
-    font-size: 0.875rem;
+    font-size: var(--font-size-9);
     line-height: 20px;
   }
 
   .reservation-response div p span {
-    font-size: 1rem;
+    font-size: var(--font-size-8);
   }
 
   .modal-button {

@@ -7,11 +7,16 @@ export interface Flight {
   numberOfSeats: number;
   price: number;
   distanceBetween: number;
-  reservations: any;
+  reservations: Reservation[];
   company: string;
   model: string;
   canceled?: boolean;
   delayed?: boolean;
+}
+
+export interface Reservation {
+  id: string;
+  lastName: string;
 }
 
 export enum FlightStatus {

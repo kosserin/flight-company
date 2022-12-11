@@ -48,14 +48,12 @@ const Destinations = () => {
   const tomorrow = format(addDays(new Date(), 1), "yyyy-MM-dd");
 
   const destinationClickHandler = (toDestination: string) => {
-    navigate(
-      `/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`
-    );
+    navigate(`/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`);
   };
 
   return (
     <section className={styles["destinations-content"]}>
-      <h2>Издвајамо следеће дестинације</h2>
+      <h3>Издвајамо следеће дестинације</h3>
       <div className={styles["swiper-holder"]}>
         <Swiper
           navigation={{
@@ -82,26 +80,17 @@ const Destinations = () => {
                 key={"" + destination + index}
                 onClick={() => destinationClickHandler(destination.title)}
               >
-                <img
-                  src={require(`../../assets/destinations/${destination.imagePath}`)}
-                  alt=""
-                />
+                <img src={require(`../../assets/destinations/${destination.imagePath}`)} alt="" />
                 <div className={styles["destination-overlay"]}></div>
                 <h3>{destination.title}</h3>
               </SwiperSlide>
             );
           })}
         </Swiper>
-        <button
-          className={`${styles["destination-prev"]} ${styles["destination-button"]}`}
-          id="destination-prev"
-        >
+        <button className={`${styles["destination-prev"]} ${styles["destination-button"]}`} id="destination-prev">
           <img src={prevIcon} alt="" />
         </button>
-        <button
-          className={`${styles["destination-next"]} ${styles["destination-button"]}`}
-          id="destination-next"
-        >
+        <button className={`${styles["destination-next"]} ${styles["destination-button"]}`} id="destination-next">
           <img src={nextIcon} alt="" />
         </button>
       </div>

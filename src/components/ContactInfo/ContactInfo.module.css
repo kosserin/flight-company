@@ -22,16 +22,16 @@
 
 .info-holder a {
   text-decoration: none;
-  font-weight: 600;
-  color: #000;
-  border-bottom: 2px solid #000;
+  font-weight: var(--font-weight-600);
+  color: var(--black-color);
+  border-bottom: 2px solid var(--black-color);
   width: fit-content;
   transition: 250ms ease-out;
 }
 
 .info-holder a:hover {
-  color: var(--purple-primary);
-  border-bottom-color: var(--purple-primary);
+  color: var(--dark-purple-color);
+  border-bottom-color: var(--dark-purple-color);
 }
 
 @media (max-width: 768px) {

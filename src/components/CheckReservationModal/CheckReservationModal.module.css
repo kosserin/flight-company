@@ -9,7 +9,7 @@
 }
 
 .inner-modal {
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   position: fixed;
   z-index: 104;
   top: 50%;
@@ -44,37 +44,37 @@
   padding-bottom: 1rem;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: var(--font-size-8);
 }
 
 .res-modal h4 span {
-  font-weight: 600;
   text-align: center;
-  font-size: 1.25rem;
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-7);
 }
 
-.res-modal h5 {
+.res-modal p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: 400;
-  font-size: 1rem;
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-8);
   margin-bottom: 1rem;
   gap: 4px;
 }
 
-.res-modal h5 span {
-  font-weight: 600;
-  font-size: 1rem;
+.res-modal p span {
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-8);
 }
 
 .inner-modal button {
   background-color: transparent;
-  color: var(--purple-primary);
-  border: 2px solid var(--purple-primary);
+  color: var(--dark-purple-color);
+  border: 2px solid var(--dark-purple-color);
   align-self: center;
   height: 45px;
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .inner-modal button:hover {
@@ -103,9 +103,9 @@
 }
 
 .non-existing-content p {
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
   line-height: 20px;
-  font-size: 1rem;
+  font-size: var(--font-size-8);
 }
 
 .lds-ring {
@@ -124,10 +124,10 @@
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #000;
+  border: 8px solid var(--black-color);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #000 transparent transparent transparent;
+  border-color: var(--black-color) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -156,11 +156,15 @@
     width: 100%;
   }
 
-  .res-modal h5 {
-    font-size: 0.875rem;
+  .res-modal p {
+    font-size: var(--font-size-9);
   }
 
   .non-existing-content img {
     width: 3rem;
+  }
+
+  .inner-modal button {
+    width: 100%;
   }
 }

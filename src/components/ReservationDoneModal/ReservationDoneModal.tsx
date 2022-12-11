@@ -4,6 +4,7 @@ import { ReservationDetailsContext } from "../../store/reservation-details-conte
 import styles from "./ReservationDoneModal.module.css";
 import success from "../../assets/status/success.png";
 import failed from "../../assets/status/failed.png";
+import { FlightsContext } from "../../store/flights-context";
 
 export const OuterModal = () => {
   const navigate = useNavigate();
@@ -16,25 +17,31 @@ export const OuterModal = () => {
 const InnerModal = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const ctx = useContext(ReservationDetailsContext);
+  const flightsCtx = useContext(FlightsContext);
+  const reservationDetailsCtx = useContext(ReservationDetailsContext);
   const [generatedResIdFromBackend, setGeneratedResIdFromBackend] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const reserveFlightHandler = async () => {
+  const addReservationHandler = async () => {
     setError(null);
     setIsLoading(true);
+    const newReservations = [...flightsCtx.selectedFlight.reservations];
+    const uniqueReservationId = "RES-" + new Date().getTime().toString();
+    console.log(reservationDetailsCtx.surname);
+    newReservations.push({
+      id: uniqueReservationId,
+      lastName: reservationDetailsCtx.surname,
+    });
     try {
       const response = await fetch(`http://localhost:8089/api/flights/${params.flightId}`, {
         method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          lastName: ctx.surname,
+          id: flightsCtx.selectedFlight.id,
+          reservations: newReservations,
         }),
       });
-      const data: any = await response.json();
-      setGeneratedResIdFromBackend(data.resId);
-      setIsLoading(false);
-
-      // setGeneratedResIdFromBackend("4u032dasjodsau4382dasjo");
+      setGeneratedResIdFromBackend(uniqueReservationId);
       setIsLoading(false);
     } catch (err) {
       setError("Нисмо успели да унесемо Вашу резервацију. Молимо покушајте поново.");
@@ -43,27 +50,32 @@ const InnerModal = () => {
   };
 
   useEffect(() => {
-    reserveFlightHandler();
+    console.log(reservationDetailsCtx.surname);
+    addReservationHandler();
   }, []);
 
   const navigateToFlightDetailsContent = () => {
     navigate(`/reservation/flights/${params.flightId}`);
   };
 
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   let reservationModalContent;
 
-  if (generatedResIdFromBackend && !isLoading && !error) {
+  if (!isLoading && !error) {
     reservationModalContent = (
       <div className={styles["reservation-response"]}>
         <div>
           <img src={success} />
-          <h4>Хвала на поверењу, успешно сте резервисали карту!</h4>
+          <h6>Хвала на поверењу, успешно сте резервисали карту!</h6>
           <p>
             Број Ваше резервације је: <span>{generatedResIdFromBackend}</span>. Молимо Вас да сачувате негде број
             резервације како бисте могли накнадно да проверите резервацију.
           </p>
         </div>
-        <button onClick={navigateToFlightDetailsContent} className={`${styles["modal-button"]} submit-button`}>
+        <button onClick={navigateToHome} className={`${styles["modal-button"]} submit-button`}>
           У реду
         </button>
       </div>

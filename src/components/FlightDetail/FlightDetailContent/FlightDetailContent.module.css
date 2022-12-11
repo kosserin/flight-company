@@ -1,27 +1,28 @@
 .flight-detail {
   transition: 250ms ease-out;
-  color: #000;
+  color: var(--black-color);
 }
 
 .flight-detail span {
-  color: var(--white-primary);
-  font-weight: 500;
+  color: var(--white-color);
+  font-weight: var(--font-weight-500);
 }
 
-.flight-detail h1 {
-  color: var(--white-primary);
+.flight-detail h3 {
+  color: var(--white-color);
   text-align: left;
   margin-top: 4px;
   margin-bottom: 0;
 }
 
-.flight-detail h3 {
-  color: var(--white-primary);
+.flight-detail h2 {
+  color: var(--white-color);
   margin: 0;
   padding: 0;
   letter-spacing: 2px;
-  font-size: 4.125rem;
-  font-weight: 800;
+  text-align: left;
+  /* font-size: 4.125rem;
+  font-weight: var(--font-weight-800); */
 }
 
 .detail-actions {
@@ -33,11 +34,11 @@
 .detail-actions button {
   border: none;
   outline: none;
-  color: #000;
-  font-weight: 600;
-  font-size: 16px;
+  color: var(--black-color);
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-8);
   max-width: 90vw;
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   border-radius: 10px;
   width: 300px;
   height: 3rem;
@@ -47,38 +48,38 @@
 }
 
 .detail-actions button:hover {
-  background-color: var(--purple-secondary);
-  color: var(--white-primary);
+  background-color: var(--light-purple-color);
+  color: var(--white-color);
 }
 
 .detail-actions button:disabled {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(var(--white-rgb), 0.5);
 }
 
 .detail-actions button:disabled:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #000;
+  background-color: rgba(var(--white-rgb), 0.5);
+  color: var(--black-color);
 }
 
-.flight-detail h4 {
-  color: var(--white-primary);
+.flight-detail p {
+  color: var(--white-color);
 }
 
 .detail-price {
-  border-top: 4px solid var(--purple-secondary);
-  border-bottom: 4px solid var(--purple-secondary);
+  border-top: 4px solid var(--light-purple-color);
+  border-bottom: 4px solid var(--light-purple-color);
   padding-bottom: 1rem;
   padding-top: 1rem;
   margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.25rem;
+  font-size: var(--font-size-7);
 }
 
 .detail-price span {
-  font-weight: 600;
-  font-size: 2rem;
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-4);
 }
 
 .detail-item {
@@ -88,27 +89,23 @@
   justify-content: space-between;
   gap: 8px;
   padding-bottom: 2px;
-  border-bottom: 3px solid var(--purple-secondary);
-  font-size: 1rem;
+  border-bottom: 3px solid var(--light-purple-color);
+  font-size: var(--font-size-8);
 }
 
 .detail-item span {
-  font-weight: 600;
-  font-size: 1.35rem;
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-7);
 }
 
 @media (max-width: 768px) {
-  .flight-detail h3 {
-    font-size: 2.125rem;
-  }
-
   .detail-actions {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 1rem 0;
-    background-color: var(--purple-primary);
+    background-color: var(--dark-purple-color);
     z-index: 3;
     display: flex;
     align-items: center;
@@ -116,14 +113,18 @@
   }
 
   .detail-price {
-    font-size: 1rem;
+    font-size: var(--font-size-8);
   }
 
   .detail-price span {
-    font-size: 1.25rem;
+    font-size: var(--font-size-7);
+  }
+
+  .detail-item {
+    font-size: var(--font-size-9);
   }
 
   .detail-item span {
-    font-size: 1rem;
+    font-size: var(--font-size-8);
   }
 }

@@ -2,10 +2,12 @@
   max-width: 90vw;
   width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 3;
 }
 
-.achievement-section h2 {
-  color: var(--white-primary);
+.achievement-section h4 {
+  color: var(--white-color);
   margin-bottom: 1rem;
 }
 

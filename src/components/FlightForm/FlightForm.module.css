@@ -1,5 +1,5 @@
 .flight-form {
-  background: var(--white-primary);
+  background: var(--white-color);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   display: flex;
@@ -35,7 +35,7 @@
 }
 
 .form-title:hover {
-  background-color: rgba(17, 6, 25, 0.1);
+  background-color: rgba(var(--dark-purple-rgb), 0.1);
 }
 
 .form-title:first-of-type {
@@ -56,7 +56,7 @@
   left: 0;
   height: 50px;
   width: 200px;
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
   transition: 250ms ease-out;
 }
 
@@ -69,9 +69,9 @@
 }
 
 .form-title h3 {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #000;
+  font-size: var(--font-size-8);
+  font-weight: var(--font-weight-500);
+  color: var(--black-color);
   pointer-events: none;
   text-align: center;
   transition: 500ms ease-out;
@@ -108,11 +108,11 @@ form.form-content {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid var(--black-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
@@ -153,15 +153,15 @@ form.form-content {
 .autocomplete-item {
   width: 100%;
   padding: 8px;
-  background-color: var(--white-secondary);
-  font-size: 16px;
-  font-weight: 500;
+  background-color: var(--light-color);
+  font-size: var(--font-size-8);
+  font-weight: var(--font-weight-500);
   cursor: pointer;
   transition: 250ms ease-out;
 }
 
 .autocomplete-item:hover {
-  background-color: rgb(225, 225, 225);
+  background-color: var(--white-color);
 }
 
 .form-group input:not(:focus) + .label-holder + .autocomplete-list {
@@ -201,7 +201,7 @@ form.form-content {
   }
 
   .form-title h3 {
-    font-size: 0.75rem;
+    font-size: var(--font-size-10);
   }
 
   .from-to__holder {
@@ -217,6 +217,6 @@ form.form-content {
   .form-title h3 {
     width: 90%;
     margin: 0 auto;
-    font-size: 0.65rem;
+    font-size: var(--font-size-10);
   }
 }

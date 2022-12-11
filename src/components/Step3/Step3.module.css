@@ -11,7 +11,11 @@
   display: none;
 }
 
-.step-3 > p {
+.step-3 .step-heading {
+  font-size: var(--font-size-7);
+}
+
+.step-3 .step-desc {
   margin-bottom: 2rem;
   margin-top: 4px;
 }
@@ -26,11 +30,11 @@
 .step-action button {
   border: none;
   outline: none;
-  color: var(--white-primary);
-  font-weight: 600;
-  font-size: 16px;
+  color: var(--white-color);
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-8);
   max-width: 90vw;
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
   border-radius: 10px;
   width: 300px;
   height: 3rem;
@@ -45,12 +49,12 @@
 }
 
 .step-action button:hover {
-  background-color: var(--purple-secondary);
-  color: var(--white-primary);
+  background-color: var(--light-purple-color);
+  color: var(--white-color);
 }
 
 .step-action button:disabled {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(var(--white-rgb), 0.3);
 }
 
 .step-action button:disabled img {
@@ -58,8 +62,8 @@
 }
 
 .step-action button:disabled:hover {
-  background-color: var(--purple-primary);
-  color: rgba(255, 255, 255, 0.1);
+  background-color: var(--dark-purple-color);
+  color: rgba(var(--white-rgb), 0.1);
 }
 
 .step-3__holder {
@@ -82,8 +86,8 @@
 }
 
 .review-header h5 {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--font-size-8);
+  font-weight: var(--font-weight-600);
 }
 
 .review-header button {
@@ -91,8 +95,8 @@
   outline: none;
   cursor: pointer;
   background-color: transparent;
-  font-weight: 600;
-  color: blue;
+  font-weight: var(--font-weight-600);
+  color: var(--blue-color);
 }
 
 .review-body {
@@ -102,8 +106,8 @@
 }
 
 .review-body > p {
-  font-weight: 600;
-  color: #6a6a6a;
+  font-weight: var(--font-weight-600);
+  color: var(--gray-color);
 }
 
 .review-items {
@@ -119,15 +123,15 @@
 }
 
 .review-item p {
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .review-item p:first-of-type {
-  color: #6a6a6a;
+  color: var(--gray-color);
 }
 
 .total-item p {
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .payment-card-number {
@@ -142,11 +146,11 @@
 }
 
 .payment-card-number p {
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .payment-card-number p span {
-  color: #6a6a6a;
+  color: var(--gray-color);
 }
 
 .lds-ring {
@@ -165,10 +169,10 @@
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #000;
+  border: 8px solid var(--black-color);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #000 transparent transparent transparent;
+  border-color: var(--black-color) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -178,11 +182,6 @@
 }
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
-}
-
-.error-text {
-  color: red;
-  font-weight: 500;
 }
 
 @keyframes lds-ring {
@@ -208,13 +207,13 @@
     width: 100%;
     z-index: 3;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
-    background-color: var(--white-primary);
+    background-color: var(--white-color);
     justify-content: center;
     padding-top: 1rem;
   }
 
   .step-action button {
-    background-color: var(--purple-primary);
-    color: var(--white-primary);
+    background-color: var(--dark-purple-color);
+    color: var(--white-color);
   }
 }

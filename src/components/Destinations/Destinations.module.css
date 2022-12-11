@@ -1,15 +1,15 @@
 .destinations-content {
   padding: 32px 0 64px 0;
-  background: var(--purple-primary);
+  background: var(--dark-purple-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.destinations-content h2 {
+.destinations-content h3 {
   text-align: center;
-  color: var(--white-primary);
+  color: var(--white-color);
   max-width: 90vw;
   margin: 0 auto 2rem auto;
 }
@@ -21,7 +21,7 @@
 }
 
 .destination-swiper-slide {
-  height: 50vh;
+  height: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,10 +42,11 @@
 .destination-swiper-slide h3 {
   position: relative;
   z-index: 5;
-  color: var(--white-primary);
+  color: var(--white-color);
   text-align: center;
   padding-inline: 20px;
   pointer-events: none;
+  margin: 0;
   transition: 250ms ease-out;
   border-radius: 5px;
 }
@@ -56,11 +57,7 @@
 
 .destination-overlay {
   position: absolute;
-  background: linear-gradient(
-    359.5deg,
-    #110619 -2.53%,
-    rgba(17, 6, 25, 0) 187.57%
-  );
+  background: linear-gradient(359.5deg, #110619 -2.53%, rgba(17, 6, 25, 0) 187.57%);
   z-index: 4;
   width: 100%;
   height: 100%;
@@ -77,15 +74,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--purple-secondary);
-  color: var(--white-primary);
+  background-color: var(--light-purple-color);
+  color: var(--white-color);
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 5px;
   height: 57px;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--font-size-8);
+  font-weight: var(--font-weight-600);
   max-width: 100%;
   width: 340px;
   margin-top: 32px;
@@ -93,7 +90,7 @@
 }
 
 .destinations-content .all-destinations__btn:hover {
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
 }
 
 .swiper-holder {
@@ -101,7 +98,7 @@
 }
 
 .destination-button {
-  background-color: var(--purple-primary);
+  background-color: var(--dark-purple-color);
   padding: 10px;
   position: absolute;
   top: 50%;
@@ -118,7 +115,7 @@
 }
 
 .destination-button:hover {
-  background-color: var(--purple-secondary);
+  background-color: var(--light-purple-color);
 }
 
 .destination-button img {
@@ -151,9 +148,5 @@
   .destinations-swiper {
     max-width: 95vw;
     margin: 0 0 0 5vw;
-  }
-
-  .destination-swiper-slide h3 {
-    font-size: 1.875rem;
   }
 }

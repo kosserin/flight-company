@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Step1.module.css";
 import useInput from "../../hooks/use-input";
@@ -10,13 +10,10 @@ const Step1 = () => {
   const params = useParams();
   const ctx = useContext(ReservationDetailsContext);
 
-  const valueHandler = (value: string) =>
-    value.trim() !== "" && value.length > 2;
+  const valueHandler = (value: string) => value.trim() !== "" && value.length > 2;
   const validateEmailHandler = (value: string) => {
     const basicValidation = value.trim() !== "";
-    const emailValidation = value.match(
-      "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-    );
+    const emailValidation = value.match("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$");
     return basicValidation && emailValidation;
   };
 
@@ -98,8 +95,8 @@ const Step1 = () => {
 
   return (
     <form className={styles["step-1"]} onSubmit={step1SubmitHandler}>
-      <h4>Унесите Ваше податке</h4>
-      <p>Ваши подаци су анонимни и заштићени од трећих лица.</p>
+      <p className={styles["step-heading"]}>Унесите Ваше податке</p>
+      <p className={styles["step-desc"]}>Ваши подаци су анонимни и заштићени од трећих лица.</p>
       <div className={styles["form-holder"]}>
         <div className="form-group">
           <input

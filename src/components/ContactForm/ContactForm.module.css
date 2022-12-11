@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-.contact-left > h4 {
+.contact-left > h5 {
   text-align: center;
   margin-bottom: 32px;
   max-width: 90vw;
@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   box-shadow: 0px 6px 12px rgba(24, 39, 75, 0.22);
   width: 24px;
   height: 24px;

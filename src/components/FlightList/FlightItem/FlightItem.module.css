@@ -1,21 +1,21 @@
 .flight-item {
   padding: 1rem 1rem 2rem 1rem;
   border-radius: 15px;
-  color: var(--white-primary);
+  color: var(--white-color);
   transition: 250ms ease-out;
   cursor: pointer;
-  border: 2px solid var(--purple-secondary);
+  border: 2px solid var(--light-purple-color);
   position: relative;
   border-left: none;
   border-right: none;
-  border-top: 3px solid var(--purple-secondary);
-  border-bottom: 3px solid var(--purple-secondary);
+  border-top: 3px solid var(--light-purple-color);
+  border-bottom: 3px solid var(--light-purple-color);
   border-radius: 0px;
 }
 
 .flight-item:hover {
   box-shadow: 0px 0 5px rgba(255, 255, 255, 0.25);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--black-rgb), 0.1);
 }
 
 .flight-item__price {
@@ -24,8 +24,8 @@
   right: 16px;
   text-align: right;
   margin-bottom: 16px;
-  font-weight: 600;
-  font-size: 1.125rem;
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-7);
 }
 
 .flight-item__destinations {
@@ -52,15 +52,15 @@
 
 .flight-item__start,
 .flight-item__end {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-600);
   letter-spacing: 1.25px;
 }
 
 .flight-item__from,
 .flight-item__to {
   position: absolute;
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
@@ -75,7 +75,7 @@
 }
 
 .flight-item__line {
-  background-color: var(--white-secondary);
+  background-color: var(--light-color);
   height: 2px;
   flex-grow: 1;
 }
@@ -89,13 +89,13 @@
 
 .flight-item__middle-holder p:first-of-type {
   padding: 0.5rem 0.75rem;
-  border: 2px solid var(--white-secondary);
+  border: 2px solid var(--light-color);
   border-radius: 10px;
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .flight-item__middle-holder p:last-of-type {
-  font-size: 0.75rem;
+  font-size: var(--font-size-10);
   letter-spacing: 1.25px;
   position: absolute;
   bottom: 0;
@@ -110,17 +110,17 @@
   }
 
   .flight-item__price {
-    font-size: 1rem;
+    font-size: var(--font-size-8);
   }
 
   .flight-item__from,
   .flight-item__to {
-    font-size: 0.75rem;
+    font-size: var(--font-size-10);
   }
 
   .flight-item__start,
   .flight-item__end {
-    font-size: 1.25rem;
+    font-size: var(--font-size-7);
   }
 
   .flight-item__line {
@@ -128,6 +128,6 @@
   }
 
   .flight-item__middle-holder p:first-of-type {
-    border: 1px solid var(--white-secondary);
+    border: 1px solid var(--light-color);
   }
 }

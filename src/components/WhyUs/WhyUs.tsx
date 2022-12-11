@@ -7,21 +7,15 @@ import hygieneIcon from "../../assets/sanitary.png";
 const WhyUs = () => {
   return (
     <section className={styles["why-us-section"]}>
-      <h2>Путници су наш приоритет</h2>
+      <h3>Путници су наш приоритет</h3>
       <div className={styles["section-content"]}>
         <div className={styles["item-holder"]}>
           <img src={trophyIcon} alt="" />
-          <p>
-            Наша компанија је добитник престижних светских награда за пружену
-            услугу у авио индустрији.
-          </p>
+          <p>Наша компанија је добитник престижних светских награда за пружену услугу у авио индустрији.</p>
         </div>
         <div className={styles["item-holder"]}>
           <img src={companyIcon} alt="" />
-          <p>
-            Одликује нас професионалност, поузданост и амбиција да пружимо
-            најбољу услугу.
-          </p>
+          <p>Одликује нас професионалност, поузданост и амбиција да пружимо најбољу услугу.</p>
         </div>
         <div className={styles["item-holder"]}>
           <img src={hygieneIcon} alt="" />

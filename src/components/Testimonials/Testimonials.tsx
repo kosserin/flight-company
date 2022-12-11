@@ -45,7 +45,7 @@ const DUMMY_TESTIMONIALS: Testimonial[] = [
 const Testimonials = () => {
   return (
     <section className={styles["testimonials-section"]}>
-      <h2>Рекли су о нама</h2>
+      <h3>Рекли су о нама</h3>
       <div className={styles["testimonials-holder"]}>
         <div className={styles["another-div-for-buttons"]}>
           <Swiper
@@ -67,16 +67,10 @@ const Testimonials = () => {
           >
             {DUMMY_TESTIMONIALS.map((testimonial, index) => {
               return (
-                <SwiperSlide
-                  className={styles["testimonial-swiper-slide"]}
-                  key={"" + testimonial + index}
-                >
+                <SwiperSlide className={styles["testimonial-swiper-slide"]} key={"" + testimonial + index}>
                   <div className={styles["testimonial-inner"]}>
-                    <img
-                      src={require(`../../assets/testimonials/${testimonial.image}`)}
-                      alt=""
-                    />
-                    <h4>{testimonial.name}</h4>
+                    <img src={require(`../../assets/testimonials/${testimonial.image}`)} alt="" />
+                    <h6>{testimonial.name}</h6>
                     <span>{testimonial.title}</span>
                     <p>{testimonial.comment}</p>
                   </div>
@@ -84,14 +78,10 @@ const Testimonials = () => {
               );
             })}
           </Swiper>
-          <button
-            className={`${styles["testimonial-prev"]} ${styles["testimonial-button"]} testimonial-prev`}
-          >
+          <button className={`${styles["testimonial-prev"]} ${styles["testimonial-button"]} testimonial-prev`}>
             <img src={prevIcon} alt="" />
           </button>
-          <button
-            className={`${styles["testimonial-next"]} ${styles["testimonial-button"]} testimonial-next`}
-          >
+          <button className={`${styles["testimonial-next"]} ${styles["testimonial-button"]} testimonial-next`}>
             <img src={nextIcon} alt="" />
           </button>
         </div>

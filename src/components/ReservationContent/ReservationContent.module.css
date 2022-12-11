@@ -1,7 +1,7 @@
 .reservation-content {
   padding-top: 120px;
   position: relative;
-  background: var(--purple-primary);
+  background: var(--dark-purple-color);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -21,14 +21,14 @@
 }
 
 .reservation-content .circle.upper-circle {
-  background: linear-gradient(154.16deg, #110619 16.31%, #fcf8ff 1097%);
+  background: linear-gradient(154.16deg, var(--dark-purple-color) 16.31%, var(--white-color) 1097%);
   top: 100%;
   left: 0;
   transform: translate(-50%, -50%);
 }
 
 .reservation-content .circle.bottom-circle {
-  background: linear-gradient(216.65deg, #110619 21.33%, #fcf8ff 800.03%);
+  background: linear-gradient(216.65deg, var(--dark-purple-color) 21.33%, var(--white-color) 800.03%);
   bottom: 0;
   right: 0;
   transform: translate(50%, 0%);

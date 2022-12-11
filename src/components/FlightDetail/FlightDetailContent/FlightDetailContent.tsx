@@ -13,14 +13,14 @@ const FlightDetailContent = (props: any) => {
   const formatedDepartureDate = format(new Date(props.flight.dateOfDeparture), "dd.MM.yyyy");
 
   const toHoursAndMinutes = (totalMinutes: number) => {
-    const minutes = totalMinutes % 60;
+    const minutes = Math.floor(totalMinutes % 60);
     const hours = Math.floor(totalMinutes / 60);
     if (hours === 0) {
-      return `${padTo2Digits(minutes)}минута`;
+      return `${padTo2Digits(minutes)} минута`;
     } else if (minutes === 0) {
-      return `${padTo2Digits(hours)}час`;
+      return `${padTo2Digits(hours)} час`;
     }
-    return `${padTo2Digits(hours)}час ${padTo2Digits(minutes)}минута`;
+    return `${padTo2Digits(hours)} час ${padTo2Digits(minutes)} минута`;
   };
 
   const padTo2Digits = (num: number) => {
@@ -38,35 +38,35 @@ const FlightDetailContent = (props: any) => {
     <>
       <div className={styles["flight-detail"]}>
         <span>{formatedDepartureDate}</span>
-        <h1>
-          {props.flight.fromCity} - {props.flight.toCity}
-        </h1>
         <h3>
-          {onlyHoursAndMinutesOfStart} - {onlyHoursAndMinutesOfArrival}
+          {props.flight.fromCity} - {props.flight.toCity}
         </h3>
+        <h2>
+          {onlyHoursAndMinutesOfStart} - {onlyHoursAndMinutesOfArrival}
+        </h2>
         <div className={styles["detail-line"]}></div>
-        <h4 className={styles["detail-price"]}>
+        <p className={styles["detail-price"]}>
           Цена за једног путника: <span>{props.flight.price.toFixed(2)} рсд</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
+        </p>
+        <p className={styles["detail-item"]}>
           Модел: <span>{props.flight.model}</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
+        </p>
+        <p className={styles["detail-item"]}>
           Превозник: <span>{props.flight.company}</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
-          Растојање: <span>{props.flight.distanceBetween}км</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
+        </p>
+        <p className={styles["detail-item"]}>
+          Растојање: <span>{props.flight.distanceBetween} км</span>
+        </p>
+        <p className={styles["detail-item"]}>
           Дужина лета:
           <span>{convertedFlightDuration}</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
+        </p>
+        <p className={styles["detail-item"]}>
           Број седишта у авиону: <span>{props.flight.numberOfSeats}</span>
-        </h4>
-        <h4 className={styles["detail-item"]}>
+        </p>
+        <p className={styles["detail-item"]}>
           Резервисаних седишта: <span>{props.flight.reservations.length}</span>
-        </h4>
+        </p>
         <div className={styles["detail-actions"]}>
           <button
             onClick={showReservationModalHandler}

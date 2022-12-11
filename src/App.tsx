@@ -31,13 +31,11 @@ const App = () => {
                 <Route path="step-2" element={<Step2 />} />
                 <Route path="step-3" element={<Step3 />} />
               </Route>
-              <Route
-                path="reservation-done"
-                element={<ReservationDoneModal />}
-              />
+              <Route path="reservation-done" element={<ReservationDoneModal />} />
             </Route>
           </Route>
         </Route>
+        <Route path="*" element={<Home />} />
       </Routes>
     </React.Fragment>
   );

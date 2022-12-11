@@ -12,9 +12,7 @@ const ContactForm = () => {
   const valueHandler = (value: any) => value.trim() !== "" && value.length > 2;
   const validateEmailHandler = (value: string) => {
     const basicValidation = value.trim() !== "";
-    const emailValidation = value.match(
-      "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-    );
+    const emailValidation = value.match("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$");
     return basicValidation && emailValidation;
   };
   const validatePhoneNumberHandler = (value: string) => {
@@ -22,8 +20,7 @@ const ContactForm = () => {
     const emailValidation = value.match("(([+]3816)|06)([0-9]){7,8}$");
     return basicValidation && emailValidation;
   };
-  const validateMessageHandler = (value: any) =>
-    value.trim() !== "" && value.length > 10;
+  const validateMessageHandler = (value: any) => value.trim() !== "" && value.length > 10;
 
   const {
     value: enteredName,
@@ -106,14 +103,8 @@ const ContactForm = () => {
           document.getElementById("modal-root") as HTMLElement
         )}
       <div className={styles["contact-left"]}>
-        <h4>
-          Ту смо да Вам помогнемо, било путем друштвених мрежа, у пословницама
-          или путем Контакт центра
-        </h4>
-        <form
-          onSubmit={contactSubmitHandler}
-          className={styles["contact-form"]}
-        >
+        <h5>Ту смо да Вам помогнемо, било путем друштвених мрежа, у пословницама или путем Контакт центра</h5>
+        <form onSubmit={contactSubmitHandler} className={styles["contact-form"]}>
           <div className={`${styles["name-control"]} form-group`}>
             <input
               placeholder="xd"

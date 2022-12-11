@@ -48,12 +48,10 @@ const InnerModal = () => {
 
 const ReservationModal = () => {
   return (
-    <ReservationDetailsContextProvider>
-      <>
-        <OuterModal />
-        <InnerModal />
-      </>
-    </ReservationDetailsContextProvider>
+    <>
+      <OuterModal />
+      <InnerModal />
+    </>
   );
 };
 

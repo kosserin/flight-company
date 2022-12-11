@@ -19,28 +19,22 @@ const FlightForm = () => {
   let navigate = useNavigate();
 
   const [activeStyle, setActiveStyle] = useState({
-    backgroundColor: "var(--purple-primary)",
+    backgroundColor: "var(--dark-purple-color)",
     borderRadius: "10px 0 10px 0px",
   });
   const [fetchedFrom, setFetchedFrom] = useState<string[]>([]);
   const [fetchedTo, setFetchedTo] = useState<string[]>([]);
   const activeFormRef = useRef<HTMLDivElement>(null);
   // SHOW STATE CONTROL
-  const [showReserveFlightContent, setShowReserveFlightContent] =
-    useState(false);
-  const [showCheckReservationContent, setShowCheckReservationContent] =
-    useState(false);
+  const [showReserveFlightContent, setShowReserveFlightContent] = useState(false);
+  const [showCheckReservationContent, setShowCheckReservationContent] = useState(false);
   const [showFlightStatusContent, setShowFlightStatusContent] = useState(false);
-  const [showCheckReservationModal, setShowCheckReservationModal] =
-    useState(false);
-  const [showCheckFlightStatusModal, setShowCheckFlightStatusModal] =
-    useState(false);
+  const [showCheckReservationModal, setShowCheckReservationModal] = useState(false);
+  const [showCheckFlightStatusModal, setShowCheckFlightStatusModal] = useState(false);
 
-  const fromValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
+  const fromValueHandler = (value: any) => value.trim() !== "" && value.length > 2;
 
-  const toValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
+  const toValueHandler = (value: any) => value.trim() !== "" && value.length > 2;
 
   const departureDateValueHandler = (value: any) => {
     const notEmpty = value.trim() !== "";
@@ -49,11 +43,9 @@ const FlightForm = () => {
     return notEmpty && minDate;
   };
 
-  const reservationIdValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
+  const reservationIdValueHandler = (value: any) => value.trim() !== "" && value.length > 2;
 
-  const flightIdValueHandler = (value: any) =>
-    value.trim() !== "" && value.length > 2;
+  const flightIdValueHandler = (value: any) => value.trim() !== "" && value.length > 2;
 
   const {
     value: enteredFrom,
@@ -103,17 +95,11 @@ const FlightForm = () => {
     blurToHandler();
     blurDepartureDateHandler();
     e.preventDefault();
-    if (
-      fromValueHandler(enteredFrom) &&
-      toValueHandler(enteredTo) &&
-      departureDateValueHandler(enteredDepartureDate)
-    ) {
+    if (fromValueHandler(enteredFrom) && toValueHandler(enteredTo) && departureDateValueHandler(enteredDepartureDate)) {
       fromReset();
       toReset();
       departureDateReset();
-      navigate(
-        `/reservation/flights?from=${enteredFrom}&to=${enteredTo}&dateOfDeparture=${enteredDepartureDate}`
-      );
+      navigate(`/reservation/flights?from=${enteredFrom}&to=${enteredTo}&dateOfDeparture=${enteredDepartureDate}`);
     }
   };
 
@@ -153,9 +139,7 @@ const FlightForm = () => {
 
   async function getReservationInfo(resId: string) {
     try {
-      const response = await fetch(
-        `http://localhost:8089/api/flights/${resId}`
-      );
+      const response = await fetch(`http://localhost:8089/api/flights/${resId}`);
       const data = await response.json();
     } catch (err: any) {}
   }
@@ -168,9 +152,7 @@ const FlightForm = () => {
     replaceToHandler(country);
   };
 
-  const allButtons = document.querySelectorAll(
-    ".form-title"
-  ) as NodeListOf<HTMLElement>;
+  const allButtons = document.querySelectorAll(".form-title") as NodeListOf<HTMLElement>;
 
   const activeFormHandler = (e: any) => {
     allButtons?.forEach((button, index) => {
@@ -183,9 +165,7 @@ const FlightForm = () => {
           setActiveStyle((prev) => {
             return { ...prev, borderRadius: "10px 0 10px 0px" };
           });
-        } else if (
-          allButtons[allButtons.length - 1].offsetLeft === e.target.offsetLeft
-        ) {
+        } else if (allButtons[allButtons.length - 1].offsetLeft === e.target.offsetLeft) {
           setActiveStyle((prev) => {
             setShowReserveFlightContent(false);
             setShowCheckReservationContent(false);
@@ -234,9 +214,7 @@ const FlightForm = () => {
   }, []);
 
   async function fetchFromDestinations() {
-    const response = await fetch(
-      "http://localhost:8089/api/flights/names/from"
-    );
+    const response = await fetch("http://localhost:8089/api/flights/names/from");
     const data = await response.json();
     setFetchedFrom(data);
   }
@@ -254,11 +232,7 @@ const FlightForm = () => {
   };
 
   const reserveFlightContent = (
-    <form
-      autoComplete="off"
-      className={styles["form-content"]}
-      onSubmit={reserveFlightHandler}
-    >
+    <form autoComplete="off" className={styles["form-content"]} onSubmit={reserveFlightHandler}>
       <div className={styles["from-to__holder"]}>
         <div className={`${styles["form-group"]} form-group`}>
           <input
@@ -276,9 +250,7 @@ const FlightForm = () => {
             <ul className={styles["autocomplete-list"]}>
               {fetchedFrom
                 .filter(
-                  (country) =>
-                    country.substring(0, enteredFrom.length).toUpperCase() ==
-                    enteredFrom.toUpperCase()
+                  (country) => country.substring(0, enteredFrom.length).toUpperCase() == enteredFrom.toUpperCase()
                 )
                 .map((country, index) => (
                   <li
@@ -307,11 +279,7 @@ const FlightForm = () => {
           {enteredTo && (
             <ul className={styles["autocomplete-list"]}>
               {fetchedTo
-                .filter(
-                  (country) =>
-                    country.substring(0, enteredTo.length).toUpperCase() ==
-                    enteredTo.toUpperCase()
-                )
+                .filter((country) => country.substring(0, enteredTo.length).toUpperCase() == enteredTo.toUpperCase())
                 .map((country, index) => (
                   <li
                     key={country + index}
@@ -328,9 +296,7 @@ const FlightForm = () => {
           <img src={swapIcon} />
         </div>
       </div>
-      <div
-        className={`${styles["form-group"]} ${styles["date-group"]} form-group`}
-      >
+      <div className={`${styles["form-group"]} ${styles["date-group"]} form-group`}>
         <input
           placeholder="xd"
           type="date"
@@ -353,10 +319,7 @@ const FlightForm = () => {
   );
 
   const checkReservationContent = (
-    <form
-      className={`${styles["form-content"]} ${styles["second-type-of-form"]}`}
-      onSubmit={checkReservationHandler}
-    >
+    <form className={`${styles["form-content"]} ${styles["second-type-of-form"]}`} onSubmit={checkReservationHandler}>
       <div className="form-group">
         <input
           placeholder="xd"
@@ -376,10 +339,7 @@ const FlightForm = () => {
     </form>
   );
   const flightStatusContent = (
-    <form
-      className={`${styles["form-content"]} ${styles["second-type-of-form"]}`}
-      onSubmit={flightStatusHandler}
-    >
+    <form className={`${styles["form-content"]} ${styles["second-type-of-form"]}`} onSubmit={flightStatusHandler}>
       <div className="form-group">
         <input
           placeholder="xd"
@@ -419,38 +379,22 @@ const FlightForm = () => {
           document.getElementById("modal-root") as HTMLElement
         )}
       <div className={styles["form-header"]} id="formHeader">
-        <div
-          onClick={activeFormHandler}
-          className={`${styles["form-title"]} form-title activated-title`}
-          role="button"
-        >
+        <div onClick={activeFormHandler} className={`${styles["form-title"]} form-title activated-title`} role="button">
           <img src={flightImage} alt="" />
           <img src={flightImageWhite} alt="" />
           <h3>Резервишите лет</h3>
         </div>
-        <div
-          onClick={activeFormHandler}
-          className={`${styles["form-title"]} form-title`}
-          role="button"
-        >
+        <div onClick={activeFormHandler} className={`${styles["form-title"]} form-title`} role="button">
           <img src={passengerImage} alt="" />
           <img src={passengerImageWhite} alt="" />
           <h3>Проверите резервацију</h3>
         </div>
-        <div
-          onClick={activeFormHandler}
-          className={`${styles["form-title"]} form-title`}
-          role="button"
-        >
+        <div onClick={activeFormHandler} className={`${styles["form-title"]} form-title`} role="button">
           <img src={travelImage} alt="" />
           <img src={travelImageWhite} alt="" />
           <h3>Статус лета</h3>
         </div>
-        <div
-          ref={activeFormRef}
-          className={styles.active}
-          style={activeStyle}
-        ></div>
+        <div ref={activeFormRef} className={styles.active} style={activeStyle}></div>
       </div>
       {showReserveFlightContent && reserveFlightContent}
       {showCheckReservationContent && checkReservationContent}

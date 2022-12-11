@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Reservation,
-  Step1Details,
-  Step2Details,
-} from "../models/reservation.model";
+import { Reservation, Step1Details, Step2Details } from "../models/reservation.model";
 
 type ReservationDetailsContextObject = {
   name: string;
@@ -18,19 +14,18 @@ type ReservationDetailsContextObject = {
   saveStep2InfoHandler: (info: Step2Details) => void;
 };
 
-export const ReservationDetailsContext =
-  React.createContext<ReservationDetailsContextObject>({
-    name: "",
-    surname: "",
-    email: "",
-    phoneNumber: "",
-    cardholderName: "",
-    cardNumber: "",
-    expirationDate: "",
-    securityCode: "",
-    saveStep1InfoHandler: (info: Step1Details) => {},
-    saveStep2InfoHandler: (info: Step2Details) => {},
-  });
+export const ReservationDetailsContext = React.createContext<ReservationDetailsContextObject>({
+  name: "Андрија",
+  surname: "Костић",
+  email: "kostic.andrija00@gmail.com",
+  phoneNumber: "0612413514",
+  cardholderName: "Andrija Kostic",
+  cardNumber: "4142567833221",
+  expirationDate: "02/21",
+  securityCode: "123",
+  saveStep1InfoHandler: (info: Step1Details) => {},
+  saveStep2InfoHandler: (info: Step2Details) => {},
+});
 
 interface Props {
   children: JSX.Element;
@@ -73,11 +68,7 @@ const ReservationDetailsContextProvider: React.FC<Props> = (props) => {
     saveStep2InfoHandler,
   };
 
-  return (
-    <ReservationDetailsContext.Provider value={contextValue}>
-      {props.children}
-    </ReservationDetailsContext.Provider>
-  );
+  return <ReservationDetailsContext.Provider value={contextValue}>{props.children}</ReservationDetailsContext.Provider>;
 };
 
 export default ReservationDetailsContextProvider;

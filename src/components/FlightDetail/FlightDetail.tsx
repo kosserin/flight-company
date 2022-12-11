@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Flight } from "../../models/flight.model";
 import NotFound from "../NotFound/NotFound";
 import FlightDetailContent from "./FlightDetailContent/FlightDetailContent";
 import styles from "./FlightDetail.module.css";
+import { FlightsContext } from "../../store/flights-context";
+import ReservationDetailsContextProvider from "../../store/reservation-details-context";
 
 const FlightDetail = () => {
   const params = useParams();
+  const ctx = useContext(FlightsContext);
   const [doesExist, setDoesExist] = useState<boolean>(false);
-  const [flight, setFlight] = useState<Flight | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,12 +24,10 @@ const FlightDetail = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        `http://localhost:8089/api/flights/${flightId}`
-      );
+      const response = await fetch(`http://localhost:8089/api/flights/${flightId}`);
       const data = await response.json();
       console.log(data);
-      setFlight({
+      ctx.setFlightHandler({
         id: data.id,
         fromCity: data.fromCity,
         toCity: data.toCity,
@@ -52,7 +52,7 @@ const FlightDetail = () => {
   let flightDetailContent;
 
   if (doesExist) {
-    flightDetailContent = <FlightDetailContent flight={flight} />;
+    flightDetailContent = <FlightDetailContent flight={ctx.selectedFlight} />;
   }
 
   if (isLoading) {
@@ -70,11 +70,9 @@ const FlightDetail = () => {
     flightDetailContent = <NotFound message={error} />;
   }
   return (
-    <>
-      {flightDetailContent}
-      {/* {doesExist && <FlightDetailContent flight={flight} />}
-      {!doesExist && <NotFound message={"Лет који тражите не постоји."} />} */}
-    </>
+    <ReservationDetailsContextProvider>
+      <>{flightDetailContent}</>
+    </ReservationDetailsContextProvider>
   );
 };
 

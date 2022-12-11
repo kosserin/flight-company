@@ -16,7 +16,7 @@ const AchievementItem = (props: any) => {
     <li className={`${styles["item-holder"]} ${showContent ? styles["item-active"] : ""}`} ref={itemRef}>
       <div className={styles["item-header"]} onClick={headerClickHandler}>
         <div className={styles["header-holder"]}>
-          <h4>{props.item.title}</h4>
+          <p className={styles["item-title"]}>{props.item.title}</p>
           <img src={arrowUpIcon} alt="" />
         </div>
       </div>
@@ -24,7 +24,7 @@ const AchievementItem = (props: any) => {
         {props.item.content.map((subcontent: any, index: number) => {
           return (
             <div key={"achievement-item__subcontent" + index} className={styles["content-div"]}>
-              <h5>{subcontent.header}</h5>
+              <p className={styles["subcontent-header"]}>{subcontent.header}</p>
               <p>{subcontent.text}</p>
             </div>
           );

@@ -1,52 +1,100 @@
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  /* COLORS */
+  --dark-purple-color: #110619;
+  --light-purple-color: #381b34;
+  --pink-color: #9a7a96;
+  --white-color: #fcf8ff;
+  --light-color: #f1f1e6;
+  --gray-color: #4c494e;
+  --black-color: #000;
+  --blue-color: #002b90;
+  --dark-purple-rgb: 17, 6, 25;
+  --white-rgb: 252, 248, 255;
+  --black-rgb: 0, 0, 0;
+
+  /* FONT SIZES */
+  --font-size-1: 5rem;
+  --font-size-2: 4.125rem;
+  --font-size-3: 2.625rem;
+  --font-size-4: 2rem;
+  --font-size-5: 1.875rem;
+  --font-size-6: 1.5rem;
+  --font-size-7: 1.125rem;
+  --font-size-8: 1rem;
+  --font-size-9: 0.875rem;
+  --font-size-10: 0.65rem;
+  /* FONT WEIGHTS */
+  --font-weight-800: 800;
+  --font-weight-700: 700;
+  --font-weight-600: 600;
+  --font-weight-500: 500;
+  --font-weight-400: 400;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Jost", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Montserrat", sans-serif;
 }
 
-:root {
-  --purple-primary: #110619;
-  --purple-secondary: #381b34;
-  --purple-third: #9a7a96;
-  --white-primary: #fcf8ff;
-  --white-secondary: #f1f1e6;
-  --label-color: #4c494e;
+body,
+html {
+  overflow-x: hidden;
 }
 
 h1 {
-  font-size: 2.625rem;
-  font-weight: 600;
+  /* font-size: 2.625rem;
+  font-weight: var(--font-weight-600); */
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-1);
 }
 
 h2 {
-  font-size: 1.75rem;
-  font-weight: 500;
+  /* font-size: 1.75rem;
+  font-weight: var(--font-weight-500); */
+  font-weight: var(--font-weight-800);
+  font-size: var(--font-size-2);
 }
 
 h3 {
-  font-size: 2.625rem;
-  font-weight: 600;
+  /* font-size: 2.625rem;
+  font-weight: var(--font-weight-600); */
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-3);
 }
 
 h4 {
-  font-size: 1.125rem;
-  font-weight: 500;
+  /* font-size: 1.125rem;
+  font-weight: var(--font-weight-500); */
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-4);
+}
+
+h5 {
+  /* font-size: 1.125rem;
+  font-weight: var(--font-weight-500); */
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-5);
+}
+
+h6 {
+  /* font-size: 1.125rem;
+  font-weight: var(--font-weight-500); */
+  font-weight: var(--font-weight-600);
+  font-size: var(--font-size-6);
 }
 
 p {
-  font-weight: 500;
-  font-size: 0.875rem;
+  font-weight: var(--font-weight-500);
+  font-size: var(--font-size-9);
   line-height: 22px;
 }
 
 .form-title.activated-title h3 {
-  color: var(--white-primary);
+  color: var(--white-color);
 }
 
 .form-title.activated-title img:first-of-type {
@@ -69,23 +117,24 @@ p {
   display: none;
 }
 
-body,
-html {
-  overflow-x: hidden;
-}
-
-/* should not be used because it's buggy with react router */
-/* html {
-  scroll-behavior: smooth;
-} */
-
-@media (max-width: 500px) {
-  h1,
-  h3 {
-    font-size: 1.75rem;
+@media (max-width: 768px) {
+  h2 {
+    font-size: var(--font-size-3);
   }
 
-  h2 {
-    font-size: 1.25rem;
+  h3 {
+    font-size: var(--font-size-6);
+  }
+
+  h4 {
+    font-size: var(--font-size-6);
+  }
+
+  h5 {
+    font-size: var(--font-size-7);
+  }
+
+  h6 {
+    font-size: var(--font-size-8);
   }
 }

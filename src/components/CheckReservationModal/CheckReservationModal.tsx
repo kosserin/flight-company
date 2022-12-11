@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CheckReservationModal.module.css";
 import failed from "../../assets/status/failed.png";
 import success from "../../assets/status/success.png";
-import { CheckReservationModel } from "../../models/reservation.model";
 import { format } from "date-fns";
 import sr from "date-fns/locale/sr";
+import { Flight } from "../../models/flight.model";
 
 export const InnerModal = (props: any) => {
-  const [reservation, setReservation] = useState<CheckReservationModel | null>(null);
+  const [reservation, setReservation] = useState<Flight | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   let innerModalContent = <div></div>;
@@ -20,22 +20,12 @@ export const InnerModal = (props: any) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8089/api/reservations/${resId}`);
+      const response = await fetch(`http://localhost:8089/api/flights/reservation/${resId}`);
       const data = await response.json();
       setReservation(data);
+      console.log(data);
+
       setIsLoading(false);
-      // setReservation({
-      //   resId: "36545873543543534",
-      //   surname: "Костић",
-      //   flightId: "4387978324723849732948247",
-      //   from: "Београд",
-      //   to: "Атина",
-      //   dateOfDeparture: "2022-11-22T20:45:00",
-      // });
-      // setTimeout(() => {
-      //   setIsLoading(false);
-      //   throw new Error("dsajdioas");
-      // }, 500);
     } catch (err: any) {
       setError("Не постоји резервација са унетом шифром у нашој бази података.");
       setIsLoading(false);
@@ -81,30 +71,30 @@ export const InnerModal = (props: any) => {
         </div>
         <h4>
           Шифра резервације
-          <span>{reservation.resId}</span>
+          <span>{props.reservationId}</span>
         </h4>
-        <h5>
+        <p>
           Шифра лета
-          <span>{reservation.flightId}</span>
-        </h5>
-        <h5>
+          <span>{reservation.id}</span>
+        </p>
+        <p>
           Од - до
           <span>
-            {reservation.from} - {reservation.to}
+            {reservation.fromCity} - {reservation.toCity}
           </span>
-        </h5>
-        <h5>
+        </p>
+        <p>
           Датум поласка
           <span>
             {format(new Date(reservation.dateOfDeparture), "dd. MMMM", {
               locale: sr,
             })}
           </span>
-        </h5>
-        <h5>
+        </p>
+        <p>
           Време поласка
           <span>{onlyHoursAndMinutesOfStart}</span>
-        </h5>
+        </p>
         <button onClick={closeModal} className="submit-button">
           У реду
         </button>

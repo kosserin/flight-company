@@ -155,36 +155,27 @@ const DiscoverDestinations = () => {
   const tomorrow = format(addDays(new Date(), 1), "yyyy-MM-dd");
 
   const destinationClickHandler = (toDestination: string) => {
-    navigate(
-      `/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`
-    );
+    navigate(`/reservation/flights?from=Београд&to=${toDestination}&dateOfDeparture=${tomorrow}`);
   };
 
   return (
     <section className={styles["discover-content"]}>
       <div className={styles["discover-header"]}>
-        <h2>Креирајте сопствену европску авантуру</h2>
+        <h3>Креирајте сопствену европску авантуру</h3>
         <p>
-          Доживите изванредно искуство путовања док вас водимо у главне светске
-          престонице. Лутајте кроз историју са очаравајућом сликовитом лепотом,
-          уметничким благом и живописном културом.
+          Доживите изванредно искуство путовања док вас водимо у главне светске престонице. Лутајте кроз историју са
+          очаравајућом сликовитом лепотом, уметничким благом и живописном културом.
         </p>
       </div>
       <div className={styles["circle"]}></div>
       <div className={styles["all-destinations"]} id="allDestinations">
-        <h2>Све дестинације</h2>
+        <h4>Све дестинације</h4>
         <ul>
           {DUMMY_DESTINATIONS.map((destination, index) => (
-            <li
-              key={index + destination.title}
-              onClick={() => destinationClickHandler(destination.title)}
-            >
-              <img
-                src={require(`../../assets/destinations/${destination.imagePath}`)}
-                alt=""
-              />
+            <li key={index + destination.title} onClick={() => destinationClickHandler(destination.title)}>
+              <img src={require(`../../assets/destinations/${destination.imagePath}`)} alt="" />
               <div className={styles["image-overlay"]}></div>
-              <h3>{destination.title}</h3>
+              <h4>{destination.title}</h4>
             </li>
           ))}
         </ul>

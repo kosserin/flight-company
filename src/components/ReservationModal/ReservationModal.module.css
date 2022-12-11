@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(var(--black-rgb), 0.9);
   z-index: 103;
 }
 
@@ -16,13 +16,13 @@
   transform: translate(-50%, 0%);
   max-width: 100%;
   width: 800px;
-  background-color: var(--white-primary);
+  background-color: var(--white-color);
   border-radius: 0 0 20px 20px;
 }
 
 .modal-header {
-  background-color: #000;
-  color: var(--white-primary);
+  background-color: var(--black-color);
+  color: var(--white-color);
   text-align: center;
   position: relative;
   padding: 0 8px;
@@ -40,9 +40,9 @@
   background-color: transparent;
   border: none;
   outline: none;
-  font-weight: 500;
-  font-size: 0.875rem;
-  color: gray;
+  font-weight: var(--font-weight-500);
+  font-size: var(--font-size-9);
+  color: var(--gray-color);
   cursor: pointer;
 }
 

@@ -12,10 +12,8 @@ import { Link } from "react-router-dom";
 const Footer = (props: any) => {
   return (
     <footer className={`${props.color === "dark" && styles["footer-dark"]}`}>
-      <h4>Авионик</h4>
-      <p>
-        Авио компанија која Вас води где год пожелите безбедно, удобно и брзо.
-      </p>
+      <h6>Авионик</h6>
+      <p>Авио компанија која Вас води где год пожелите безбедно, удобно и брзо.</p>
       <Link to="/contact">Пишите нам</Link>
       <div className={styles["footer-social"]}>
         <a href="https://www.facebook.com/" target="_blank">

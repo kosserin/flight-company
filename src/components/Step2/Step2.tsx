@@ -15,8 +15,7 @@ const Step2 = () => {
     let first = value.trim() !== "" && value.length > 2;
     return first;
   };
-  const expirationDateValueHandler = (value: string) =>
-    value.match("^(0[1-9]|1[0-2])/?([0-9]{2})$");
+  const expirationDateValueHandler = (value: string) => value.match("^(0[1-9]|1[0-2])/?([0-9]{2})$");
   const securityCodeValueHandler = (value: string) => value.match("^[0-9]{3}$");
   const cardNumberValueHandler = (value: string) => {
     const visaValidation = value.match("^4[0-9]{12}(?:[0-9]{3})?$");
@@ -94,8 +93,7 @@ const Step2 = () => {
 
   const blurExpDateHandler = (e: any) => {
     if (e.target.value.match("^[0-9]{4}$")) {
-      const valueWithSlash =
-        e.target.value.slice(0, 2) + "/" + e.target.value.slice(-2);
+      const valueWithSlash = e.target.value.slice(0, 2) + "/" + e.target.value.slice(-2);
       replaceExpirationDateValue(valueWithSlash);
     }
 
@@ -104,22 +102,14 @@ const Step2 = () => {
 
   return (
     <form className={styles["step-2"]} onSubmit={step2SubmitHandler}>
-      <h4>Одаберите начин плаћања</h4>
-      <p>
-        Неће Вам бити наплаћено док не прегледате своју резервацију на следећој
-        страни.
+      <p className={styles["step-heading"]}>Одаберите начин плаћања</p>
+      <p className={styles["step-desc"]}>
+        Неће Вам бити наплаћено док не прегледате своју резервацију на следећој страни.
       </p>
       <div className={styles["form-holder"]}>
         <div className={styles["card-group"]}>
           <div className={styles["radio-group"]}>
-            <input
-              type="radio"
-              name="payment-method"
-              id="paymentMethod"
-              value="credit-card"
-              readOnly
-              checked
-            />
+            <input type="radio" name="payment-method" id="paymentMethod" value="credit-card" readOnly checked />
             <label htmlFor="paymentMethod">Credit card</label>
           </div>
           <div className={styles["card-images"]}>
