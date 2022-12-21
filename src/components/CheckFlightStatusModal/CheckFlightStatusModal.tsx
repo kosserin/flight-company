@@ -7,6 +7,7 @@ import delayedFlight from "../../assets/flight-status/delayed-flight.png";
 import activeFlight from "../../assets/flight-status/active-flight.png";
 import landedFlight from "../../assets/flight-status/landed-flight.png";
 import { Flight, FlightStatus } from "../../models/flight.model";
+import axios from "axios";
 
 export const InnerModal = (props: any) => {
   const [flightStatusResponse, setFlightStatusResponse] = useState<FlightStatus | null>(null);
@@ -22,8 +23,8 @@ export const InnerModal = (props: any) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8089/api/flights/${flightId}`);
-      const flightRes: Flight = await response.json();
+      const response = await axios.get(`https://flights.herokuapp.com/api/flights/${flightId}`);
+      const flightRes: Flight = response.data;
       // here check if flight is delayed, cancelled or smh else
       if (flightRes.delayed) {
         setFlightStatusResponse(FlightStatus.Delayed);

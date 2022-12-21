@@ -88,7 +88,9 @@ const FlightContent = () => {
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `http://localhost:8089/api/flights?from=${from}&to=${to}&dateOfDeparture=${specificDate ? specificDate : date}`
+        `https://flights.herokuapp.com/api/flights?from=${from}&to=${to}&dateOfDeparture=${
+          specificDate ? specificDate : date
+        }`
       );
       const flightsRes = await response.json();
       ctx.appendFlights(flightsRes);

@@ -33,7 +33,7 @@ const InnerModal = () => {
       lastName: reservationDetailsCtx.surname,
     });
     try {
-      const response = await fetch(`http://localhost:8089/api/flights/${params.flightId}`, {
+      const response = await fetch(`https://flights.herokuapp.com/api/flights/${params.flightId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

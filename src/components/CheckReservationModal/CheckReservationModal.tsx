@@ -5,6 +5,7 @@ import success from "../../assets/status/success.png";
 import { format } from "date-fns";
 import sr from "date-fns/locale/sr";
 import { Flight } from "../../models/flight.model";
+import axios from "axios";
 
 export const InnerModal = (props: any) => {
   const [reservation, setReservation] = useState<Flight | null>(null);
@@ -20,8 +21,8 @@ export const InnerModal = (props: any) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8089/api/flights/reservation/${resId}`);
-      const data = await response.json();
+      const response = await axios.get(`https://flights.herokuapp.com/api/flights/reservation/${resId}`);
+      const data = response.data;
       setReservation(data);
       console.log(data);
 
@@ -78,7 +79,7 @@ export const InnerModal = (props: any) => {
           <span>{reservation.id}</span>
         </p>
         <p>
-          Од - до
+          Од - До
           <span>
             {reservation.fromCity} - {reservation.toCity}
           </span>

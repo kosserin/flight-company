@@ -24,7 +24,7 @@ const FlightDetail = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8089/api/flights/${flightId}`);
+      const response = await fetch(`https://flights.herokuapp.com/api/flights/${flightId}`);
       const data = await response.json();
       console.log(data);
       ctx.setFlightHandler({

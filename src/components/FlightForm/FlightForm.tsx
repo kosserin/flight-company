@@ -139,7 +139,7 @@ const FlightForm = () => {
 
   async function getReservationInfo(resId: string) {
     try {
-      const response = await fetch(`http://localhost:8089/api/flights/${resId}`);
+      const response = await fetch(`https://flights.herokuapp.com/api/flights/${resId}`);
       const data = await response.json();
     } catch (err: any) {}
   }
@@ -214,13 +214,13 @@ const FlightForm = () => {
   }, []);
 
   async function fetchFromDestinations() {
-    const response = await fetch("http://localhost:8089/api/flights/names/from");
+    const response = await fetch("https://flights.herokuapp.com/api/flights/names/from");
     const data = await response.json();
     setFetchedFrom(data);
   }
 
   async function fetchToDestinations() {
-    const response = await fetch("http://localhost:8089/api/flights/names/to");
+    const response = await fetch("https://flights.herokuapp.com/api/flights/names/to");
     const data = await response.json();
     setFetchedTo(data);
   }
