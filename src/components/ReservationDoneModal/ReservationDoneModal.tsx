@@ -5,6 +5,7 @@ import styles from "./ReservationDoneModal.module.css";
 import success from "../../assets/status/success.png";
 import failed from "../../assets/status/failed.png";
 import { FlightsContext } from "../../store/flights-context";
+import axios from "axios";
 
 export const OuterModal = () => {
   const navigate = useNavigate();
@@ -23,23 +24,22 @@ const InnerModal = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const addReservationHandler = async () => {
-    setError(null);
-    setIsLoading(true);
-    const newReservations = [...flightsCtx.selectedFlight.reservations];
-    const uniqueReservationId = "RES-" + new Date().getTime().toString();
-    console.log(reservationDetailsCtx.surname);
-    newReservations.push({
-      id: uniqueReservationId,
-      lastName: reservationDetailsCtx.surname,
-    });
     try {
-      const response = await fetch(`https://flights.herokuapp.com/api/flights/${params.flightId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      setError(null);
+      setIsLoading(true);
+      const newReservations = [...flightsCtx.selectedFlight.reservations];
+      const uniqueReservationId = "RES-" + new Date().getTime().toString();
+      newReservations.push({
+        id: uniqueReservationId,
+        lastName: reservationDetailsCtx.surname,
+      });
+      await axios({
+        method: "put",
+        url: `https://flights.herokuapp.com/api/flights/${params.flightId}`,
+        data: {
           id: flightsCtx.selectedFlight.id,
           reservations: newReservations,
-        }),
+        },
       });
       setGeneratedResIdFromBackend(uniqueReservationId);
       setIsLoading(false);
@@ -50,7 +50,6 @@ const InnerModal = () => {
   };
 
   useEffect(() => {
-    console.log(reservationDetailsCtx.surname);
     addReservationHandler();
   }, []);
 

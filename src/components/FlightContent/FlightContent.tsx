@@ -7,6 +7,7 @@ import sortIcon from "../../assets/sort-white.png";
 import arrowRight from "../../assets/right-arrow-white.png";
 import { sr } from "date-fns/locale";
 import { addDays, format } from "date-fns";
+import axios from "axios";
 
 const FlightContent = () => {
   const ctx = useContext(FlightsContext);
@@ -87,14 +88,13 @@ const FlightContent = () => {
     try {
       setIsLoading(true);
       setError(null);
-      const response = await fetch(
+      const response = await axios.get(
         `https://flights.herokuapp.com/api/flights?from=${from}&to=${to}&dateOfDeparture=${
           specificDate ? specificDate : date
         }`
       );
-      const flightsRes = await response.json();
-      ctx.appendFlights(flightsRes);
-      if (flightsRes.length < 1) {
+      ctx.appendFlights(response.data);
+      if (response.data.length < 1) {
         setError(`Нема летова који одговарају унетим критеријумима ${errorMessage}`);
       }
       setIsLoading(false);

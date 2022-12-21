@@ -24,8 +24,6 @@ export const InnerModal = (props: any) => {
       const response = await axios.get(`https://flights.herokuapp.com/api/flights/reservation/${resId}`);
       const data = response.data;
       setReservation(data);
-      console.log(data);
-
       setIsLoading(false);
     } catch (err: any) {
       setError("Не постоји резервација са унетом шифром у нашој бази података.");

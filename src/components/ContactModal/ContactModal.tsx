@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./ContactModal.module.css";
 import failed from "../../assets/status/failed.png";
 import success from "../../assets/status/success.png";
+import axios from "axios";
 
 const OuterModal = (props: any) => {
   return <div onClick={() => props.closeModal()} className={styles["outer-modal"]}></div>;
@@ -63,10 +64,8 @@ const InnerModal = (props: any) => {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users");
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+      await axios.get("https://jsonplaceholder.typicode.com/users");
+      setIsLoading(false);
     } catch (err) {
       setError("Ваша порука није забележена. Молимо покушајте поново касније.");
       setIsLoading(false);

@@ -6,6 +6,7 @@ import FlightDetailContent from "./FlightDetailContent/FlightDetailContent";
 import styles from "./FlightDetail.module.css";
 import { FlightsContext } from "../../store/flights-context";
 import ReservationDetailsContextProvider from "../../store/reservation-details-context";
+import axios from "axios";
 
 const FlightDetail = () => {
   const params = useParams();
@@ -24,9 +25,8 @@ const FlightDetail = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://flights.herokuapp.com/api/flights/${flightId}`);
-      const data = await response.json();
-      console.log(data);
+      const response = await axios.get(`https://flights.herokuapp.com/api/flights/${flightId}`);
+      const data: Flight = await response.data;
       ctx.setFlightHandler({
         id: data.id,
         fromCity: data.fromCity,

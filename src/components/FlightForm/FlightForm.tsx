@@ -15,6 +15,7 @@ import ReactDOM from "react-dom";
 import CheckReservationModal from "../CheckReservationModal/CheckReservationModal";
 import CheckFlightStatusModal from "../CheckFlightStatusModal/CheckFlightStatusModal";
 import { format, getDayOfYear } from "date-fns";
+import axios from "axios";
 const FlightForm = () => {
   let navigate = useNavigate();
 
@@ -137,13 +138,6 @@ const FlightForm = () => {
     flightIdReset();
   };
 
-  async function getReservationInfo(resId: string) {
-    try {
-      const response = await fetch(`https://flights.herokuapp.com/api/flights/${resId}`);
-      const data = await response.json();
-    } catch (err: any) {}
-  }
-
   const fillFromHandler = (country: string) => {
     replaceFromHandler(country);
   };
@@ -214,14 +208,14 @@ const FlightForm = () => {
   }, []);
 
   async function fetchFromDestinations() {
-    const response = await fetch("https://flights.herokuapp.com/api/flights/names/from");
-    const data = await response.json();
+    const response = await axios.get("https://flights.herokuapp.com/api/flights/names/from");
+    const data: string[] = await response.data;
     setFetchedFrom(data);
   }
 
   async function fetchToDestinations() {
-    const response = await fetch("https://flights.herokuapp.com/api/flights/names/to");
-    const data = await response.json();
+    const response = await axios.get("https://flights.herokuapp.com/api/flights/names/to");
+    const data: string[] = await response.data;
     setFetchedTo(data);
   }
 
