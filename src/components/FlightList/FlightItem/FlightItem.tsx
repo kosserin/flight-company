@@ -31,7 +31,7 @@ const FlightItem = (props: any) => {
 
   return (
     <li className={styles["flight-item"]} onClick={showFlightDetailHandler}>
-      <p className={styles["flight-item__price"]}>{props.flight.price}.00 рсд</p>
+      <p className={styles["flight-item__price"]}>{props.flight.price} рсд</p>
       <div className={styles["flight-item__destinations"]}>
         <div className={styles["flight-item__destination"]}>
           <p className={styles["flight-item__start"]}>{onlyHoursAndMinutesOfStart}</p>

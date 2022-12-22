@@ -8,6 +8,7 @@ import arrowRight from "../../assets/right-arrow-white.png";
 import { sr } from "date-fns/locale";
 import { addDays, format } from "date-fns";
 import axios from "axios";
+import { Flight } from "../../models/flight.model";
 
 const FlightContent = () => {
   const ctx = useContext(FlightsContext);
@@ -93,8 +94,11 @@ const FlightContent = () => {
           specificDate ? specificDate : date
         }`
       );
-      ctx.appendFlights(response.data);
-      if (response.data.length < 1) {
+      const onlyUpcomingFlights = response.data.filter(
+        (flight: Flight) => new Date(flight.dateOfDeparture) > new Date()
+      );
+      ctx.appendFlights(onlyUpcomingFlights);
+      if (onlyUpcomingFlights.length < 1) {
         setError(`Нема летова који одговарају унетим критеријумима ${errorMessage}`);
       }
       setIsLoading(false);
