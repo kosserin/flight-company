@@ -80,6 +80,7 @@
 .detail-price span {
   font-weight: var(--font-weight-600);
   font-size: var(--font-size-4);
+  text-align: right;
 }
 
 .detail-item {

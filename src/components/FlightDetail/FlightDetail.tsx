@@ -36,7 +36,7 @@ const FlightDetail = () => {
         numberOfSeats: data.numberOfSeats,
         price: data.price,
         distanceBetween: data.distanceBetween,
-        reservations: data.reservations,
+        reservations: data.reservations || [],
         model: data.model,
         company: data.company,
       });

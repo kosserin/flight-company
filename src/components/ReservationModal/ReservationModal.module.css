@@ -32,6 +32,10 @@
   justify-content: center;
 }
 
+.modal-header h4 {
+  margin-bottom: 0;
+}
+
 .modal-header button {
   position: absolute;
   top: 50%;

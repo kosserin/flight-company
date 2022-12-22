@@ -192,7 +192,8 @@ form.form-content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0;
+    gap: 4px;
+    height: 65px;
   }
 
   .form-title img {

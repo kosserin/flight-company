@@ -83,7 +83,7 @@
   height: 57px;
   font-size: var(--font-size-8);
   font-weight: var(--font-weight-600);
-  max-width: 100%;
+  max-width: 90%;
   width: 340px;
   margin-top: 32px;
   transition: 250ms ease-out;
