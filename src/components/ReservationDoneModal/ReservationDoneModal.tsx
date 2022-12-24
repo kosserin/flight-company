@@ -4,6 +4,7 @@ import { ReservationDetailsContext } from "../../store/reservation-details-conte
 import styles from "./ReservationDoneModal.module.css";
 import success from "../../assets/status/success.png";
 import failed from "../../assets/status/failed.png";
+import copyIcon from "../../assets/copy.png";
 import { FlightsContext } from "../../store/flights-context";
 import axios from "axios";
 
@@ -61,6 +62,10 @@ const InnerModal = () => {
     navigate("/");
   };
 
+  const copyToClipboard = (text = "") => {
+    navigator.clipboard.writeText(text);
+  };
+
   let reservationModalContent;
 
   if (!isLoading && !error) {
@@ -70,8 +75,11 @@ const InnerModal = () => {
           <img src={success} />
           <h6>Хвала на поверењу, успешно сте резервисали карту!</h6>
           <p>
-            Број Ваше резервације је: <span>{generatedResIdFromBackend}</span>. Молимо Вас да сачувате негде број
-            резервације како бисте могли накнадно да проверите резервацију.
+            Број Ваше резервације је:{" "}
+            <span onClick={() => copyToClipboard(generatedResIdFromBackend || "")}>
+              {generatedResIdFromBackend} <img src={copyIcon} alt="" />
+            </span>
+            . Молимо Вас да сачувате негде број резервације како бисте могли накнадно да проверите резервацију.
           </p>
         </div>
         <button onClick={navigateToHome} className={`${styles["modal-button"]} submit-button`}>

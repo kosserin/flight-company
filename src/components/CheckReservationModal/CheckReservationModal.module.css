@@ -53,6 +53,12 @@
   font-size: var(--font-size-7);
 }
 
+.res-modal h4 span img,
+.res-modal p span img {
+  width: 16px;
+  cursor: pointer;
+}
+
 .res-modal p {
   display: flex;
   flex-direction: column;
@@ -64,6 +70,9 @@
 }
 
 .res-modal p span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-weight: var(--font-weight-600);
   font-size: var(--font-size-8);
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./CheckReservationModal.module.css";
 import failed from "../../assets/status/failed.png";
 import success from "../../assets/status/success.png";
+import copyIcon from "../../assets/copy.png";
 import { format } from "date-fns";
 import sr from "date-fns/locale/sr";
 import { Flight } from "../../models/flight.model";
@@ -33,6 +34,10 @@ export const InnerModal = (props: any) => {
 
   const closeModal = () => {
     props.hideModal();
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
   };
 
   if (error) {
@@ -70,11 +75,15 @@ export const InnerModal = (props: any) => {
         </div>
         <h4>
           Шифра резервације
-          <span>{props.reservationId}</span>
+          <span>
+            {props.reservationId} <img onClick={() => copyToClipboard(props.reservationId)} src={copyIcon} alt="" />
+          </span>
         </h4>
         <p>
           Шифра лета
-          <span>{reservation.id}</span>
+          <span>
+            {reservation.id} <img onClick={() => copyToClipboard(reservation.id)} src={copyIcon} alt="" />
+          </span>
         </p>
         <p>
           Од - До
