@@ -73,7 +73,7 @@
 }
 
 .review-holder {
-  border: 1px solid #dcdcdc;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 1rem;
 }
@@ -96,7 +96,7 @@
   cursor: pointer;
   background-color: transparent;
   font-weight: var(--font-weight-600);
-  color: var(--blue-color);
+  color: #002b90;
 }
 
 .review-body {
