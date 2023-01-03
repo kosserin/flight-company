@@ -44,7 +44,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["non-existing-content"]}>
         <div>
-          <img src={failed} />
+          <img src={failed} alt="" />
           <p>{error}</p>
         </div>
         <button onClick={closeModal} className="submit-button">
@@ -71,7 +71,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["res-modal"]}>
         <div>
-          <img src={success} />
+          <img src={success} alt="" />
         </div>
         <h4>
           Шифра резервације

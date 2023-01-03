@@ -72,7 +72,7 @@ const InnerModal = () => {
     reservationModalContent = (
       <div className={styles["reservation-response"]}>
         <div>
-          <img src={success} />
+          <img src={success} alt="" />
           <h6>Хвала на поверењу, успешно сте резервисали карту!</h6>
           <p>
             Број Ваше резервације је:{" "}
@@ -104,7 +104,7 @@ const InnerModal = () => {
     reservationModalContent = (
       <div className={styles["reservation-response"]}>
         <div>
-          <img src={failed} />
+          <img src={failed} alt="" />
           <p>Дошло је до грешке. Молимо покушајте касније.</p>
         </div>
         <button onClick={navigateToFlightDetailsContent} className={`${styles["modal-button"]} submit-button`}>

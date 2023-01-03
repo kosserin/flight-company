@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Reservation, Step1Details, Step2Details } from "../models/reservation.model";
+import { Step1Details, Step2Details } from "../models/reservation.model";
 
 type ReservationDetailsContextObject = {
   name: string;

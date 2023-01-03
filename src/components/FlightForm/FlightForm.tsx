@@ -287,7 +287,7 @@ const FlightForm = () => {
           )}
         </div>
         <div className={styles["swap-holder"]} onClick={swapFromToHandler}>
-          <img src={swapIcon} />
+          <img src={swapIcon} alt="" />
         </div>
       </div>
       <div className={`${styles["form-group"]} ${styles["date-group"]} form-group`}>

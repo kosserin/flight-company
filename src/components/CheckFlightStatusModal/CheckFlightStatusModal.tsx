@@ -61,7 +61,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["non-existing-content"]}>
         <div>
-          <img src={failed} />
+          <img src={failed} alt="" />
           <h5>{error}</h5>
         </div>
         <button onClick={closeModal} className="submit-button">
@@ -115,7 +115,7 @@ export const InnerModal = (props: any) => {
     innerModalContent = (
       <div className={styles["inner-modal__content"]}>
         <div>
-          <img src={iconToDisplay} />
+          <img src={iconToDisplay} alt="" />
           <h5>{textToDisplay}</h5>
         </div>
         <button onClick={closeModal} className="submit-button">

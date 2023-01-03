@@ -113,8 +113,8 @@ const Step2 = () => {
             <label htmlFor="paymentMethod">Credit card</label>
           </div>
           <div className={styles["card-images"]}>
-            <img src={mastercard} />
-            <img src={visa} />
+            <img src={mastercard} alt="" />
+            <img src={visa} alt="" />
           </div>
         </div>
         <div className="form-group">

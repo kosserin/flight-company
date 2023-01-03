@@ -78,10 +78,16 @@ const Testimonials = () => {
               );
             })}
           </Swiper>
-          <button className={`${styles["testimonial-prev"]} ${styles["testimonial-button"]} testimonial-prev`}>
+          <button
+            className={`${styles["testimonial-prev"]} ${styles["testimonial-button"]} testimonial-prev`}
+            title="Prev button"
+          >
             <img src={prevIcon} alt="" />
           </button>
-          <button className={`${styles["testimonial-next"]} ${styles["testimonial-button"]} testimonial-next`}>
+          <button
+            className={`${styles["testimonial-next"]} ${styles["testimonial-button"]} testimonial-next`}
+            title="Next button"
+          >
             <img src={nextIcon} alt="" />
           </button>
         </div>

@@ -52,7 +52,7 @@ const Step3 = () => {
           </div>
           <div className={styles["review-body"]}>
             <div className={styles["payment-card-number"]}>
-              <img src={reservationDetailsCtx.cardNumber.startsWith("5") ? mastercard : visa} />
+              <img src={reservationDetailsCtx.cardNumber.startsWith("5") ? mastercard : visa} alt="" />
               <p>
                 <span>****</span> {reservationDetailsCtx.cardNumber.slice(-4)}
               </p>

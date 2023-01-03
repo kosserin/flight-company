@@ -87,10 +87,18 @@ const Destinations = () => {
             );
           })}
         </Swiper>
-        <button className={`${styles["destination-prev"]} ${styles["destination-button"]}`} id="destination-prev">
+        <button
+          className={`${styles["destination-prev"]} ${styles["destination-button"]}`}
+          id="destination-prev"
+          title="Prev Destination Button"
+        >
           <img src={prevIcon} alt="" />
         </button>
-        <button className={`${styles["destination-next"]} ${styles["destination-button"]}`} id="destination-next">
+        <button
+          className={`${styles["destination-next"]} ${styles["destination-button"]}`}
+          id="destination-next"
+          title="Next Destination Button"
+        >
           <img src={nextIcon} alt="" />
         </button>
       </div>

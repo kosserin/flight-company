@@ -176,7 +176,7 @@ const FlightContent = () => {
             {!isLoading && (
               <button onClick={checkNextDayFlightsHandler}>
                 <span>Наредни дан на истој релацији</span>
-                <img src={arrowRight} />
+                <img src={arrowRight} alt="" />
               </button>
             )}
           </div>

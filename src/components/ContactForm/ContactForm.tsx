@@ -177,13 +177,13 @@ const ContactForm = () => {
             </button>
           </div>
           <div className={styles["contact-social"]}>
-            <a href="https://www.facebook.com/" target="_blank">
+            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link">
               <img src={facebookIcon} alt="" />
             </a>
-            <a href="https://telegram.org/" target="_blank">
+            <a href="https://telegram.org/" target="_blank" aria-label="Telegram link">
               <img src={telegramIcon} alt="" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank">
+            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link">
               <img src={instagramIcon} alt="" />
             </a>
           </div>

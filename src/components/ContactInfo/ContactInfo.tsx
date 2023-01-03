@@ -7,7 +7,7 @@ const ContactInfo = () => {
   return (
     <div className={styles["contact-info"]}>
       <div className={styles["info-item"]}>
-        <img src={supportIcon} />
+        <img src={supportIcon} alt="" />
         <div className={styles["info-holder"]}>
           <a href="tel:+3816028061389" target="_blank">
             060 2806 1389
@@ -16,7 +16,7 @@ const ContactInfo = () => {
         </div>
       </div>
       <div className={styles["info-item"]}>
-        <img src={locationIcon} />
+        <img src={locationIcon} alt="" />
         <div className={styles["info-holder"]}>
           <a href="https://goo.gl/maps/NLXDq9KgiqykMTe9A" target="_blank">
             Авионик а.д. Београд

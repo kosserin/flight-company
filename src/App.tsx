@@ -16,8 +16,6 @@ import ReservationDoneModal from "./components/ReservationDoneModal/ReservationD
 const App = () => {
   return (
     <React.Fragment>
-      {/* use this code to wrap flight form to get form behind navigation on mobile view <main style={{ position: "relative" }}>        
-      </main> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
