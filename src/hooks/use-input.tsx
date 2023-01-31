@@ -1,14 +1,19 @@
-import React, { useReducer, useEffect } from "react";
+import { useReducer } from "react";
 
 // const initialDepartureDateValue = "30-10-2022";
 // const initialFromValue = "Београд";
 
-const initialInputState = {
+interface InputState {
+  value: string;
+  isTouched: boolean;
+}
+
+const initialInputState: InputState = {
   value: "",
   isTouched: false,
 };
 
-const inputReducer = (state: any, action: any) => {
+const inputReducer = (state: InputState, action: any) => {
   if (action.type === "CHANGE") {
     return {
       value: action.value,
@@ -38,10 +43,7 @@ const inputReducer = (state: any, action: any) => {
 };
 
 const useInput = (validateValue: any) => {
-  const [inputState, dispatchInputAction] = useReducer(
-    inputReducer,
-    initialInputState
-  );
+  const [inputState, dispatchInputAction] = useReducer(inputReducer, initialInputState);
   const isValid = validateValue(inputState.value);
   const valueInputClasses = !isValid && inputState.isTouched;
 

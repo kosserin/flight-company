@@ -70,25 +70,25 @@ const FlightsContextProvider: React.FC<Props> = (props) => {
   };
 
   const sortLowestFirst = (givenFlights: Flight[]) => {
-    return givenFlights.sort((a: any, b: any) => {
+    return givenFlights.sort((a: Flight, b: Flight) => {
       return a.price - b.price;
     });
   };
 
   const sortHighestFirst = (givenFlights: Flight[]) => {
-    return givenFlights.sort((a: any, b: any) => {
+    return givenFlights.sort((a: Flight, b: Flight) => {
       return b.price - a.price;
     });
   };
 
   const sortFastestTravel = (givenFlights: Flight[]) => {
-    return givenFlights.sort((a: any, b: any) => {
+    return givenFlights.sort((a: Flight, b: Flight) => {
       return a.flightDuration - b.flightDuration;
     });
   };
 
   const sortShortestDistance = (givenFlights: Flight[]) => {
-    return givenFlights.sort((a: any, b: any) => {
+    return givenFlights.sort((a: Flight, b: Flight) => {
       return a.distanceBetween - b.distanceBetween;
     });
   };
